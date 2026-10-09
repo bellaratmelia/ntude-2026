@@ -1,0 +1,23 @@
+project:
+  type: default
+  output-dir: _site
+  render:
+    - index.qmd
+
+format:
+  revealjs:
+    theme: [default, styles/custom.scss]
+    slide-number: c/t
+    hash-type: number
+    code-copy: true
+    code-overflow: wrap
+    highlight-style: github
+    transition: none
+    width: 1280
+    height: 720
+    margin: 0.06
+    menu:
+      side: left
+    footer: "AI-Augmented Qualitative Research · NTU Digital Ethnography"
+    preview-links: auto
+    link-external-newwindow: true

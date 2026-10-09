@@ -1,0 +1,9 @@
+/.quarto/
+/_site/
+index_files/
+coded_output.jsonl
+.env
+__pycache__/
+.DS_Store
+
+**/*.quarto_ipynb

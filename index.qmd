@@ -1,0 +1,721 @@
+---
+title: "AI-Augmented Qualitative Research"
+subtitle: "From ad hoc prompting to workflows you can reuse, audit, and defend"
+author: "Bella Ratmelia"
+institute: "Guest seminar · MA in Digital Ethnography, NTU"
+---
+
+## Today
+
+| | | Learn | Try | Talk |
+|---|---|---|---|---|
+| **1** | Beyond ad hoc prompting | 15 | 10 | 5 |
+| **2** | Literature discovery without institutional walls | 12 | 13 | 5 |
+| **3** | AI-assisted qualitative coding | 10 | 25 | 10 |
+| | Wrap-up: limits, safety, ethics | 15 | | |
+
+[Minutes. Total: 120.]{.small .muted}
+
+::: {.notes}
+Each part has the same rhythm: a short input from me, something you try yourself, then we talk about what happened.
+:::
+
+## How today works {.smaller}
+
+::: {.columns}
+::: {.column width="33%"}
+[LEARN]{.chip .chip-learn}
+
+Short input from me, with live demos.
+:::
+::: {.column width="33%"}
+[TRY]{.chip .chip-try}
+
+You do it yourself, on your own laptop, alone or in pairs.
+:::
+::: {.column width="33%"}
+[TALK]{.chip .chip-talk}
+
+What happened? What surprised you? What would you trust?
+:::
+:::
+
+<br>
+
+Every hands-on activity has **two paths**:
+
+- **Path A**: Claude with connectors and Skills switched on
+- **Path B**: any AI chat tool (Claude, ChatGPT, Gemini, Copilot), free tier is fine
+
+Nobody gets stuck because of which tool or plan they have.
+
+## Before we start
+
+1. Open the materials: **TODO: GitHub Pages URL / QR code**
+2. Open an AI chat tool and sign in
+3. Find a partner. Pairs work well for every activity today.
+
+::: {.todo-shot}
+TODO: QR code to the materials repo
+:::
+
+::: {.notes}
+Give people two minutes. Anyone without an AI account can pair with someone who has one; the hand-coding activity in Part 3 needs no AI at all.
+:::
+
+## A ground rule for the next two hours
+
+::: {.big}
+You are always the analyst.<br>AI is the infrastructure.
+:::
+
+<br>
+
+Every activity today has a human decision point in the loop. When you see the AI "decide" something, ask: *where would I check this, and how would I show a reviewer that I checked?*
+
+# Part 1 {.section}
+
+[30 min · Learn 15 · Try 10 · Talk 5]{.section-meta}
+
+Beyond ad hoc prompting
+
+## How most of us use AI right now
+
+[LEARN]{.chip .chip-learn}
+
+- A prompt here, a ChatGPT session there
+- Different wording every time and different results every time
+- Nothing saved apart from a chat history you can't easily search
+- Hard to explain later: *"how exactly did you use AI in this study?"*
+
+::: {.caution}
+For qualitative research this is a methods problem, not a convenience problem. With no reproducibility and no audit trail, you can't defend how AI was used.
+:::
+
+## Ad hoc vs. structured
+
+| | Ad hoc prompting | Structured workflow |
+|---|---|---|
+| Instructions | Retyped each time | Written once, saved, reused |
+| Consistency | Varies by session and mood | Same rules applied to every excerpt |
+| Data access | Copy-paste into chat | Connected to sources directly |
+| Record | Chat history, maybe | Versioned files, decision log |
+| Shareable | Not really | Yes: a supervisor or co-coder can run the same thing |
+
+<br>
+
+Two building blocks make the right-hand column possible: **Skills** and **connectors (MCP)**.
+
+## Building block 1: Skills
+
+A **Skill** is a packaged set of instructions (plus optional files) that teaches the AI how to do one recurring task the same way every time.
+
+- Lives in a `SKILL.md` file: a **name**, a **description**, and the **instructions**
+- Can bundle reference files: your codebook, a template, examples
+- Runs **automatically** (the AI matches your request to the description) or **on demand** (`/skill-name`)
+
+::: {.keypoint}
+Think of it as an **interview guide for your AI interactions**: you design it once, carefully, so every session follows the same protocol.
+:::
+
+## Anatomy of a Skill {.smaller}
+
+```markdown
+---
+name: qual-coding-networked-publics
+description: Apply the networked-publics codebook to ethnographic
+  field notes. Use when asked to code, tag, or categorise field-note
+  excerpts from online communities.
+---
+
+# Qualitative coding: networked publics
+
+## Your role
+You are a coding assistant. You propose codes; the researcher decides.
+
+## Codebook
+...definitions, inclusion and exclusion rules, examples...
+
+## Output
+For every excerpt, return: excerpt ID, proposed code(s), the exact
+quoted evidence, a confidence level, and a one-line rationale.
+```
+
+::: {.keypoint}
+No Skills feature on your plan? A Skill is just text. Paste it in as your first message and you get most of the benefit.
+:::
+
+## Building block 2: connectors (MCP)
+
+**MCP (Model Context Protocol)** is a standard way for an AI assistant to connect to outside tools and data: databases, reference managers, file systems.
+
+- Without a connector, the AI can only work with what you paste in or what it remembers from training
+- With a connector, it can **search a live source**, **retrieve records**, and **cite what it found**
+- In Claude, open **Settings → Connectors**, browse the directory, and click Connect
+
+::: {.caution}
+A connector acts **with your access**. Treat it like a browser extension: know who made it before you switch it on.
+:::
+
+## Why this setup matters for researchers
+
+::: {.columns}
+::: {.column width="33%"}
+### Reproducibility
+Same instructions + same data → comparable output, by you or anyone else, later.
+:::
+::: {.column width="33%"}
+### Auditability
+The Skill, the prompts and the decision log are files you can version, date, and attach to a methods appendix.
+:::
+::: {.column width="33%"}
+### Consistency
+Excerpt 1 and excerpt 200 get coded under the same rules, not under whatever you remembered to type that day.
+:::
+:::
+
+## Reproducible by design
+
+- The AI itself is **not deterministic**: same prompt, two runs, slightly different wording.
+- So reproducibility doesn't come from the generation step. It comes from **what you keep**:
+  - the **data** (or a pointer to it)
+  - the **instructions** (your Skill / prompt, versioned)
+  - the **decisions** you made about the AI's output
+- Anyone holding those three can retrace your analysis, even if the AI's exact sentences differ.
+
+::: {.notes}
+Adapted from the WS2 "Reproducible by design" slide. Main point: reproducibility is a property of your record-keeping, not of the model. The hands-on that follows makes this concrete.
+:::
+
+## Save points: version control in one slide
+
+When an AI edits your files, you want an **undo button** and a **history**.
+
+- **Git** keeps dated save points ("commits") of your files, each with a short note on what changed
+- Your codebook in week 2 vs week 6? One command shows the difference
+- **GitHub** stores that history online so supervisors and co-authors can see it
+
+::: {.keypoint}
+For qualitative work, think of Git as an **audit trail for your codebook and your decisions**, not as a programming tool.
+:::
+
+::: {.notes}
+Awareness only, with no hands-on Git today. If people want more, point them to Software Carpentry's Git lesson.
+:::
+
+## Try 1: same prompt, different answers {.activity background-color="#E3F0EE"}
+
+[TRY · 10 min · pairs · any AI tool]{.chip .chip-try}
+
+**Round 1 (ad hoc).** Each of you, separately, pastes this into your AI tool:
+
+```text
+Here is a field note from an online community. Give me three
+analytic observations about it.
+
+[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's
+review without crediting them. The member complained in the Telegram
+group: "I wrote it for the group, not for IG." Admin apologised and
+said they would "ask first next time". Several members reacted with
+the thumbs-up emoji; one wrote "but the IG is public what, anyone
+can see anyway".
+```
+
+**Round 2 (structured).** Start a **new chat**. Paste the whole `SKILL.md` first, then: *"Code FN-04"* plus the same excerpt.
+
+**Compare with your partner** after each round.
+
+::: {.notes}
+SKILL.md is at materials/skills/qual-coding/SKILL.md, with a copy button on the materials site. Path A people can use the uploaded Skill instead of pasting.
+:::
+
+## Talk 1 {.discuss background-color="#F7E6DF"}
+
+[TALK · 5 min]{.chip .chip-talk}
+
+- In Round 1, how different were your two answers? Different *observations*, or just different wording?
+- What changed in Round 2?
+- What still varied, even with the same instructions?
+- Which version could you **defend in a methods section**?
+
+::: {.notes}
+Expected: Round 1 gives very different framings (often generic "community norms" talk). Round 2 converges on visibility and spreadability with quoted evidence, and differs mostly on confidence and "other" labels. That's the point: structure narrows the variation, it doesn't remove it.
+:::
+
+# Part 2 {.section}
+
+[30 min · Learn 12 · Try 13 · Talk 5]{.section-meta}
+
+Literature discovery without institutional walls
+
+## The pipeline
+
+[LEARN]{.chip .chip-learn}
+
+```{=html}
+<div style="display:flex;gap:0.5em;align-items:stretch;font-size:0.62em;margin-top:1em">
+  <div style="flex:1;border:2px solid #0F6E6E;border-radius:6px;padding:0.6em;background:#fff"><b>1. Discover</b><br>Search open indexes through connectors</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid #0F6E6E;border-radius:6px;padding:0.6em;background:#fff"><b>2. Check your library</b><br>What have I already saved?</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid #0F6E6E;border-radius:6px;padding:0.6em;background:#fff"><b>3. Summarise</b><br>Structured notes per paper, with citations</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid #B5502F;border-radius:6px;padding:0.6em;background:#F7E6DF"><b>4. You judge</b><br>Gaps, relevance, what to actually read</div>
+</div>
+```
+
+<br>
+
+Steps 1–3 can be chained in one workflow. **Step 4 is yours**, and it is where the scholarship happens.
+
+## What's available, and what it costs you
+
+| Source | How to connect | Install needed? |
+|---|---|---|
+| **PubMed** | Claude connector directory (one click) | No |
+| **arXiv** (via alphaXiv) | Claude connector directory (one click) | No |
+| **Consensus** (built on Semantic Scholar data) | Claude connector directory (one click) | No |
+| **Semantic Scholar** (direct) | Community MCP server | Yes, local setup |
+| **Zotero** (your own library) | Community MCP server | Yes, local setup |
+
+<br>
+
+::: {.small .muted}
+Directory checked October 2026. It changes often. Re-check the week of the session.
+:::
+
+::: {.notes}
+Point out that PubMed is biomedical, so for digital ethnography the more useful ones are Consensus / Semantic Scholar plus arXiv for computational social science. Zotero is the interesting one for them because it searches what *they* have already curated.
+:::
+
+## Demo: discovery across sources
+
+::: {.demo}
+Connectors on: Consensus, alphaXiv. One prompt, several sources.
+:::
+
+```text
+I'm a master's student in digital ethnography. Find recent (2020+)
+peer-reviewed work on how young people perform identity in
+semi-private online spaces (e.g. close friends lists, group chats,
+finstas, Discord servers).
+
+For each source you search, tell me which one it came from.
+Return a table: citation, year, method (ethnography / interviews /
+survey / computational / mixed), field site/platform, and a
+one-sentence finding. Only include items you actually retrieved;
+do not fill gaps from memory. Give me the DOI or link for each.
+```
+
+::: {.notes}
+Point out "only include items you actually retrieved" and "which source": both are guardrails against invented references. Check two results live by opening the DOI.
+:::
+
+## Demo: searching *your own* library
+
+::: {.demo}
+Zotero MCP connector. Recorded run, since it needs a local install.
+:::
+
+```text
+Search my Zotero library for everything I've saved on digital
+identity formation or self-presentation online. Group the results
+by theoretical framing (e.g. Goffman/dramaturgy, affordances,
+networked publics, other). Flag anything I've saved but never
+tagged.
+```
+
+<br>
+
+::: {.todo-shot}
+TODO: screen recording or screenshots of the Zotero MCP run
+:::
+
+::: {.notes}
+Record this beforehand so the live session doesn't depend on a local install. It shows the AI working over a collection the student curated, not the open web.
+:::
+
+## Chaining: discovery → summary → gaps
+
+```text
+Using the papers in the table above:
+
+1. For each, write a 3-line structured note: research question,
+   field site + method, key contribution.
+2. Then compare them: which platforms, populations, and methods are
+   well covered, and which are thin or missing?
+3. Present the gaps as questions, not conclusions, e.g.
+   "Few studies appear to look at X. Is that a real gap, or a
+   limitation of this search?"
+
+Cite the paper for every claim. If you are inferring rather than
+reading it from the paper, say so.
+```
+
+::: {.keypoint}
+Save this as a Skill and every literature sweep you run follows the same structure, and leaves the same kind of record.
+:::
+
+## Try 2: search your own topic, then check it {.activity .smaller background-color="#E3F0EE"}
+
+[TRY · 13 min · pairs]{.chip .chip-try}
+
+1. **Run the discovery prompt** (previous slides) with **your own research topic** in place of the example.
+   - **Path A:** connectors on (Consensus and/or alphaXiv)
+   - **Path B:** any AI tool, **no** connector
+2. **Check three references.** Open each DOI or link and fill in:
+
+| Ref | Exists? | Right authors and year? | Does the paper say what the table says? |
+|---|---|---|---|
+| 1 | | | |
+| 2 | | | |
+| 3 | | | |
+
+3. **Compare with your partner**, ideally one Path A and one Path B.
+4. If time: run the **chaining prompt** on your results.
+
+::: {.notes}
+Pair Path A with Path B people where possible: the contrast in invented or garbled references is usually striking. Have them keep the check table; it's the seed of their own verification habit.
+:::
+
+## Talk 2 {.discuss background-color="#F7E6DF"}
+
+[TALK · 5 min]{.chip .chip-talk}
+
+- How many of your three references checked out? Path A vs Path B?
+- What do you **know** exists on your topic that didn't show up?
+- Did the "gaps" it suggested feel real, or like artefacts of the search?
+
+## What these pipelines **cannot** do {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+- **Coverage is partial.** Open indexes miss many books, regional journals, and non-English work.
+- **"Gaps" may be search gaps,** not gaps in the literature.
+- **Summaries flatten.** A 3-line note can't hold thick description.
+:::
+::: {.column width="50%"}
+- **Retrieval ≠ relevance.** Ranked by similarity, not theoretical fit.
+- **Citations can still be wrong:** right paper, wrong claim. Spot-check.
+- **It doesn't know your field site.** That's your judgment.
+:::
+:::
+
+::: {.caution}
+Use these to **widen and organise** your search, not to replace reading.
+:::
+
+# Part 3 {.section}
+
+[45 min · Learn 10 · Try 25 · Talk 10]{.section-meta}
+
+AI-assisted qualitative coding
+
+## The workflow
+
+[LEARN]{.chip .chip-learn}
+
+1. **Build a coding Skill:** your framework, codes, rules and output format, written down once
+2. **Open coding pass:** apply the Skill across excerpts, consistently
+3. **Axial coding / theme consolidation:** the AI surfaces patterns, you decide
+4. **Audit trail:** record what the AI proposed and what you accepted, changed, or rejected
+5. **Scale it** (briefly): the same Skill, run through the API over a whole dataset
+
+::: {.notes}
+The framework in the demo is boyd's networked publics affordances. It's familiar to digital ethnographers and has crisp definitions, which makes it easy to demo. Students would swap in their own.
+:::
+
+## Our sample data
+
+Six short, **fictional** field-note excerpts from a made-up online community: a Singapore hawker food Telegram group and its spin-off Instagram account.
+
+```text
+[FN-03] 14 Mar, 9.40pm. A member posted a photo of an uncle's
+stall with the caption "last week before he retires!!" Within an
+hour it had been forwarded to at least three other groups (I could
+see the "forwarded" tag when it came back to us). Someone asked
+the original poster to take the uncle's face out of the photo.
+They didn't reply.
+```
+
+[All six excerpts are in `materials/data/fieldnotes.md`.]{.small .muted}
+
+::: {.caution}
+Never paste real participant data into a consumer AI tool without checking your ethics approval and your institution's data rules first. More on this in the wrap-up.
+:::
+
+## Demo: building the coding Skill
+
+::: {.demo}
+`/skill-creator` in Claude. Watch, as the finished Skill is in the materials.
+:::
+
+```text
+Create a skill for qualitative coding of ethnographic field notes
+using boyd's networked publics affordances (persistence,
+visibility, spreadability, searchability), plus an "other /
+emergent" code.
+
+For each excerpt: propose zero or more codes, quote the exact
+evidence, give a confidence (high / medium / low) and a one-line
+rationale. Never invent text that isn't in the excerpt. If nothing
+fits, say so. Flag anything that looks like identifiable personal
+information. Output as a table I can paste into a spreadsheet.
+```
+
+## What goes into a good coding Skill
+
+| Section | Why it matters |
+|---|---|
+| **Role**: "you propose, the researcher decides" | Sets the human-in-the-loop expectation from the start |
+| **Codebook**: definition, include when, exclude when, example | The same rigour you'd give a human co-coder |
+| **Evidence rule**: quote verbatim, never paraphrase | Lets you check every code against the text |
+| **Uncertainty**: confidence + "nothing fits" allowed | Stops the AI forcing a code onto everything |
+| **Output format**: fixed columns | Consistent, comparable, easy to log |
+| **Ethics flags**: names, faces, handles | Builds data-protection care into the routine |
+
+## Try 3a: code it yourself first {.activity background-color="#E3F0EE"}
+
+[TRY · 8 min · alone · no AI]{.chip .chip-try}
+
+Using the codebook in `SKILL.md`, code **FN-02** and **FN-04** **by hand**.
+
+For each code: write the code, the exact words that support it, and how confident you are.
+
+::: {.keypoint}
+Why first? Once you've seen the AI's answer, it's very hard to un-see it. Your own reading is the baseline you'll judge the AI against.
+:::
+
+::: {.notes}
+Insist on no AI for this one. Paper or a blank doc. This is the step that makes the comparison meaningful.
+:::
+
+## Try 3b: run the Skill {.activity background-color="#E3F0EE"}
+
+[TRY · 10 min · alone or pairs]{.chip .chip-try}
+
+- **Path A (Claude with Skills):** upload the `qual-coding` folder, then:
+
+```text
+/qual-coding-networked-publics
+Code all six excerpts below.
+[paste the contents of fieldnotes.md]
+```
+
+- **Path B (any AI tool):** new chat → paste the whole `SKILL.md` → then *"Code all six excerpts below"* and paste `fieldnotes.md`.
+
+**Check as you read:** does every code have a **verbatim** quote? Where is confidence **low**? What went into **other**?
+
+[Stuck, or no AI access? Use the pre-generated output in `materials/sample-ai-output.md`.]{.small .muted}
+
+## What a decision log looks like {.smaller}
+
+| Excerpt | AI proposed | Confidence | My decision | Reason |
+|---|---|---|---|---|
+| FN-03 | spreadability | high | **Accept** | Forwarding across groups is explicit |
+| FN-03 | visibility | medium | **Accept + add** "consent" memo | Request to remove face |
+| FN-05 | searchability | low | **Reject** | She looks things up offline, not on the platform |
+| FN-06 | other: "nostalgia" | medium | **Promote** to new code | Also appears in FN-01 |
+
+[Template: `materials/audit-log-template.md`]{.small .muted}
+
+::: {.caution}
+In the methods section you're defending this log, not the AI's output. Keep the Skill version, the date, and the model name with it.
+:::
+
+## Try 3c: compare and log {.activity background-color="#E3F0EE"}
+
+[TRY · 7 min · pairs]{.chip .chip-try}
+
+1. Put **your hand codes** for FN-02 and FN-04 next to the **AI's**.
+2. Fill in **at least four rows** of the decision log: Accept / Reject / Modify / Promote, and **why**.
+3. Compare logs with your partner. Did you make the same calls?
+
+If time, ask the AI for themes:
+
+```text
+Looking across all the codes you proposed: suggest 2–3 candidate
+themes. For each, list the excerpt IDs that support it AND any that
+complicate it. Do not finalise anything.
+```
+
+## Talk 3 {.discuss background-color="#F7E6DF"}
+
+[TALK · 10 min]{.chip .chip-talk}
+
+- Where did **you** and the **AI** disagree? Who was right, or is it a genuine judgment call?
+- Did the AI notice something you missed? Did it **over-code** anything?
+- Would you trust it on **excerpt 200** without checking? What would you check?
+- What does this mean for how you'd describe AI use in your **methods**?
+
+::: {.notes}
+Common points that come up: the AI is good at spreadability/persistence, which are explicit in the text, and weaker on visibility and context collapse, which need interpretation. The "other" column is where the interesting analytic work starts, and that's where the human matters most.
+:::
+
+## Beyond the chat window: when there's no connector
+
+[LEARN · demo only]{.chip .chip-learn}
+
+Most of the sources digital ethnographers care about (museum collections, archives, government records) have **no connector yet**. Many do have an **API**.
+
+| Term | What it is | Analogy |
+|---|---|---|
+| **API** | A door into a data source, built for programs rather than people | The museum's search page, but it returns data instead of a web page |
+| **Connector (MCP)** | A ready-made adapter someone has already fitted to that door | Click Connect and you're in |
+| **Claude Code** | An AI that can write and run a small script on your computer | No adapter? It goes through the door itself and saves what it finds |
+
+::: {.notes}
+Keep this conceptual. The point isn't that they should all install Claude Code today; it's that "no connector" doesn't mean "no access". Many of these APIs are free and need no key: data.gov.sg, the Met, the Smithsonian, Europeana (free key), the Library of Congress, Wikidata.
+:::
+
+## Demo: official records next to field notes {.smaller}
+
+::: {.demo}
+Claude Code + the data.gov.sg API. Watch only, no need to follow along.
+:::
+
+```text
+Using the data.gov.sg API (no key needed):
+
+1. Download the list of government markets and hawker centres
+   (dataset d_68a42f09f350881996d83f9cd73ab02f) and the annual
+   number of hawker stalls (d_894e84243d69d55c13b357dbad4e6350).
+2. Save each as a CSV in a data/ folder, plus the raw API response.
+3. Write a short README: what you downloaded, from which URL,
+   on what date, and any gaps you notice in the data.
+4. Make one chart of hawker stall numbers over time.
+```
+
+::: {.keypoint}
+Note what it leaves behind: the data, the script, and a dated record of where it came from. That's provenance, the same idea as the decision log.
+:::
+
+::: {.notes}
+Ties back to the fictional hawker Telegram group: official counts of stalls next to members mourning an uncle's retirement (FN-03). Ask: what do the official records show, and what can only the field notes show?
+
+Expect it to notice that the stall series stops in 2014. That's a good moment: official data has gaps too, and you only know because the README asked for them.
+
+Record a backup run beforehand in case the live demo or Wi-Fi fails.
+:::
+
+## Two kinds of API {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### A data API
+Brings data **in**.
+
+*data.gov.sg, museum collections, archives*
+
+"Get me every hawker centre."
+:::
+::: {.column width="50%"}
+### The Claude API
+Runs the AI **over** your data, outside the chat window.
+
+*Your coding Skill, applied to 500 excerpts*
+
+"Code every one of these the same way."
+:::
+:::
+
+<br>
+
+Same word, different jobs. Both let you work at a scale, and with a record, that the chat window can't give you.
+
+## Where this goes next: scale {.smaller}
+
+The same Skill, run outside the chat window over hundreds of excerpts, with every response saved. *Just watch, no need to follow the code.*
+
+```python
+import anthropic
+from pydantic import BaseModel
+
+class CodedExcerpt(BaseModel):
+    excerpt_id: str
+    codes: list[str]
+    evidence: str
+    confidence: str
+    rationale: str
+
+client = anthropic.Anthropic()
+skill = open("materials/skills/qual-coding/SKILL.md").read()
+
+result = client.messages.parse(
+    model="claude-opus-5-5",
+    max_tokens=4000,
+    system=skill,                       # your Skill = the instructions
+    messages=[{"role": "user", "content": excerpt_text}],
+    output_format=CodedExcerpt,         # forces a fixed, checkable shape
+)
+print(result.parsed_output)
+```
+
+::: {.notes}
+Two minutes max: this is the "Claude API" from the previous slide. Point out three lines only: system = the Skill, output_format = the fixed columns, and the model name, which goes into your audit log. The full runnable version is in materials/api/code_excerpts.py.
+:::
+
+# Wrap-up {.section}
+
+[15 min]{.section-meta}
+
+## Limitations
+
+- **AI codes text, not context.** It wasn't in the field. Your fieldwork memory, positionality and relationships are what make the analysis ethnographic.
+- **Consistency isn't validity.** A Skill applies a bad codebook just as consistently as a good one.
+- **Models change.** The same Skill on next year's model may behave differently. Record the version.
+- **Fluent ≠ correct.** Confident, well-written output still needs checking against the excerpt.
+
+## Safety: don't grab Skills and connectors from just anywhere
+
+- A Skill or connector runs **with your access**: your files, your accounts, your data
+- A malicious or sloppy one can leak data or quietly change what the AI does
+- **Read before you run.** Prefer official directories and sources you can inspect.
+- Give it the same scrutiny you'd give a browser extension or an `.exe` from an unknown site
+
+::: {.caution}
+That includes the community Zotero and Semantic Scholar servers from Part 2. Look at who maintains them before installing.
+:::
+
+## Ethics and good practice {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Before**
+
+- **Ethics approval** covers AI processing?
+- Tool's **data-retention / training** settings checked?
+- **De-identify** before data leaves your machine
+- Agree on AI use with supervisor and co-coders
+:::
+::: {.column width="50%"}
+**During and after**
+
+- Keep the **audit log** as you go
+- **Disclose** in your methods: tool, model, version, what it did, what you did
+- Check your **journal's / programme's** AI policy
+- Keep the **Skill file** with your project records
+:::
+:::
+
+## Take-home
+
+::: {.big}
+Write it down once. Run it the same way every time. Log what you decided.
+:::
+
+<br>
+
+- Slides and materials: **TODO: GitHub Pages URL**
+- Coding Skill: `materials/skills/qual-coding/SKILL.md`
+- All prompts and activities: `materials/prompts/`, `materials/hands-on.md`
+
+**Try this week:** turn *one* thing you do repeatedly in your own project into a Skill.
+
+## Thank you {.unnumbered}
+
+Questions or follow-up: **bellar@smu.edu.sg**
+
+::: {.small .muted}
+Sample field notes in this session are fictional and were written for teaching purposes.
+:::
