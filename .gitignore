@@ -1,6 +1,8 @@
 /.quarto/
 /_site/
-index_files/
+.venv/
+venv/
+*_files/
 coded_output.jsonl
 .env
 __pycache__/
