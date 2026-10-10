@@ -2,7 +2,6 @@
 title: "AI-Augmented Qualitative Research"
 subtitle: "From ad hoc prompting to workflows you can reuse, audit, and defend"
 author: "Bella Ratmelia"
-institute: "Guest seminar · MA in Digital Ethnography, NTU"
 ---
 
 ## Today

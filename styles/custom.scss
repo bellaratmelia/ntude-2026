@@ -48,7 +48,9 @@ $code-block-font-size: 0.62em;
   border-bottom: 3px solid $teal;
   padding-bottom: 0.2em;
   margin-bottom: 0.6em;
-  display: inline-block;
+  // Block-level but shrink-wrapped, so the underline hugs the text
+  // without letting following content (e.g. .columns) flow beside it.
+  display: table;
 }
 
 // Section dividers: `# Title {.section}` slides
