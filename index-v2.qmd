@@ -1,0 +1,691 @@
+---
+title: "From Chatbot to Research Assistant"
+subtitle: "Getting started with agentic AI for research"
+author: "Bella Ratmelia"
+format:
+  revealjs:
+    footer: "23 October 2026 - Guest seminar for Digital Ethnography"
+---
+
+## Today
+
+| | | Min |
+|-|----------------------|-|
+| **1** | Core concepts, and a tour of Claude Code / Codex | 30 |
+| **2** | Finding and judging sources for a literature review | 20 |
+| **3** | Classification: from one question to 300 papers | 30 |
+| **4** | Making it reproducible: scripts, logs, Skills | 20 |
+| | Integrity check and close | 15 |
+
+
+::: {.notes}
+The overarching idea for the whole session: what can the AI reach, and how do you steer it?
+
+:::
+
+
+## A note before we begin
+
+- This is a **practitioner-led** session, based on what I've learned from experimenting with these tools in my day-to-day work supporting researchers.
+- The tools and practices are evolving **quickly**. Some of what I show will look different by next semester, and some of you may know parts of it better than I do.
+- Today's session is about a **mental model** that should survive the next few product updates.
+- Anything related to research methods is strictly in the domain of your professor. 
+
+::: {.keypoint}
+Questions, corrections and lessons from your own experiments are welcome. Let's make this a two-way exchange!
+:::
+
+
+## Where are you now?
+
+Quick show of hands:
+
+1. I've used ChatGPT, Claude, Gemini or Copilot **at least once**
+2. I used one of them **every week**
+3. I've connected one to **another app** (Drive, Zotero, a database)
+4. I've had one **run code** or **edit files** for me
+
+
+## Checklist
+
+Ideally, before today you have:
+
+- ✓ **Claude Code** or **Codex** installed and logged in (both need a paid plan)
+- ✓ The workshop folder downloaded: **TODO: URL / QR code**
+- ✓ Optional but recommended: **Python** installed
+- ✓ Laptop and charger
+
+<br>
+
+No Claude Code or Codex? Pair with someone who has it, or watch: every activity has a demo version.
+
+::: {.notes}
+No GitHub or Git needed today, unlike the SMU workshop. Quick show of hands: who has it installed and logged in? That decides how hands-on the next 2 hours are.
+:::
+
+## A ground rule
+
+::: {.big}
+If you can't defend it without the AI in the room, you're not done.
+:::
+
+
+# Part 1 {.section}
+
+Core concepts
+
+## What can the AI reach, and how do you steer it?
+
+Most of us are familiar with the **I type, it answers** pattern.
+
+Three new ideas today:
+
+| | The idea | What it means for you |
+|---|---|---|
+| **It can act** | Agents plan and take steps, not just reply | Hand over a task, not just a question |
+| **It can reach things** | Connectors open your files, databases, tools | Answers grounded in real sources, not memory |
+| **It can follow your procedures** | Skills hold your instructions, written once | The same method, every time |
+
+## Chat vs agent
+
+::: {.columns}
+::: {.column width="50%"}
+### A chatbot
+is a **consultant you email**.
+
+- You send a question, it sends back an answer
+- It only knows what you paste in and what it learned in training
+- You do all the legwork in between
+:::
+::: {.column width="50%"}
+### An agent
+is a **research assistant you hand a task to**.
+
+- It has a desk, files and tools
+- It works through several steps on its own
+- It reports back, and you check the work
+:::
+:::
+
+::: {.notes}
+Same underlying model in both cases. What's different is what it's allowed to touch and whether it can take more than one step before coming back to you.
+:::
+
+## In practice: web chat vs Claude Code / Codex {.smaller}
+
+| Web chat (Claude.ai / ChatGPT.com) | Claude Code / Codex |
+|---|---|
+| Runs in a browser | Runs on **your computer**, in **your project folder** |
+| Sees only what you paste or upload | Reads many files and sees how they relate |
+| Hands you text and code to copy back | Creates, edits and organises files itself |
+| You run the output yourself | Runs scripts and commands, **with your permission** |
+| Best for questions and one-off outputs | Best for multi-step work: act, check, continue |
+
+::: {.caution}
+Claude Code and Codex aren't automatically **better** than web chat. They have more **access** and more ability to **act**, which is why permissions, checkpoints and your review matter.
+:::
+
+## The agent loop
+
+```{=html}
+<div style="display:flex;gap:0.5em;align-items:stretch;font-size:0.7em;margin-top:1em">
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Plan</b><br>Break the task into steps</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Act</b><br>Search, read a file, run code</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Observe</b><br>Look at what came back</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ink);border-radius:var(--radius-md);padding:0.6em;background:var(--mist)"><b>Adjust</b><br>Fix, retry, or move on</div>
+  <div style="align-self:center">↺</div>
+</div>
+```
+
+<br>
+
+- A chatbot does **one** pass. An agent goes round this loop until it thinks it's finished.
+- "Thinks it's finished" is the catch. **You** decide when it's actually finished.
+
+::: {.notes}
+We'll see the loop live in Part 3, when the script hits an error and the agent fixes it. Point back to this slide then.
+:::
+
+## Context: the agent's working memory
+
+Think of **context** as the agent's desk.
+
+- Everything in the session sits on the desk: your instructions, files it read, search results, its own replies
+- The desk is **big but not infinite**. As the pile grows, early instructions get buried
+- That's why long sessions **drift**: it "forgets" a rule you set an hour ago
+
+::: {.keypoint}
+**Habits that help:** start a fresh session for a new task. Put important instructions in a **file** (or a Skill), not in message 3 of 40. Ask it to summarise progress before you continue.
+:::
+
+## Where the code runs {.smaller}
+
+The useful question isn't "which product?" but **where does it run, and what can it touch?**
+
+::: {.columns}
+::: {.column width="55%"}
+| Option | Where it runs |
+|---|---|
+| **Local** | Your computer: your files, your terminal. The default, and what we use today |
+| **Cloud** | The provider's machine. Good for long tasks; starts from a fresh copy, so it can't see your local folders |
+| Remote / SSH | Another computer or a server you own |
+:::
+::: {.column width="45%"}
+![](images/reused/cc-where-it-runs.png){width="100%"}
+
+![](images/reused/codex-where-it-runs.png){width="70%"}
+:::
+:::
+
+[Top: Claude Code desktop. Bottom: Codex. Menus change often; checked October 2026.]{.small .muted}
+
+## Tour: how much should it ask you? {.smaller}
+
+::: {.columns}
+::: {.column width="55%"}
+| Mode | What it does |
+|---|---|
+| **Plan** | Investigates and writes a plan **before** changing anything |
+| **Manual** | Asks before every action that changes something |
+| **Accept edits** | File edits go through; other actions still ask |
+| **Auto** | Proceeds on safe actions, pauses on riskier ones |
+| **Bypass** | Never asks. **Not for today** |
+:::
+::: {.column width="45%"}
+![](images/reused/cc-modes.png){width="85%"}
+
+![](images/reused/codex-approvals.png){width="85%"}
+:::
+:::
+
+::: {.keypoint}
+**For research work, start in Plan mode.** Read the plan the way you'd read a research assistant's proposal, then let it act.
+:::
+
+::: {.notes}
+Codex calls these approval settings: Ask for approval, Approve for me, Full access. Same idea.
+:::
+
+## Tour: first task {.activity background-color="var(--mist)"}
+
+[TRY · 5 min · Plan mode]{.chip .chip-try}
+
+Open the workshop folder in Claude Code or Codex, then:
+
+```text
+Look at screened-papers.csv. Count how many papers I marked
+"include" by year, make a bar chart, and save it as
+inclusion-by-year.png. Then add a two-line note to README.md
+saying what you did and when.
+```
+
+Look for:
+
+- It **plans** before acting
+- It **reads** the actual file instead of guessing
+- It **leaves things behind**: a chart and a note, in your folder
+
+::: {.notes}
+Show-and-tell fallback: I run it on screen. Keep to 5 minutes. Don't teach terminal commands; the desktop apps avoid most of that. The point is: an agent on your own machine works on your files and leaves a record.
+
+TODO: create materials/screened-papers.csv (about 40 fictional rows: title, year, decision).
+:::
+
+## Connectors: USB-C ports for AI
+
+::: {.columns}
+::: {.column width="55%"}
+- A **connector** plugs the AI into a source: PubMed, a scholarly index, Google Drive, Zotero
+- **MCP** (Model Context Protocol) is the **standard** behind them, like USB-C is the standard behind the cable
+- You don't need to build one. You need to know they **exist** and what each one can **reach**
+:::
+::: {.column width="45%"}
+**Without a connector:** the AI answers from training memory, which is out of date and can invent sources.
+
+**With a connector:** it searches a live source and can show you **where** each result came from.
+:::
+:::
+
+::: {.caution}
+A connector acts **with your access**. Treat it like a browser extension: know who made it before you switch it on.
+:::
+
+::: {.notes}
+Claude Code: connectors added to your claude.ai account are available when you log in with that account; you can also add MCP servers per project. Codex: MCP servers are added in its settings. Check both the week before.
+:::
+
+## Skills: the lab protocol card
+
+A **Skill** is a set of instructions, written once, that the AI follows every time you do that task.
+
+- Like an **SOP** or a **lab protocol**: the steps, the rules, the edge cases
+- Research examples:
+  - your **screening criteria** for a systematic review
+  - a **classification codebook**
+  - your department's **citation style** quirks
+
+::: {.keypoint}
+This is the most transferable idea today. A Skill makes your AI use **consistent** and **reproducible**, and it's something you can show a reviewer.
+:::
+
+::: {.notes}
+Just plant the idea here. We build one at the end of Part 4, from the work we do in Part 3.
+:::
+
+# Part 2 {.section}
+
+[20 min · Learn 8 · Try 8 · Talk 4]{.section-meta}
+
+Finding and judging sources for a literature review
+
+## Why connectors matter for a lit review
+
+Ask a plain chatbot for references and you'll often get:
+
+- Real authors, plausible title, **paper doesn't exist**
+- Real paper, **wrong year or wrong journal**
+- Real paper, but it **doesn't say what the AI claims**
+
+::: {.caution}
+Fabricated citations are the single most common way AI use gets caught in a thesis or a manuscript. A connector reduces the risk. It doesn't remove it.
+:::
+
+## What can it reach?
+
+| Source | Covers | Connect via |
+|---|---|---|
+| **PubMed** | Biomedical and life sciences | Connector directory |
+| **Consensus** | Broad, built on Semantic Scholar / OpenAlex data | Connector directory |
+| **alphaXiv** | arXiv preprints | Connector directory |
+| **Zotero** | **Your own** saved library | Community MCP server |
+| **Your library's databases** | Licensed content (Scopus, WoS, publisher platforms) | Mostly **not** reachable. Use the library |
+
+[Directory checked October 2026. Re-check the week of the session.]{.small .muted}
+
+::: {.notes}
+Library angle worth stressing: connectors mostly reach open indexes. Paywalled full text and licensed databases are usually out of reach, so "the AI didn't find it" often means "the AI couldn't see it". The library's discovery tools and librarians are still part of the workflow.
+:::
+
+## Demo: explore with a connector
+
+::: {.demo}
+Connector on: Consensus (or PubMed for health topics).
+:::
+
+```text
+Find recent (2020 onwards) peer-reviewed papers on research data
+sharing practices in economics.
+
+Return a table: citation, year, type (empirical / review / methods /
+opinion), and a one-sentence finding. Give the DOI for each.
+Only include papers you actually retrieved from the search.
+Do not fill gaps from memory. Tell me which source each came from.
+```
+
+::: {.notes}
+Point out the guardrails in the prompt: "only include papers you actually retrieved" and "which source". Open two DOIs live. This same topic carries into Part 3, so the audience sees the small version before the big one.
+:::
+
+## Discerning, not just finding {.smaller}
+
+The connector finds things. **You** still judge them.
+
+::: {.columns}
+::: {.column width="50%"}
+**Is it real and is it right?**
+
+- Does the DOI resolve to this paper?
+- Right authors, year, venue?
+- Does the paper actually say the one-line finding?
+:::
+::: {.column width="50%"}
+**Is it any good for my purpose?**
+
+- Peer-reviewed or preprint?
+- Retracted or corrected? (Check Retraction Watch / the publisher page)
+- Reputable venue, or a questionable one?
+- Relevant to **my** question, or just similar wording?
+:::
+:::
+
+::: {.keypoint}
+Ask the AI to help with the second column too ("flag preprints and anything you can't confirm is peer-reviewed"), then spot-check its flags.
+:::
+
+## Try 2: your topic, three checks {.activity background-color="var(--mist)"}
+
+[TRY · 8 min · pairs]{.chip .chip-try}
+
+1. Run the discovery prompt with **your own topic**
+2. **Check three references.** Open each DOI and fill in:
+
+| Ref | Exists? | Right authors and year? | Says what the table says? | Peer-reviewed? |
+|---|---|---|---|---|
+| 1 | | | | |
+| 2 | | | | |
+| 3 | | | | |
+
+::: {.notes}
+If some people have no connector set up, pair them with someone who does: the contrast in invented references is usually striking.
+
+Show-and-tell fallback: I run it once with a connector and once without, on a volunteer's topic, and we check three refs together on screen.
+:::
+
+## Talk 2 {.discuss background-color="var(--surface-raised)"}
+
+[TALK · 4 min]{.chip .chip-talk}
+
+- How many of your three checked out?
+- What do you **know** exists on your topic that didn't show up? Why might that be?
+- Would you put any of these in a paper without opening them?
+
+# Part 3 {.section}
+
+[30 min · Demo, follow along if you like]{.section-meta}
+
+Classification: from one question to 300 papers
+
+## The librarian at the desk vs the overnight job
+
+::: {.columns}
+::: {.column width="50%"}
+### Connector
+**Asking the librarian at the desk a question.**
+
+Great for exploring, small asks, "what's out there?"
+:::
+::: {.column width="50%"}
+### Script
+**Hiring them to process 500 requests overnight.**
+
+Great for scale, consistency, and showing exactly what you did.
+:::
+:::
+
+<br>
+
+In Part 2 we asked the desk. Now we hand over the overnight job.
+
+## Step 1: "now do it for 300 papers"
+
+[Plan mode first. Watch the agent loop.]{.chip .chip-learn}
+
+```text
+Write a Python script that uses the OpenAlex API to collect up to
+300 papers (2020 onwards) on research data sharing in economics.
+Save title, authors, year, venue, DOI and abstract to papers.csv.
+Use a polite email in the request, not an API key in the code.
+Log the exact query and today's date to search-log.md.
+Run it and tell me how many papers you got.
+```
+
+**Watch for:** plan → write → run → **error** → read the error → fix → run again.
+
+::: {.notes}
+OpenAlex or Crossref: no key needed for basic use (check before the session whether OpenAlex now requires a free key). PubMed E-utilities also works for health topics.
+
+The error-fixing moment is the best illustration of the agent loop in the whole session. Common real errors: abstracts stored as an inverted index in OpenAlex, pagination, rate limits. Point back to the loop slide.
+
+Record a backup run.
+:::
+
+## Step 2: classify
+
+Two ways to label each abstract as **empirical / review / methods / opinion**:
+
+| | Rule-based | LLM-based |
+|---|---|---|
+| How | Keywords: "we survey", "systematic review", "we propose a method" | The model reads each abstract against a codebook |
+| Cost | Free, instant | Costs per paper (small, but not zero) |
+| Consistency | Identical every run | Close, but can vary |
+| Handles nuance | Poorly | Better |
+| Easy to explain in methods | Very | Yes, if you keep the codebook and model version |
+
+```text
+Propose both approaches. Write the codebook as codebook.md first,
+then add a label column to papers.csv using each method.
+```
+
+::: {.notes}
+Let the agent propose both and discuss. A common good answer: rules first, LLM only for the ones rules can't decide. The codebook file is what becomes the Skill later.
+:::
+
+## Step 3: check against a human
+
+I hand-labelled **15 papers** before the session. Compare:
+
+```text
+Compare the labels in papers.csv against my labels in
+hand-labels.csv. Show agreement for each method, and list every
+mismatch with the abstract, both labels, and your best guess why.
+```
+
+- Mismatches are **not** failures. They're where your codebook is unclear, or where the paper is genuinely ambiguous.
+- Fix the codebook, re-run, compare again. That's a **validation step** you can report.
+
+::: {.caution}
+Fifteen hand labels is a teaching demo. For a real study, check a proper sample and report agreement.
+:::
+
+## Or: classifying your own texts
+
+Same pattern works on **interview transcripts, open survey answers, field notes**.
+
+```text
+[FN-05] Interviewed a member ("Auntie L") at a coffee shop. She
+says she never uses the group's search; instead she keeps a paper
+notebook of stalls people recommend, and "checks the menu boards
+when I go". She reads the group "like the newspaper", every
+morning, but rarely posts.
+```
+
+- Codebook → AI proposes codes with **verbatim evidence** → you accept / reject / modify → log it
+- Example codebook: `materials/skills/qual-coding/SKILL.md`
+
+::: {.caution}
+"Local" means the **files** stay on your machine, but what the agent reads is still sent to the model provider. Real interview data needs **ethics approval** and your **institution's data rules** first. De-identify first.
+:::
+
+::: {.notes}
+Offer this as the alternative track if the room is mostly qualitative researchers. Excerpt is fictional, from materials/data/fieldnotes.md.
+:::
+
+## Try 3: be the human check {.activity background-color="var(--mist)"}
+
+[TRY · 8 min · alone or pairs · no AI needed]{.chip .chip-try}
+
+Using the codebook on screen, label **five abstracts** yourself (handout or `materials/` link).
+
+Then compare with the AI's labels:
+
+- Where do you disagree?
+- Is it **your** reading, **its** reading, or the **codebook** that's unclear?
+- What one line would you add to the codebook to fix it?
+
+::: {.notes}
+Show-and-tell fallback: put the 15-paper mismatch table on screen and vote on 3 or 4 of them as a room.
+:::
+
+# Part 4 {.section}
+
+[20 min · Learn + show-and-tell]{.section-meta}
+
+Making it reproducible
+
+## Reproducible by design
+
+- **Reproducible** = same data + same code → the same result, by anyone, later.
+- The AI is **not deterministic**: the same prompt can produce different results on different runs.
+- So reproducibility lives in **what you keep**, not in the generation step.
+- Having it generate a **script** you can re-run any time is what makes this work.
+
+::: {.keypoint}
+A **random seed** makes random sampling repeatable. "Pick 15 papers for me to hand-label, using seed 42" gives the same 15 every time.
+:::
+
+## What to keep
+
+| Keep | Example from today |
+|---|---|
+| **The data** (or how to get it again) | `papers.csv` + the query and date in `search-log.md` |
+| **The procedure** | the script, `codebook.md` |
+| **The checks** | `hand-labels.csv` and the agreement numbers |
+| **The decisions** | what you changed in the codebook, and why |
+| **The tool** | model name and version, date run |
+
+::: {.keypoint}
+The script is something you can **save, rerun, and cite** in a methods section. A chat transcript is not.
+:::
+
+## A light habit: dated folders + a research log
+
+You don't need Git to start. You need **this**:
+
+```text
+2026-10-15_data-sharing-econ/
+├── search-log.md        ← query, source, date, number of results
+├── research-log.md      ← what I asked the AI, what it did, what I decided
+├── papers.csv
+├── codebook.md
+├── hand-labels.csv
+└── fetch_and_classify.py
+```
+
+Then tell the agent: **"After each step, add a dated entry to research-log.md."**
+
+::: {.notes}
+The AI maintaining its own log is the easiest win of the whole session. Read it at the end of the day; correct anything wrong.
+:::
+
+## Never paste API keys into chat
+
+- Some APIs need a **key** (Claude API, Scopus, some publisher APIs)
+- A key in a chat, a script, or a shared folder can be **copied and misused**, and billed to you
+- Keep it in a **`.env` file** or an environment variable; the script reads it from there
+
+```python
+import os
+api_key = os.environ["SCOPUS_API_KEY"]   # never the key itself in the file
+```
+
+::: {.caution}
+If you ever share the folder or put it on GitHub, `.env` stays behind: list it in `.gitignore`. If you've ever pasted a key into a chat, revoke it and make a new one.
+:::
+
+## Skills, briefly
+
+- A reusable package of **instructions and optional files** that guides the agent through one task
+- Lives in a `SKILL.md` file: a **name**, a **description**, the **instructions**. Can bundle scripts, templates, reference files
+- Runs **automatically** (the description matches your request) or **on demand** (`/skill-name`)
+
+::: {.columns}
+::: {.column width="50%"}
+**Where it lives**
+
+- Just you, every project: `~/.claude/skills/`
+- This project only: `.claude/skills/` in the folder
+- Codex has the same idea: `~/.codex/skills/`
+:::
+::: {.column width="50%"}
+![](images/reused/skill-anatomy.png){width="80%"}
+:::
+:::
+
+::: {.notes}
+Tip from the SMU workshop: a sharp description = reliable auto-triggering. Codex's skills folder: double-check the path the week of the session.
+:::
+
+## Closing the loop: turn the demo into a Skill
+
+[SHOW-AND-TELL · follow along if you like]{.chip .chip-learn}
+
+```text
+/skill-creator
+Turn what we did today into a Skill called classify-papers:
+the fetch script, codebook.md, the validation step against hand
+labels, and the rule to log every run in research-log.md.
+```
+
+::: {.big}
+A one-off demo becomes a reusable workflow.
+:::
+
+Next month, a new topic: same Skill, same method, same kind of record.
+
+::: {.notes}
+If the Skill lands in a temporary session folder, ask it to move it to ~/.claude/skills/. Show the resulting SKILL.md briefly. Same structure as the qual-coding Skill in materials/.
+:::
+
+## Level up when you're ready {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+### Git and GitHub
+Save points and an "undo" for every file, with a note on what changed. "My codebook in week 2 vs week 6" in one command.
+
+Covered in the SMU Libraries workshop: **smu.sg/vibecoding**
+:::
+::: {.column width="50%"}
+### Shareable outputs
+Most tools can publish a result as a web page to share with a supervisor.
+
+Handy, not research-critical.
+:::
+:::
+
+# Integrity check {.section}
+
+[10 min]{.section-meta}
+
+## Verification and research integrity {.smaller}
+
+::: {.columns}
+::: {.column width="50%"}
+**Check**
+
+- Every citation: open it, confirm it says what you claim
+- Every number the AI produced: trace it to data or code
+- Classification: report how you validated it
+:::
+::: {.column width="50%"}
+**Record and disclose**
+
+- Keep the research log as you go
+- Check your **journal's or funder's** AI policy
+- Disclose: tool, model, version, what it did, what you did
+:::
+:::
+
+::: {.caution}
+**Sensitive data:** participant data, unpublished results and anything under a confidentiality agreement need ethics approval and an institution-approved tool before they go anywhere near an AI, local or not.
+:::
+
+## Before you grab Skills and connectors from the internet
+
+- A Skill or MCP server can run **with your access**: your files, your accounts, your data
+- Treat it like any code you didn't write: **read before you run**
+- Download only from sources you can **inspect and trust**
+- Same care you'd give a browser extension or an executable file
+
+## Take-home
+
+::: {.big}
+If you can't defend it without the AI in the room, you're not done.
+:::
+
+<br>
+
+**Try this week:** pick one task you repeat in your research (screening, labelling, formatting references) and write its procedure down as a Skill.
+
+- Slides and materials: **TODO: GitHub Pages URL**
+
+## Thank you {.unnumbered}
+
+Questions or follow-up: **bellar@smu.edu.sg**
+
+::: {.small .muted}
+Sample field notes in this session are fictional and were written for teaching purposes.
+:::

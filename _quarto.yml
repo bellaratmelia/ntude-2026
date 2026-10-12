@@ -2,22 +2,23 @@ project:
   type: default
   output-dir: _site
   render:
-    - index.qmd
+    - "*.qmd"
+    - "!materials/"
 
 format:
   revealjs:
-    theme: [default, styles/custom.scss]
+    theme: styles/taste-guide.scss
     slide-number: c/t
     hash-type: number
     code-copy: true
     code-overflow: wrap
-    highlight-style: github
+    highlight-style: styles/taste-guide.theme
     transition: none
     width: 1280
     height: 720
     margin: 0.06
     menu:
       side: left
-    footer: "AI-Augmented Qualitative Research · NTU Digital Ethnography"
+    footer: "23 October 2026 - Guest seminar for Digital Ethnography"
     preview-links: auto
     link-external-newwindow: true

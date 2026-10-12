@@ -1,0 +1,433 @@
+/*-- scss:defaults --*/
+
+// taste-guide: a cool, calm Quarto theme for html and revealjs.
+// Use it with:  theme: taste-guide.scss   (or  theme: [default, taste-guide.scss])
+// Every colour, size and space comes from the taste-guide style guide;
+// change a value here and the whole theme follows.
+
+// Roboto from Google Fonts (text only; code uses the system monospace)
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+// ---------------------------------------------------------------
+// Tokens
+// ---------------------------------------------------------------
+
+// colour
+$surface:        #f6f8fa;  // page and slide background
+$surface-raised: #ffffff;  // cards, tables, code panels
+$hairline:       #d5dde4;  // dividers and borders (decorative, under 3:1)
+$ink:            #1f2d3a;  // body text and headings
+$ink-muted:      #51606f;  // captions, metadata, code comments
+$ocean:          #2a5a96;  // emphasis: links, key numbers, first chart series (lapis lazuli)
+$mist:           #dfeaf0;  // callouts, quotes, table header rows
+$sage:           #4a6d63;  // quiet second voice: second series, tags, marks
+$deep:           #1b2f5e;  // title slides and section dividers (navy)
+$on-deep:        #f6f8fa;  // text on deep
+$on-deep-muted:  #b8c7d2;  // secondary text on deep
+
+// space (8px-based steps)
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 16px;
+$space-4: 24px;
+$space-5: 32px;
+$space-6: 48px;
+$space-7: 64px;
+$space-8: 96px;
+$paragraph-gap: 12px;
+
+// shape
+$radius-sm: 6px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$shadow-soft: 0 8px 24px rgba(27, 47, 94, 0.08);
+
+// ---------------------------------------------------------------
+// Bootstrap and Quarto mapping (html format)
+// ---------------------------------------------------------------
+
+$font-family-sans-serif: Roboto, system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-monospace: ui-monospace, Menlo, Consolas, monospace;
+
+$body-bg: $surface;
+$body-color: $ink;
+$body-secondary-color: $ink-muted;
+$text-muted: $ink-muted;
+
+$primary: $ocean;
+$secondary: $sage;
+$link-color: $ocean;
+
+$headings-color: $ink;
+$headings-font-weight: 500;
+$headings-line-height: 1.15;
+$line-height-base: 1.25;
+
+$border-color: $hairline;
+$border-radius: $radius-sm;
+$border-radius-lg: $radius-md;
+$border-radius-xl: $radius-lg;
+
+$code-color: $ink;
+$navbar-bg: $surface-raised;
+$navbar-fg: $ink;
+$navbar-hl: $ocean;
+
+// ---------------------------------------------------------------
+// Revealjs mapping (slides are 1280 x 720; set width and height in the YAML)
+// 32px body, 64px title, 43px heading, 25px caption
+// ---------------------------------------------------------------
+
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.25;
+$presentation-block-margin: 24px;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-color: $ink;
+$presentation-heading-font-weight: 500;
+$presentation-heading-line-height: 1.15;
+$presentation-h1-font-size: 2em;
+$presentation-h2-font-size: 1.5em;   // 48px; the guide says 43px (1.34em)
+$presentation-h3-font-size: 1em;
+$presentation-font-smaller: 0.78;
+$presentation-title-slide-text-align: left;
+$selection-bg: $mist;
+$selection-color: $ink;
+
+/*-- scss:rules --*/
+
+// The tokens as CSS custom properties, so slides, html and any hand-written
+// CSS can use var(--ocean) and friends. Example: {background-color="var(--deep)"}
+:root {
+  --surface: #{$surface};
+  --surface-raised: #{$surface-raised};
+  --hairline: #{$hairline};
+  --ink: #{$ink};
+  --ink-muted: #{$ink-muted};
+  --ocean: #{$ocean};
+  --mist: #{$mist};
+  --sage: #{$sage};
+  --deep: #{$deep};
+  --on-deep: #{$on-deep};
+  --on-deep-muted: #{$on-deep-muted};
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --shadow-soft: #{$shadow-soft};
+}
+
+// ---------------------------------------------------------------
+// Shared helper classes (use as ::: {.card} ... :::)
+// ---------------------------------------------------------------
+
+// raised surface with a hairline instead of a shadow
+.card {
+  background-color: $surface-raised;
+  border: 1px solid $hairline;
+  border-radius: $radius-md;
+  padding: $space-5;
+}
+
+// a quiet note on mist, no side stripe
+.note {
+  background-color: $mist;
+  color: $ink;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+}
+
+// a big figure in ocean, for one key number
+.key-number {
+  color: $ocean;
+  font-weight: 300;
+  font-size: 2em;
+  line-height: 1.15;
+  margin: 0 0 $space-2;
+}
+
+.muted {
+  color: $ink-muted;
+}
+
+// ---------------------------------------------------------------
+// HTML documents
+// ---------------------------------------------------------------
+
+body {
+  font-weight: 400;
+}
+
+// titles are light, headings are medium
+h1.title,
+.quarto-title h1.title {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+#quarto-content,
+main.content {
+  p {
+    margin-bottom: $paragraph-gap;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-top: $space-5;
+    margin-bottom: $space-2;
+  }
+}
+
+.quarto-title-meta,
+.quarto-title .subtitle,
+figcaption,
+.figure-caption,
+.quarto-figure figcaption,
+.quarto-title-meta-heading {
+  color: $ink-muted;
+}
+
+// tables: header row on mist, hairline rules
+table {
+  thead th {
+    background-color: $mist;
+    color: $ink;
+    border-bottom: 1px solid $hairline;
+  }
+}
+
+// code panels: raised, hairline border, radius-md
+div.sourceCode,
+pre.sourceCode,
+pre:not(.sourceCode) {
+  background-color: $surface-raised;
+  border: 1px solid $hairline;
+  border-radius: $radius-md;
+}
+
+div.sourceCode pre,
+div.sourceCode pre.sourceCode {
+  border: 0;
+  background-color: transparent;
+}
+
+pre > code,
+div.sourceCode pre > code {
+  padding: $space-3;
+}
+
+// inline code stays quiet
+p code:not(.sourceCode),
+li code:not(.sourceCode),
+td code:not(.sourceCode) {
+  background-color: $mist;
+  color: $ink;
+  border-radius: $radius-sm;
+  padding: 0.1em 0.35em;
+}
+
+// callouts: a raised surface, no coloured side stripe
+div.callout.callout-style-default {
+  border: 1px solid $hairline;
+  border-left: 1px solid $hairline;
+  border-radius: $radius-md;
+  background-color: $surface-raised;
+
+  .callout-header {
+    background-color: $mist;
+    border-radius: $radius-md $radius-md 0 0;
+  }
+}
+
+blockquote {
+  background-color: $mist;
+  border: 0;
+  border-radius: $radius-md;
+  padding: $space-3 $space-4;
+  color: $ink;
+}
+
+// ---------------------------------------------------------------
+// Revealjs slides
+// ---------------------------------------------------------------
+
+.reveal {
+  // titles are light, headings are medium
+  h1,
+  .title {
+    font-weight: 300;
+    letter-spacing: -0.01em;
+  }
+
+  h2,
+  h3 {
+    font-weight: 500;
+  }
+
+  // one idea per slide: bullets get room to breathe
+  ul li,
+  ol li {
+    margin-bottom: 0.75em;
+  }
+
+  li::marker {
+    color: $ocean;
+  }
+
+  a {
+    color: $ocean;
+  }
+
+  // slide number is the only thing allowed in the margin
+  .slide-number {
+    color: $ink-muted;
+    background-color: transparent;
+    font-size: 0.78em;
+  }
+
+  .subtitle,
+  .author,
+  .date,
+  .figure-caption,
+  figcaption {
+    color: $ink-muted;
+  }
+
+  // code stays at 25px (0.78em) so it fits next to the body text
+  pre,
+  div.sourceCode {
+    font-size: 0.78em;
+    box-shadow: none;
+  }
+
+  // tables on slides
+  table thead th {
+    background-color: $mist;
+  }
+}
+
+// dark slides: use  ## Title {background-color="var(--deep)"}
+// or set title-slide-attributes in the YAML. Reveal adds has-dark-background
+// to a slide whose background is dark, which flips text to the on-deep colours.
+.reveal .slides section.has-dark-background,
+.reveal .slides section.has-dark-background h1,
+.reveal .slides section.has-dark-background h2,
+.reveal .slides section.has-dark-background h3,
+.reveal .slides section.has-dark-background .title {
+  color: $on-deep;
+}
+
+.reveal .slides section.has-dark-background {
+  .subtitle,
+  .author,
+  .date,
+  .muted {
+    color: $on-deep-muted;
+  }
+
+  a {
+    color: $on-deep;
+  }
+
+  li::marker {
+    color: $on-deep-muted;
+  }
+}
+
+.reveal.has-dark-background .slide-number {
+  color: $on-deep-muted;
+}
+
+// ---------------------------------------------------------------
+// Slide components used in the seminar decks
+// (callouts, LEARN/TRY/TALK chips, section dividers, tables)
+// ---------------------------------------------------------------
+
+.reveal {
+  .small { font-size: 0.78em; }   // caption size, 25px
+
+  .big {
+    font-size: 1.4em;
+    font-weight: 300;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+
+  // section dividers: # Title {.section}
+  .slides section.section h1 { color: $deep; }
+
+  .section-meta {
+    color: $ink-muted;
+    font-size: 0.75em;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  // callout boxes: no side stripes, same shape as .note and .card
+  .keypoint,
+  .caution,
+  .demo {
+    border-radius: $radius-md;
+    padding: $space-3 $space-4;
+    margin: $space-4 0 0;
+    font-size: 0.85em;
+  }
+
+  // the main takeaway: quiet mist
+  .keypoint { background-color: $mist; }
+
+  // a warning: raised surface, ink outline so it reads as different
+  .caution {
+    background-color: $surface-raised;
+    border: 2px solid $ink;
+  }
+
+  .caution::before,
+  .demo::before {
+    display: block;
+    font-size: 0.65em;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    color: $ink-muted;
+    margin-bottom: $space-1;
+  }
+  .caution::before { content: "WATCH OUT"; }
+  .demo::before    { content: "LIVE DEMO"; }
+
+  // a demo: raised card with a hairline
+  .demo {
+    background-color: $surface-raised;
+    border: 1px solid $hairline;
+  }
+
+  // segment chips: LEARN / TRY / TALK
+  .chip {
+    display: inline-block;
+    font-size: 0.5em;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    padding: 0.25em 0.8em;
+    border-radius: 999px;
+    margin-bottom: $space-2;
+  }
+  .chip-learn { background-color: $ink;   color: $on-deep; }
+  .chip-try   { background-color: $ocean; color: $on-deep; }
+  .chip-talk  { background-color: $sage;  color: $on-deep; }
+
+  // tighter bullets on discussion slides
+  .slides section.discuss ul li { margin-bottom: 0.5em; }
+
+  // placeholder for screenshots still to capture
+  .todo-shot {
+    border: 2px dashed $hairline;
+    color: $ink-muted;
+    padding: $space-4;
+    text-align: center;
+    font-size: 0.7em;
+    border-radius: $radius-md;
+  }
+
+  // tables: smaller text so they don't swamp the slide
+  table { font-size: 0.75em; }
+  table td,
+  table th { padding: 0.35em 0.6em; }
+}
