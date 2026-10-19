@@ -238,12 +238,16 @@ div.callout.callout-style-default {
   }
 }
 
-blockquote {
+// .reveal blockquote too: revealjs sets its own light-grey quote colour,
+// which otherwise wins and makes quotes nearly invisible on slides
+blockquote,
+.reveal blockquote {
   background-color: $mist;
   border: 0;
   border-radius: $radius-md;
   padding: $space-3 $space-4;
   color: $ink;
+  font-style: normal;
 }
 
 // ---------------------------------------------------------------
@@ -427,7 +431,7 @@ blockquote {
   }
 
   // tables: smaller text so they don't swamp the slide
-  table { font-size: 0.75em; }
+  table { font-size: 0.875em; }   // 28px on normal slides; was 0.75em (24px), below the projected floor
   table td,
   table th { padding: 0.35em 0.6em; }
 }

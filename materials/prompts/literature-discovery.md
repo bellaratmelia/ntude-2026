@@ -1,6 +1,6 @@
 # Literature discovery prompts
 
-Use these with connectors switched on (in Claude: **Settings → Connectors**). Change the topic in brackets to your own.
+Use these with connectors switched on (in Claude: **claude.ai/customize/connectors**, then check with `/mcp` in Claude Code). Change the topic in brackets to your own.
 
 ## 1. Discover across sources
 
