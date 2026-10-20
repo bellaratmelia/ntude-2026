@@ -16,6 +16,7 @@ Slides and materials for a guest seminar for the MA in Digital Ethnography, NTU.
 | `materials/data/fieldnotes.md` | Six **fictional** field-note excerpts for practice |
 | `materials/data/messages.csv` | 210 **fictional** chat messages from the same group, for the at-scale demo |
 | `materials/data/hand-codes.csv` | 30 of those messages (seed 42), left blank for hand coding |
+| `materials/reading-list.md` | Studies on using AI for content analysis and qualitative coding |
 | `materials/audit-log-template.md` | A decision log for AI-assisted coding |
 | `materials/api/code_excerpts.py` | Optional: run the coding Skill over a dataset via the Claude API |
 

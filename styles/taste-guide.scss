@@ -343,7 +343,7 @@ blockquote,
 
 // ---------------------------------------------------------------
 // Slide components used in the seminar decks
-// (callouts, LEARN/TRY/TALK chips, section dividers, tables)
+// (callouts, LEARN/TRY/DISCUSS chips, section dividers, tables)
 // ---------------------------------------------------------------
 
 .reveal {
@@ -403,7 +403,7 @@ blockquote,
     border: 1px solid $hairline;
   }
 
-  // segment chips: LEARN / TRY / TALK
+  // segment chips: LEARN / TRY / DISCUSS
   .chip {
     display: inline-block;
     font-size: 0.5em;
