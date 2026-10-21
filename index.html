@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/tabby.min.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2729701055d00b5a40fb2c6c71cd8593.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Bella Ratmelia">
+  <title>From Chatbot to Research Assistant</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        background-color: #ffffff;
+        color: #51606f;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #51606f;  padding-left: 4px; }
+    div.sourceCode
+      { color: #1f2d3a; background-color: #ffffff; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #1f2d3a; font-weight: bold; } /* Alert */
+    code span.an { color: #51606f; } /* Annotation */
+    code span.at { color: #1f2d3a; } /* Attribute */
+    code span.bn { color: #1f2d3a; } /* BaseN */
+    code span.bu { color: #1f2d3a; } /* BuiltIn */
+    code span.cf { color: #1f2d3a; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #1f2d3a; } /* Char */
+    code span.cn { color: #1f2d3a; } /* Constant */
+    code span.co { color: #51606f; } /* Comment */
+    code span.cv { color: #51606f; } /* CommentVar */
+    code span.do { color: #51606f; } /* Documentation */
+    code span.dt { color: #1f2d3a; } /* DataType */
+    code span.dv { color: #1f2d3a; } /* DecVal */
+    code span.er { color: #1f2d3a; font-weight: bold; } /* Error */
+    code span.ex { color: #1f2d3a; } /* Extension */
+    code span.fl { color: #1f2d3a; } /* Float */
+    code span.fu { color: #1f2d3a; } /* Function */
+    code span.im { color: #1f2d3a; } /* Import */
+    code span.in { color: #51606f; } /* Information */
+    code span.kw { color: #1f2d3a; font-weight: bold; } /* Keyword */
+    code span.op { color: #1f2d3a; } /* Operator */
+    code span.ot { color: #1f2d3a; } /* Other */
+    code span.pp { color: #1f2d3a; } /* Preprocessor */
+    code span.re { color: #51606f; } /* RegionMarker */
+    code span.sc { color: #1f2d3a; } /* SpecialChar */
+    code span.ss { color: #1f2d3a; } /* SpecialString */
+    code span.st { color: #1f2d3a; } /* String */
+    code span.va { color: #1f2d3a; } /* Variable */
+    code span.vs { color: #1f2d3a; } /* VerbatimString */
+    code span.wa { color: #51606f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-f2b46bb7defcff343e47d60e0deda982.css">
+  <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section class="quarto-title-block center">
+  <h1 class="title">From Chatbot to Research Assistant</h1>
+  <p class="subtitle">Getting started with agentic AI for research</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Bella Ratmelia 
+</div>
+</div>
+</div>
+
+</section>
+<section class="slide level2">
+<h2>By the end of today, you’ll be able to</h2>
+<ul>
+<li>Hand an AI agent a research task on <strong>your own files</strong></li>
+<li><strong>Check</strong> the sources and codes it brings back</li>
+<li>Turn what worked into a <strong>procedure you can reuse and defend</strong></li>
+</ul>
+<aside class="notes">
+<p>[0:00] Welcome, introduce yourself in one line (librarian at SMU Libraries, supporting researchers with data and digital tools) and thank the professor.</p>
+<p>Then this promise, slowly. These three lines are the whole session: Parts 1 and 3 are the first line, Part 2 and the human coding check in Part 3 are the second, Part 4 is the third.</p>
+<p>While people settle: “If you haven’t opened Claude Code or Codex yet, start it now. The first hands-on bit is in about 25 minutes.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Today</h2>
+<ol type="1">
+<li>Core concepts, and a tour of Claude Code / Codex</li>
+<li>Finding and checking sources for a literature review</li>
+<li>Coding with a codebook: field notes, then a whole chat export</li>
+<li>Making it reproducible and defensible: logs, Skills, integrity</li>
+</ol>
+<aside class="notes">
+<p>The overarching idea for the whole session: what can the AI reach, and how do you steer it?</p>
+<p>Say it out loud and slowly. It’s the question we come back to at every section break.</p>
+<p>Walk through the parts in one breath each:</p>
+<ul>
+<li>Part 1: what an agent is, and a short tour of the tool.</li>
+<li>Part 2: using it to find sources, and checking them.</li>
+<li>Part 3: coding field notes with a codebook, you and the AI, then the same logic on the group’s whole chat export.</li>
+<li>Part 4: making sure you can repeat it and defend it, ending with the integrity checks.</li>
+</ul>
+<p>Then the close.</p>
+<p>Run sheet (core ends by 8:30; anything after is bonus):</p>
+<ul>
+<li>6:30–6:38 Opening and calibration</li>
+<li>6:38–7:03 Part 1 and first task</li>
+<li>7:03–7:23 Part 2: literature discovery and checking</li>
+<li>7:23–7:28 Short break / reset (use it as buffer if behind)</li>
+<li>7:28–8:03 Part 3: field-note coding, human check, then scale</li>
+<li>8:03–8:30 Part 4: logs, reproducibility, Skills, then integrity and take-home (integrity starts by 8:23)</li>
+<li>After 8:30, if the room has time: questions, live Skill demo, Git, troubleshooting</li>
+</ul>
+<p>If time slips, cut in this order: Remote/SSH (already gone) → modes table (just say “start in Plan”) → live connector setup → “Level up” → live Skill creation (show the finished SKILL.md).</p>
+<p>Never cut: the first task, checking real references, Try 3 (code it yourself), the “before you give it research material” slide, the research log, the final accountability line.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>A note before we begin</h2>
+<ul>
+<li><strong>Practitioner-led</strong>: what I’ve learned supporting researchers</li>
+<li>Tools change <strong>fast</strong>, so today’s focus is on the <strong>mental model</strong></li>
+<li>For study-specific methodological decisions, follow your faculty and ethics guidance</li>
+</ul>
+<div class="keypoint">
+<p>Questions and corrections welcome. Let’s make it two-way exchange!</p>
+</div>
+<aside class="notes">
+<p>[~30 sec] Keep this short. The essential version: “I support researchers using data and digital tools. Today is practitioner-led, not a research-methods lecture. Tools will change, but the questions of access, steering, verification and accountability will stay.”</p>
+<p>The full version of each point, only if the room wants it:</p>
+<ul>
+<li>Practitioner-led: this is based on what I’ve learned from experimenting with these tools in my day-to-day work supporting researchers.</li>
+<li>The tools and practices are evolving quickly. Some of what I show will look different by next semester, and some of you may know parts of it better than I do. Today is about a mental model that should survive the next few product updates.</li>
+<li>Anything related to research methods is strictly in the domain of your professor.</li>
+<li>Questions, corrections and lessons from your own experiments are welcome.</li>
+</ul>
+<p>Or paraphrase:</p>
+<p>“I’m not a methods person and I’m not selling a product. I support researchers, and I’ve spent a lot of time breaking these tools so you don’t have to. Menus will change. The way of thinking about them shouldn’t.”</p>
+<p>On methods: “If anything I say about method conflicts with what your professor says, your professor wins.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Where are you now?</h2>
+<p>Quick show of hands:</p>
+<ol type="1">
+<li class="fragment">I’ve used ChatGPT, Claude, Gemini or Copilot <strong>at least once</strong></li>
+<li class="fragment">I use one of them <strong>every week</strong></li>
+<li class="fragment">I’ve connected one to <strong>another app</strong> (Drive, Zotero, a database)</li>
+<li class="fragment">I’ve had one <strong>run code</strong> or <strong>edit files</strong> for me</li>
+</ol>
+<aside class="notes">
+<p>[~1 min] Ask each one and keep hands up as you go. Expect most hands on 1 and 2, a few on 3, very few on 4.</p>
+<p>Read the room out loud: “So most of us are here [1–2]. Today is about getting from here to here [3–4].”</p>
+<p>If many hands go up on 4, say you’ll go faster through the tour and spend more time on Parts 3 and 4.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Checklist</h2>
+<p>Ideally, before today you have:</p>
+<ul>
+<li>✓ <strong>Claude Code</strong> or <strong>Codex</strong> installed and logged in (both need a paid plan)</li>
+<li>✓ Laptop and charger</li>
+</ul>
+<p><br></p>
+<p>No Claude Code or Codex? Please pair up with someone who has it.</p>
+<p>If pairing, one person drives and the other checks the plan, permissions, and output. Swap when useful.</p>
+<aside class="notes">
+<p>[~30 sec] Say it quickly; don’t read the list.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>A ground rule</h2>
+<div class="big">
+<p>If you can’t defend it without the AI in the room, you’re not done.</p>
+</div>
+<aside class="notes">
+<p>[~30 sec] Read it, then pause. Let it land.</p>
+<p>“Imagine your examiner or a reviewer asks: why did you include this paper, why is this code applied here? ‘Claude said so’ isn’t an answer. Everything today is about getting to an answer you can give yourself.”</p>
+<p>This line comes back at the very end.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section>
+<section class="title-slide slide level1 section center">
+<h1>Part 1: Core concepts</h1>
+<aside class="notes">
+<p>[~0:08] Part 1, about 25 minutes, including a 5-minute hands-on.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Words I’ll use</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Term</th>
+<th>What I mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Model</strong></td>
+<td>The AI itself (Claude, GPT). Reads text, writes text</td>
+</tr>
+<tr class="even">
+<td><strong>Harness</strong></td>
+<td>The app around the model (Claude Code, Codex, claude.ai). Decides what it can see, touch and run</td>
+</tr>
+<tr class="odd">
+<td><strong>Agent</strong></td>
+<td>Model + harness, working through a task in steps. You set the task and check the work</td>
+</tr>
+<tr class="even">
+<td><strong>Context</strong></td>
+<td>Everything the model can see in this session. Not long-term memory</td>
+</tr>
+<tr class="odd">
+<td><strong>Tool</strong></td>
+<td>One action the harness allows: read a file, run code, search</td>
+</tr>
+<tr class="even">
+<td><strong>Connector (MCP)</strong></td>
+<td>A plug-in that lets the agent search an outside source: PubMed, Zotero, Drive</td>
+</tr>
+<tr class="odd">
+<td><strong>Skill</strong></td>
+<td>A saved prompt for a recurring task, in a <code>SKILL.md</code> file</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~2 min] Don’t read the table. Say: “These words get used loosely online. Don’t memorise them; the first activity makes them concrete, and I’ll point back.”</p>
+<p>Make only two points, then move on:</p>
+<ul>
+<li>Model vs harness. Same model in claude.ai and in Claude Code; the harness is what changes what it can do. That’s the whole “chat vs agent” difference coming up.</li>
+<li>The one-liner: “The harness gives it tools, connectors give it reach, Skills give it your method.”</li>
+</ul>
+<p>Context gets its own slide later (the desk). Connectors and Skills get their own slides at the end of Part 1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>What can the AI reach, and how do you steer it?</h2>
+<p>Most of us are familiar with the <strong>I type, it answers</strong> pattern.</p>
+<p>Three new ideas today:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Capability</th>
+<th>The idea</th>
+<th>What it means for you</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>It can act</strong></td>
+<td>Agents plan and take steps, not just a quick reply</td>
+<td>Hand over a task instead of a question</td>
+</tr>
+<tr class="even">
+<td><strong>It can reach things</strong></td>
+<td>Connectors extend access to outside services and sources</td>
+<td>Results retrieved from identifiable sources, not only model memory</td>
+</tr>
+<tr class="odd">
+<td><strong>It can follow your procedures</strong></td>
+<td>Skills hold your instructions / prompt</td>
+<td>The same documented instructions every time</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~2 min] This slide is the map for the whole session.</p>
+<ul>
+<li>“It can act”: that’s the agent idea, the next few slides.</li>
+<li>“It can reach things”: connectors, end of Part 1, used in Part 2.</li>
+<li>“It can follow your procedures”: We use a prepared Skill in Part 3, then revise and generalise it together.</li>
+</ul>
+<p>“Steering” is the right-hand column: you decide the task, the sources and the procedure.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Chat vs agent</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>A chatbot</h3>
+<p>is like a <strong>colleague on the phone</strong>.</p>
+<ul>
+<li>Can advise, draft and explain, sometimes very well</li>
+<li>Only sees what you read out, paste, or upload</li>
+<li>Can’t open your files or run anything: You still carry files and outputs back and forth</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3>An agent</h3>
+<p>is like a <strong>research assistant at your desk</strong>.</p>
+<ul>
+<li>Can open your files and use your tools</li>
+<li>Works through several steps on its own</li>
+<li>Reports back, and you check the work</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>Same underlying model in both cases. What’s different is what it’s allowed to touch and whether it can take more than one step before coming back to you. In glossary terms: same model, different harness.</p>
+<p>[~2 min] The contrast is access, not effort or intelligence. A brilliant colleague on the phone still only knows what you tell them, and you still do the copying, pasting and running. Sit them at your desk and they can open the files themselves.</p>
+<p>Lean on the analogy: most people here have supervised or been an RA. “You wouldn’t take an RA’s literature table without spot-checking it. Same here.”</p>
+<p>The “desk” comes back on the context slide.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>In practice: web chat vs Claude Code / Codex</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Web chat (Claude.ai / ChatGPT.com)</th>
+<th>Claude Code / Codex</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Runs in a browser</td>
+<td>Runs on <strong>your computer</strong>, in <strong>your project folder</strong></td>
+</tr>
+<tr class="even">
+<td>Sees only what you paste or upload</td>
+<td>Reads files directly from the project folder and can examine how they relate</td>
+</tr>
+<tr class="odd">
+<td>Hands you text and code to copy back</td>
+<td>Creates, edits and organizes files itself</td>
+</tr>
+<tr class="even">
+<td>You run the output yourself</td>
+<td>Runs scripts and commands, <strong>with your permission</strong></td>
+</tr>
+<tr class="odd">
+<td>Best for questions and one-off outputs</td>
+<td>Best for multi-step work i.e.&nbsp;act, check, continue</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~1.5 min] Don’t read the table row by row. Pick two rows:</p>
+<ul>
+<li>“Runs on your computer, in your project folder.” That’s the big shift.</li>
+<li>“Runs scripts, with your permission.” That’s why we’ll talk about modes in a minute.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>More access, not “better”</h2>
+<div class="caution">
+<p>Claude Code and Codex aren’t automatically <strong>better</strong> than web chat. They have more <strong>access</strong> and more ability to <strong>act</strong>, which is why permissions, checkpoints and your review matter even more.</p>
+</div>
+<aside class="notes">
+<p>[~30 sec] Say it plainly: more access means more ways for things to go wrong. Web chat is still the right tool for a quick question.</p>
+<p>This is the fence for the whole session: an agent isn’t a smarter chatbot, it’s the same model with more reach.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Before you give it research material</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ask</th>
+<th>Think about</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>May I use it?</strong></td>
+<td>Consent, IRB/ethics approval, platform expectations, confidentiality</td>
+</tr>
+<tr class="even">
+<td><strong>May this tool receive it?</strong></td>
+<td>Institutional approval, provider terms, retention and training settings</td>
+</tr>
+<tr class="odd">
+<td><strong>What’s the minimum it needs?</strong></td>
+<td>De-identify, minimise, aggregate, or use fictional / synthetic material</td>
+</tr>
+<tr class="even">
+<td><strong>What must stay with me?</strong></td>
+<td>Interpretation, contextual judgement, inclusion decisions, final claims</td>
+</tr>
+</tbody>
+</table>
+<div class="caution">
+<p><strong>“Local” ≠ private.</strong> While the files stay on your machine, remember that what the agent reads is sent to the model provider.</p>
+<p><strong>Public ≠ unrestricted.</strong> Publicly visible posts aren’t automatically ethically unrestricted, context-free, or fine to send to a third-party model.</p>
+</div>
+<aside class="notes">
+<p>[~2 min] This comes before any tool demo on purpose. For ethnographers, ethics isn’t a closing caution; it decides whether the workflow should happen at all.</p>
+<p>Walk the four questions top to bottom. The first two are “should this go in at all?”, the third is “how little can I send?”, the fourth is “what never gets handed over?”.</p>
+<p>On “public ≠ unrestricted”: “Most of you will hear ‘but it was public’ from someone this year. Public to the group members who posted it is not the same as public to a model provider.” Defer specifics to the professor and your IRB.</p>
+<p>Everything we use today is fictional, written for teaching, so we can skip the first three questions. With your real field notes, you can’t.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>The agent loop</h2>
+<div style="display:flex;gap:0.5em;align-items:stretch;font-size:0.7em;margin-top:1em">
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Plan</b><br>Break the task into steps</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Act</b><br>Search, read a file, run code</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ocean);border-radius:var(--radius-md);padding:0.6em;background:var(--surface-raised)"><b>Observe</b><br>Look at what came back</div>
+  <div style="align-self:center">→</div>
+  <div style="flex:1;border:2px solid var(--ink);border-radius:var(--radius-md);padding:0.6em;background:var(--mist)"><b>Adjust</b><br>Fix, retry, or move on</div>
+  <div style="align-self:center">↺</div>
+</div>
+<p><br></p>
+<ul>
+<li>A conventional chat exchange presents <strong>one</strong> response at a time.</li>
+<li>An agent can continue acting, observing, and adjusting across a task until it <strong>thinks</strong> it’s finished.</li>
+<li>That said, <strong>you</strong> decide when it’s actually finished.</li>
+</ul>
+<aside class="notes">
+<p>We’ll see the loop live in Part 3, when the script hits an error and the agent fixes it. Point back to this slide then.</p>
+<p>[~2 min] Example to talk through: “Find the CSV, count the rows. Oops, the year column has text in it. Clean that, count again.”</p>
+<p>Stress the second bullet. Agents are confident about being finished. That’s where you come in.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Context: the agent’s working memory</h2>
+<p>Think of <strong>context</strong> as the agent’s desk.</p>
+<ul>
+<li>Everything goes on the desk: instructions, files, results, replies</li>
+<li>The desk is <strong>big but not infinite</strong></li>
+<li>Long sessions may <strong>drift</strong> and early rules may get buried</li>
+</ul>
+<div class="keypoint">
+<p><strong>Habits:</strong> fresh session per task · instructions in a <strong>file</strong> · ask for a progress summary</p>
+</div>
+<aside class="notes">
+<p>[~2 min] Back to the desk from the chat-vs-agent slide.</p>
+<p>The full version: everything in the session sits on the desk (your instructions, files it read, search results, its own replies). As the pile grows, early instructions get buried, which is why it “forgets” a rule you set an hour ago. Put important instructions in a file (or a Skill), not in message 3 of 40.</p>
+<p>Ask: “Has anyone had a long chat where it started ignoring something you told it earlier?” Expect nods. That’s context.</p>
+<p>The habit that matters most for researchers: write instructions in a file. It’s also the bridge to Skills later.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Where the code runs</h2>
+<p>The useful question isn’t “which product?” but <strong>where does it run, and what can it touch?</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Where it runs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Local</strong></td>
+<td>Your computer: your files, your terminal. The default option and what we use today</td>
+</tr>
+<tr class="even">
+<td><strong>Cloud</strong></td>
+<td>The provider’s machine. Good for long tasks; starts from a fresh copy, so it can’t see your local folders</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~1 min] Back to “what can it reach?”: the answer depends on where it runs.</p>
+<p>Today: local. Cloud is worth knowing about for long jobs, but it can’t see your laptop’s folders.</p>
+<p>Either way, the content it reads goes to the model provider (previous “before you give it research material” slide).</p>
+<p>If someone asks about lab servers: both tools can also run on another machine over SSH. Not needed today.</p>
+<p>If people ask where to pick local vs cloud, show the menu live in the app. No screenshot on purpose: the menus keep moving.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Tour: how much should it ask you?</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Mode</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Plan</strong></td>
+<td>Investigates and writes a plan <strong>before</strong> changing anything</td>
+</tr>
+<tr class="even">
+<td><strong>Manual</strong></td>
+<td>Asks before every action that changes something</td>
+</tr>
+<tr class="odd">
+<td><strong>Accept edits</strong></td>
+<td>File edits go through; other actions still ask</td>
+</tr>
+<tr class="even">
+<td><strong>Auto</strong></td>
+<td>Proceeds on safe actions, pauses on riskier ones</td>
+</tr>
+<tr class="odd">
+<td><strong>Bypass</strong></td>
+<td>Never asks. <strong>Not for today</strong></td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>Codex calls these approval settings: Ask for approval, Approve for me, Full access. Same idea.</p>
+<p>[~1.5 min] This is “how do you steer it?” Modes are a dial from “check everything” to “trust everything”.</p>
+<p>If running behind: skip the table, go straight to the next slide and just say “start in Plan”.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Tour: start in Plan mode</h2>
+<div class="big">
+<p>For research work, start in <strong>Plan mode</strong>.</p>
+</div>
+<p>Read the plan the way you’d read a research assistant’s proposal, then let it act.</p>
+<aside class="notes">
+<p>[~1 min] Show where the mode switch is in the app, live (no screenshots on the slide: the UI changes too often). Everyone set Plan mode now, ready for the next slide.</p>
+<p>Claude Code: the mode picker next to the message box. Codex: the approvals setting. Check both the week before in case they’ve moved.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 activity" data-background-color="var(--mist)">
+<h2>Tour: first task</h2>
+<p><span class="chip chip-try">5 min · Plan mode</span></p>
+<p>Open the workshop folder in Claude Code or Codex, then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>Look at fieldwork-log.csv. Count my fieldwork entries by month and</span>
+<span id="cb1-2"><a href=""></a>type, make a bar chart, and save it as fieldwork-by-month.png. Then</span>
+<span id="cb1-3"><a href=""></a>add a two-line note to README.md saying what you did and when.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Look for:</p>
+<ul>
+<li>It <strong>plans</strong> before acting</li>
+<li>It <strong>reads</strong> the actual file instead of guessing</li>
+<li>It <strong>leaves things behind</strong>: a chart and a note, in your folder</li>
+</ul>
+<aside class="notes">
+<p>Show-and-tell fallback: I run it on screen. Keep to 5 minutes. Don’t teach terminal commands; the desktop apps avoid most of that. The point is: an agent on your own machine works on your files and leaves a record.</p>
+<p>The file is materials/data/fieldwork-log.csv: a fictional fieldwork log for the same Telegram hawker group as the field notes (40 entries, March to May 2026, columns fieldnote_id, date, site, type, minutes). FN-01 to FN-06 match the excerpts in fieldnotes.csv. Expected result: March 9 entries, April 17, May 14; mostly observation, a few archive and interview.</p>
+<p>Frame it: “This is the kind of file you already keep. The agent is working on your records, not the internet.”</p>
+<p>Start the timer. Walk around. Common snags: folder not opened, not logged in, permission prompt they don’t understand (“say yes, it’s asking to write a file”).</p>
+<p>When the time is up, ask one person: “Did it plan first? Did you approve the plan?” Then open the chart and the README on screen.</p>
+<p>Name what they just met, pointing back to the glossary: the model wrote the plan, the harness asked your permission, reading the CSV and saving the chart were tools, and the CSV was on its desk (context).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Connectors: USB-C ports for AI</h2>
+<ul>
+<li>A <strong>connector</strong> plugs the AI into a source: a scholarly index, Google Drive, or Zotero</li>
+<li><strong>MCP</strong> (Model Context Protocol) is the <strong>standard</strong> behind them, like USB-C is the standard behind the cable</li>
+<li>You don’t need to build one. You need to know they <strong>exist</strong> and what each one can <strong>reach</strong></li>
+</ul>
+</section>
+<section class="slide level2">
+<h2>Connectors: why they help</h2>
+<p><strong>Without a connector:</strong> without access to a retrievable source, it may rely on model knowledge, which can be outdated or wrong.</p>
+<p><strong>With a connector:</strong> it searches a live source and can show you <strong>where</strong> each result came from.</p>
+<div class="caution">
+<p>A connector acts <strong>with your access</strong>. A word of caution: Treat it like a browser extension and check who made it before you switch it on.</p>
+</div>
+<aside class="notes">
+<p>Claude Code: connectors added to your claude.ai account are available when you log in with that account; you can also add MCP servers per project. Codex: MCP servers are added in its settings. Check both the week before.</p>
+<p>[~3 min] The key line: “You don’t need to build one.” People hear “protocol” and switch off. If running behind, skip the live setup mechanics; the setup steps are in the materials.</p>
+<p>Stress the right column: memory vs a live source. That’s the whole of Part 2 in one contrast.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Skills: a saved prompt that can act</h2>
+<p><strong>Before:</strong> keep your best prompts in a doc, paste them into the chat every time.</p>
+<p><strong>Now:</strong> save it once as a Skill, call it by name, and the agent <strong>works through the steps</strong>, reading files and running scripts as it goes.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pasted prompt</th>
+<th>Skill</th>
+<th>Python script</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Retyped, drifts each time</td>
+<td>Saved once, same instructions every run</td>
+<td>Same code every run</td>
+</tr>
+<tr class="even">
+<td>Text only</td>
+<td>Uses the agent’s tools, can bundle scripts</td>
+<td>Does exactly what’s written</td>
+</tr>
+<tr class="odd">
+<td>Flexible, hard to repeat</td>
+<td><strong>Flexible, with repeatable instructions</strong></td>
+<td>Most deterministic, least flexible</td>
+</tr>
+</tbody>
+</table>
+<div class="keypoint">
+<p>Not as fixed as a python script, but it can deal with the messy case a script can’t. Useful for things like <strong>coding scheme</strong> or <strong>screening criteria</strong>.</p>
+</div>
+<aside class="notes">
+<p>Just plant the idea here. We use one in Part 3 and build one at the end of Part 4.</p>
+<p>[~2 min] Tell your own story: “I used to keep my prompts in a doc and paste them in every time. Now I save them as a Skill and just call it.”</p>
+<p>Precisely: a Skill doesn’t give the agent new abilities. It uses the tools the harness already has (read files, run code, connectors), and it can bring its own scripts and reference files along. That’s why it can do steps, not just answer.</p>
+<p>The middle column is the point: more repeatable than a pasted prompt, more flexible than a script. Pick a script when you need the identical result every time (counting, filtering); pick a Skill when the task needs judgement, like applying a codebook.</p>
+<p>For this audience: “You already write coding guides for human coders. A Skill is the same document, written for the AI.”</p>
+<p>Recap Part 1 in one line before moving on: an agent acts, connectors let it reach things, Skills steer it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section class="title-slide slide level1 section center">
+<h1>Part 2: Finding and checking sources for a literature review</h1>
+<aside class="notes">
+<p>[~0:33] Back to the question: what can it reach? Now we point it at the literature.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Why connectors matter for a lit review</h2>
+<p>Ask a plain chatbot for references and you’ll often get:</p>
+<ul>
+<li>Real authors, plausible title, <strong>paper doesn’t exist</strong></li>
+<li>Real paper, <strong>wrong year or wrong journal</strong></li>
+<li>Real paper, but it <strong>doesn’t say what the AI claims</strong></li>
+</ul>
+<div class="caution">
+<p>A connector improves <strong>provenance</strong>: you can see where a result came from. It doesn’t show that the source <strong>supports the claim</strong>. Finding, coverage and interpretation are separate checks.</p>
+</div>
+<aside class="notes">
+<p>[~2 min] Three ways a reference goes wrong, from most to least obvious. The third is the dangerous one: the paper exists, so a quick check passes, but it doesn’t support the claim.</p>
+<p>The caution box is the headline for Part 2. Don’t let anyone leave with “connector = safe literature search”. A connector fixes the first problem (made-up papers) far more than the third (papers that don’t say what the AI claims).</p>
+<p>If you have a real (anonymised) example from a consultation, tell it here. A story beats the bullet list.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>What can it reach?</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>Covers</th>
+<th>Connect via</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PubMed</strong></td>
+<td>Biomedical and life sciences</td>
+<td>Connector directory</td>
+</tr>
+<tr class="even">
+<td><strong>Consensus</strong></td>
+<td>Broad, built on Semantic Scholar / OpenAlex data</td>
+<td>Connector directory</td>
+</tr>
+<tr class="odd">
+<td><strong>alphaXiv</strong></td>
+<td>arXiv preprints</td>
+<td>Connector directory</td>
+</tr>
+<tr class="even">
+<td><strong>Zotero</strong></td>
+<td><strong>Your own</strong> saved library</td>
+<td>Community MCP server</td>
+</tr>
+<tr class="odd">
+<td><strong>Your library’s databases</strong></td>
+<td>Licensed content (Scopus, WoS, publisher platforms)</td>
+<td>Mostly <strong>not</strong> reachable. Use the library</td>
+</tr>
+</tbody>
+</table>
+<div class="keypoint">
+<p>For advanced users: an open API such as OpenAlex can also be incorporated into a custom workflow.</p>
+</div>
+<aside class="notes">
+<p>Library angle worth stressing: connectors mostly reach open indexes. Paywalled full text and licensed databases are usually out of reach, so “the AI didn’t find it” often means “the AI couldn’t see it”. The library’s discovery tools and librarians are still part of the workflow.</p>
+<p>[~2 min] For ethnographers specifically: a lot of the relevant work is in books, edited volumes and regional journals, which open indexes cover poorly. Expect gaps.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>How to switch on a connector</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Claude Code</h3>
+<ol type="1">
+<li>In a browser, go to <strong>claude.ai/customize/connectors</strong></li>
+<li>Find the connector (e.g.&nbsp;Consensus, PubMed) → <strong>Connect</strong>, and sign in if asked</li>
+<li>In Claude Code, type <strong><code>/mcp</code></strong> and check it says <strong>Connected</strong></li>
+</ol>
+<p>Missing? Type <code>/status</code>: you need to be logged in with your <strong>claude.ai account</strong>, not an API key.</p>
+</div><div class="column" style="width:50%;">
+<h3>Codex</h3>
+<ol type="1">
+<li>Find the service’s <strong>MCP server address</strong> on its website or docs</li>
+<li>Codex app: <strong>Settings → MCP servers → Add server</strong> → a name and the address → <strong>Save</strong> → <strong>Restart</strong></li>
+<li>In Codex, type <strong><code>/mcp</code></strong> and check it’s listed</li>
+</ol>
+<p>In a terminal instead: <code>codex mcp add &lt;name&gt; --url &lt;address&gt;</code></p>
+</div></div>
+<p><span class="small muted">Menus change often. Checked October 2026 against the Claude Code and Codex docs.</span></p>
+<aside class="notes">
+<p>[~30 sec] Reference slide, for later. Don’t read it: do it live once in the demo on the next slide, and tell them “the steps are on this slide for when you get home.”</p>
+<p>Claude side: connectors added on claude.ai show up in Claude Code automatically when you’re logged in with that account. They don’t load if you’ve logged in with an API key.</p>
+<p>Codex side: there’s no shared directory in the same way; you add each server by its address. Some ask you to sign in the first time (codex mcp login <name>).</name></p>
+<p>If running behind: skip straight to the demo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Demo: explore with a connector</h2>
+<div class="demo">
+<p>Connector on: Consensus (or PubMed for health topics).</p>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>Find recent (2020 onwards) peer-reviewed papers that use digital</span>
+<span id="cb2-2"><a href=""></a>ethnography to study online communities.</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>Return a table: citation, year, type (empirical / review / methods /</span>
+<span id="cb2-5"><a href=""></a>opinion), and a one-sentence finding. Give the DOI for each.</span>
+<span id="cb2-6"><a href=""></a>Only include papers you actually retrieved from the search.</span>
+<span id="cb2-7"><a href=""></a>Do not fill gaps from memory. Tell me which source each came from.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<aside class="notes">
+<p>Point out the guardrails in the prompt: “only include papers you actually retrieved” and “which source”. Open two DOIs live.</p>
+<p>[~4 min] While it runs, read the prompt aloud and underline the last three lines: those are the steering. Point out the “type” column: a small classification task, which Part 3 does properly with a codebook.</p>
+<p>If the connector is slow or down: switch to the recorded run.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Discerning, not just finding</h2>
+<p>The connector finds things. <strong>You</strong> still judge them.</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Is it real and is it right?</strong></p>
+<ul>
+<li>Does the DOI resolve to this paper?</li>
+<li>Right authors, year, venue?</li>
+<li>Does the paper actually say the one-line finding?</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Is it any good for my purpose?</strong></p>
+<ul>
+<li>Peer-reviewed or preprint?</li>
+<li>Retracted or corrected? (Check Retraction Watch / the publisher page)</li>
+<li>Reputable venue, or a questionable one?</li>
+<li>Relevant to <strong>my</strong> question, or just similar wording?</li>
+</ul>
+</div></div>
+<div class="keypoint">
+<p>Ask the AI to help with the second column too (“flag preprints and anything you can’t confirm is peer-reviewed”), then spot-check its flags.</p>
+</div>
+<aside class="notes">
+<p>[~2 min] Left column: is it true? Right column: is it useful? The AI can help with both, but you’re the one who signs off.</p>
+<p>“Relevant to my question, or just similar wording?” is the one people skip. Search matches words, not meaning.</p>
+<p>This slide is the checklist for the activity that comes next.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 activity" data-background-color="var(--mist)">
+<h2>Try 2: check a reference from your topic</h2>
+<p><span class="chip chip-try">TRY · 5 min · pairs</span></p>
+<ol type="1">
+<li>Run the discovery prompt with <strong>your own topic</strong></li>
+<li>Pick <strong>one or two references</strong> and open them:
+<ul>
+<li>Does the DOI or link open <strong>the paper the table names</strong>?</li>
+<li><strong>Right</strong> authors, year and venue?</li>
+<li>Does the paper actually <strong>say the one-line finding</strong>? (Read the abstract at least)</li>
+<li><strong>Peer-reviewed</strong>, preprint, or retracted?</li>
+</ul></li>
+</ol>
+<aside class="notes">
+<p>If some people have no connector set up, pair them with someone who does: the contrast in invented references is usually striking.</p>
+<p>Show-and-tell fallback: I run it once with a connector and once without, on a volunteer’s topic, and we check three refs together on screen.</p>
+<p>Start the timer. Remind them: the prompt is in the online slides, so copy it rather than typing it.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 discuss" data-background-color="var(--surface-raised)">
+<h2>Discussion: your result</h2>
+<p><span class="chip chip-talk">DISCUSS · 5 min</span></p>
+<ul>
+<li>Does your reference check out?</li>
+<li>What do you <strong>know</strong> exists on your topic that didn’t show up? Why might that be?</li>
+<li>Which check changed your level of trust most?</li>
+</ul>
+<aside class="notes">
+<p>Spend most of the time on the second question. It brings back the coverage point: books, non-English work and paywalled journals are often invisible.</p>
+<p>Close: “So the connector is a good start for finding things. It doesn’t replace your judgement, or the library.”</p>
+<p>Then plant the refrain for the rest of the session: “Show me where that came from.” For a reference, that’s the DOI and the passage. In Part 3 it’ll be the exact words in a field note.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section class="title-slide slide level1 section center">
+<h1>Part 3: Coding with a codebook</h1>
+<aside class="notes">
+<p>[~0:58] Part 2 was about checking other people’s writing. Now we move to our own material: fictional field notes and chat messages. We will code by hand, compare our decisions with an AI, improve the written procedure, and only then test whether that procedure can scale.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Where AI coding fits</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Good first cut</h3>
+<p><strong>Deductive coding:</strong> you already have a codebook and want to apply it.</p>
+<p>Useful for sorting, tagging, and applying stated definitions across larger collections.</p>
+</div><div class="column" style="width:50%;">
+<h3>Use with greater caution</h3>
+<p><strong>Inductive or interpretive work:</strong> building themes from scratch and reading what is not said.</p>
+<p>Here, your judgement <em>is</em> the method.</p>
+</div></div>
+<div class="big">
+<p>A fast, literal research assistant: useful for a first cut, shaky on subtext.</p>
+</div>
+<aside class="notes">
+<p>[~1.5 min] Everything we do next is deductive: a codebook already exists, and we ask the AI to apply it.</p>
+<p>Emphasise “first cut”. You still check it, as you would check another coder. If asked about inductive coding: an AI can propose candidate themes for the researcher to react to, but the reported interpretation must come from the researcher’s reading and argument.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>What the studies found</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Study</th>
+<th>What they did</th>
+<th>What they found</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Xiao et al.&nbsp;(2023)</td>
+<td>Expert codebook + GPT-3 on children’s questions</td>
+<td>Fair to substantial agreement with expert coders</td>
+</tr>
+<tr class="even">
+<td>Chew et al.&nbsp;(2023)</td>
+<td>LLM-assisted content analysis on four public datasets</td>
+<td>Often comparable to human coders; also exposed codes the model was only <strong>guessing</strong></td>
+</tr>
+<tr class="odd">
+<td>Gilardi et al.&nbsp;(2023), <em>PNAS</em></td>
+<td>ChatGPT annotating about 6,000 tweets and news articles</td>
+<td>Outperformed crowd workers on the tasks examined</td>
+</tr>
+<tr class="even">
+<td>Pangakis et al.&nbsp;(2023)</td>
+<td>GPT-4 replicating 27 coding tasks from published studies</td>
+<td>Good on some tasks, poor on others: <strong>validate every task</strong></td>
+</tr>
+<tr class="odd">
+<td>De Paoli (2024), <em>SSCR</em></td>
+<td>GPT-3.5 doing inductive thematic analysis of interviews</td>
+<td>Recovered many themes from the original studies; exploratory</td>
+</tr>
+<tr class="even">
+<td>Ashwin et al.&nbsp;(2025), <em>SMR</em></td>
+<td>LLM coding of Rohingya refugee interviews</td>
+<td>Errors were <strong>not random</strong>: they varied with who was speaking</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~2 min] Do not read the table. Use three rows:</p>
+<ul>
+<li>Chew et al.: deductive coding with a codebook can approach human agreement, which is what we are about to test.</li>
+<li>Pangakis et al.: success in one published study does not validate the method for your task or data.</li>
+<li>Ashwin et al.: the model’s errors aligned with characteristics of the people interviewed. For ethnographers, that can bias findings rather than merely add noise.</li>
+</ul>
+<p>If running behind, skip the slide and point students to the reading list.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>A codebook, written for the AI</h2>
+<p>Six fictional field notes from a Singapore hawker-food Telegram group, coded with <strong>boyd’s networked-publics affordances</strong>:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Apply when</th>
+<th>Not when</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>persistence</code></td>
+<td>Old posts resurface; content cannot be deleted; people refer back</td>
+<td>Memory or nostalgia alone</td>
+</tr>
+<tr class="even">
+<td><code>visibility</code></td>
+<td>Who can see it; public versus private; audiences collide</td>
+<td>Content is simply posted</td>
+</tr>
+<tr class="odd">
+<td><code>spreadability</code></td>
+<td>Forwarding, reposting, screenshots, or cross-posting</td>
+<td>Content is viewed but not moved</td>
+</tr>
+<tr class="even">
+<td><code>searchability</code></td>
+<td>Platform search shapes what is findable</td>
+<td>Looking something up offline</td>
+</tr>
+<tr class="odd">
+<td><code>other: ...</code></td>
+<td>Something these codes miss and you can <strong>name</strong></td>
+<td>A dumping ground</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Rules:</strong> quote the <strong>exact words</strong> for every code · “nothing fits” is allowed · flag anything identifying</p>
+<p><span class="small muted">Full codebook: <code>materials/skills/qual-coding/SKILL.md</code> · notes: <code>materials/data/fieldnotes.csv</code></span></p>
+<aside class="notes">
+<p>[~2 min] “You already write documents like this for human coders. This is the same procedure written so an AI can follow it too.”</p>
+<p>Point out the “Not when” column. That is where much of the judgement lives. The exact-words rule repeats the Part 2 question: show me where that came from.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 activity" data-background-color="var(--mist)">
+<h2>Try 3: code it yourself first</h2>
+<p><span class="chip chip-try">TRY · 7 min · alone · no AI</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>[FN-02] 6 Mar, 12.30pm. A new member asked whether a char kway teow</span>
+<span id="cb3-2"><a href=""></a>stall at a hawker centre in Ang Mo Kio is "still good". Three people</span>
+<span id="cb3-3"><a href=""></a>replied with links to old messages in the group from 2023. One wrote</span>
+<span id="cb3-4"><a href=""></a>"scroll up lah, we discussed already". The new member said the search</span>
+<span id="cb3-5"><a href=""></a>bar "doesn't find anything" when she types the stall name in Chinese.</span>
+<span id="cb3-6"><a href=""></a></span>
+<span id="cb3-7"><a href=""></a>[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's</span>
+<span id="cb3-8"><a href=""></a>review without crediting them. The member complained in the Telegram</span>
+<span id="cb3-9"><a href=""></a>group: "I wrote it for the group, not for IG." Admin apologised and</span>
+<span id="cb3-10"><a href=""></a>said they would "ask first next time". Several members reacted with</span>
+<span id="cb3-11"><a href=""></a>the thumbs-up emoji; one wrote "but the IG is public what, anyone</span>
+<span id="cb3-12"><a href=""></a>can see anyway".</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For each decision: <strong>excerpt · code · exact words · confidence</strong> (high / medium / low)</p>
+<p>You do not need to identify every possible code. Make one or two defensible coding decisions for each excerpt.</p>
+<aside class="notes">
+<p>Everyone can do this activity, with or without a paid tool. Reviewers in each pair should code too.</p>
+<p>At five minutes: “Two minutes. Make sure every code has a quotation.”</p>
+<p>Do not reveal your own coding. The students’ readings establish the human baseline.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Skills, briefly</h2>
+<p>A <strong>Skill</strong> is the written procedure from Part 1, saved so the agent can apply it again.</p>
+<p>For this task, it preserves:</p>
+<ul>
+<li>the code definitions and exclusions;</li>
+<li>the required evidence and confidence;</li>
+<li>the permission to say <strong>“nothing fits”</strong>;</li>
+<li>the identifying-information flag;</li>
+<li>the output structure.</li>
+</ul>
+<div class="keypoint">
+<p>The Skill does <strong>not</strong> make the coding valid or deterministic. It preserves the instructions we want to test.</p>
+</div>
+<aside class="notes">
+<p>[~1 min] This is a bridge, not a technical lesson. Show the prepared <code>SKILL.md</code> briefly if useful. Do not discuss paths or automatic triggering yet.</p>
+<p>Say: “I prepared this Skill before the session because I wanted you to interpret the excerpts before watching me build software. It contains the same codebook and rules you just used.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Demo: the Skill codes the same notes</h2>
+<p>(using qual-coding-networked-publics)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>/qual-coding-networked-publics</span>
+<span id="cb4-2"><a href=""></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
+<span id="cb4-3"><a href=""></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Look for:</strong></p>
+<ul>
+<li>First compare its decisions for <strong>FN-02</strong> and <strong>FN-04</strong> with yours.</li>
+<li>Does every code have a <strong>verbatim</strong> quotation?</li>
+<li>Where is confidence <strong>low</strong>? What went into <strong><code>other:</code></strong>?</li>
+<li>Did it raise an <strong>ethics flag</strong>? (Hint: FN-03)</li>
+</ul>
+<aside class="notes">
+<p>[~4 min] Run the prepared Skill. Scroll to FN-02 and FN-04 first so students can compare its decisions with their own. Then inspect FN-03 for the identifying-information flag. Finally open coded-fieldnotes.csv, which the Skill saves next to the input: one row per code, the same shape the chat-export demo will produce.</p>
+<p>If the run is slow or fails, open <code>materials/sample-ai-output.md</code>. The interface is incidental; the coding decisions are what the class needs to inspect.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 discuss" data-background-color="var(--surface-raised)">
+<h2>Discussion: you vs the AI</h2>
+<p><span class="chip chip-talk">DISCUSS</span></p>
+<ul>
+<li>Where did you <strong>disagree</strong>: your reading, its reading, or the <strong>codebook</strong>?</li>
+<li>What did it <strong>miss</strong>: irony, context, tone, platform vernacular, or what is absent?</li>
+<li>What <strong>one line</strong> would you add to the codebook?</li>
+</ul>
+<div class="keypoint">
+<p><strong>Agreement is not interpretive validity.</strong> A model can apply a code consistently and still miss context, positionality, platform vernacular, or what is absent from the record.</p>
+</div>
+<aside class="notes">
+<p>Two minutes in pairs, then three minutes as a room.</p>
+<p>Each AI code receives one human decision in the audit log: accept, reject, or modify, with a reason.</p>
+<p>Collect two or three proposed codebook changes. Choose one and type it into the codebook live. This creates the reason for the next slide: we tested a procedure, found a weakness, and now preserve the revision.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Build together: turn the codebook into a Skill</h2>
+<p><span class="chip chip-learn">BUILD TOGETHER · follow along if useful</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>/skill-creator</span>
+<span id="cb5-2"><a href=""></a>Revise the qualitative-coding Skill using the codebook clarification</span>
+<span id="cb5-3"><a href=""></a>we just agreed. Then generalise it as a Skill called code-with-codebook.</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>It should ask for:</span>
+<span id="cb5-6"><a href=""></a>- a codebook with each code's definition, when to apply it, and when not to;</span>
+<span id="cb5-7"><a href=""></a>- a CSV containing an ID column and a text column.</span>
+<span id="cb5-8"><a href=""></a></span>
+<span id="cb5-9"><a href=""></a>For every coding decision, save: id, code, verbatim evidence,</span>
+<span id="cb5-10"><a href=""></a>confidence, rationale, and an identifying-information flag.</span>
+<span id="cb5-11"><a href=""></a>"Nothing fits" is allowed. Log the model, date, input files and</span>
+<span id="cb5-12"><a href=""></a>number of rows in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>We tested the procedure, improved it, and saved the revision.</p>
+<aside class="notes">
+<p>[~5 min] This is not “building a Skill because Skills are interesting.” It is preserving a procedure the class has just tested and revised.</p>
+<p>Say explicitly: “The Skill is not what makes the method defensible. The codebook, evidence, human checking and decision record do. The Skill preserves the revised instructions.”</p>
+<p>Show the resulting <code>SKILL.md</code>, but do not spend time teaching folder paths. If the live creation is slow, open the prepared revised version and compare the changed rule.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Try 4: test your Skill on a small batch</h2>
+<p><span class="chip chip-try">TEST · first 20 rows only</span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>/code-with-codebook</span>
+<span id="cb6-2"><a href=""></a>Use the codebook in codebook.md to code messages.csv.</span>
+<span id="cb6-3"><a href=""></a>The ID column is message_id and the text column is text.</span>
+<span id="cb6-4"><a href=""></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
+<span id="cb6-5"><a href=""></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Before scaling, inspect:</strong></p>
+<ul>
+<li>Are the output fields complete?</li>
+<li>Does each code have verbatim evidence?</li>
+<li>Which cases are low-confidence or unclear?</li>
+<li>Did the revised codebook line change the relevant decisions?</li>
+</ul>
+<aside class="notes">
+<p>[~3 min] The habit is: test a small batch before spending money and time on the full archive.</p>
+<p>If the run is slow or misbehaves, use the prepared output. Transition: the Skill holds the judgement-rich instructions; next we add a script for the checks that have one right answer.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Same logic, at scale</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3>Six field notes</h3>
+<p><strong>Coding side by side with another coder</strong></p>
+<p>You, the AI and a codebook can discuss each note.</p>
+</div><div class="column" style="width:50%;">
+<h3>The whole digital export</h3>
+<p><strong>Applying the procedure across an archive</strong></p>
+<p>The Skill codes every message; a script checks the output and logs the run.</p>
+</div></div>
+<p><br></p>
+<p>Same method: <strong>codebook → AI codes → human check → revise → test again</strong>.</p>
+<aside class="notes">
+<p>[~1 min] The Skill holds the judgement-rich procedure. The script checks what it produced. They are complements, not competitors.</p>
+<p>Do not say that the script makes the interpretation certain. It makes the checks repeatable; the model’s coding may still vary.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Skill, script, or hybrid?</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<h3>Skill</h3>
+<p>Best when the task needs interpretation:</p>
+<ul>
+<li>apply definitions;</li>
+<li>extract evidence;</li>
+<li>explain rationale;</li>
+<li>flag uncertainty.</li>
+</ul>
+<p><strong>Repeatable instructions; outputs may vary.</strong></p>
+</div><div class="column" style="width:33%;">
+<h3>Script</h3>
+<p>Best when the operation can be fully specified:</p>
+<ul>
+<li>filter and deduplicate;</li>
+<li>sample with a seed;</li>
+<li>validate columns;</li>
+<li>calculate agreement;</li>
+<li>make tables and charts.</li>
+</ul>
+<p><strong>Fixed code for fixed operations.</strong></p>
+</div><div class="column" style="width:33%;">
+<h3>Hybrid</h3>
+<p>For judgement at scale:</p>
+<ul>
+<li>Skill or codebook defines the method;</li>
+<li>script validates, samples and logs;</li>
+<li>model proposes codes;</li>
+<li>researcher reviews disagreements.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p>[~2 min] This is the conceptual distinction students need before the Python demonstration.</p>
+<p>Use ordinary code when ordinary code can answer the question. For example, selecting every row where <code>forwarded = yes</code> should be a filter, not an LLM task.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>At scale: code everything, check it with a script</h2>
+<p><span class="chip chip-learn">WATCH THE WORKFLOW · no Python knowledge required</span></p>
+<p>The first 20 looked right, so the Skill codes all 210 messages. Then:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href=""></a>Write a Python script that checks coded-messages.csv against</span>
+<span id="cb7-2"><a href=""></a>messages.csv: every message_id appears at least once, every row</span>
+<span id="cb7-3"><a href=""></a>has id, code, evidence and confidence, and every evidence quote</span>
+<span id="cb7-4"><a href=""></a>appears word for word in the original message. Run it, list any</span>
+<span id="cb7-5"><a href=""></a>problems, and log the date and result in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Watch for:</strong> plan → write → run → inspect → adjust → rerun</p>
+<aside class="notes">
+<p>[~4 min] Two steps. First run /code-with-codebook on all of messages.csv, saving coded-messages.csv (start it during the previous slide if it’s slow). Then the check script.</p>
+<p>The Skill does the judgement; the script does the checks that have one right answer. That’s the hybrid from the last slide.</p>
+<p>The verbatim check is “show me where that came from”, automated: a quote the model paraphrased or invented gets caught by code that gives the same answer every time. If it finds problems, good: that’s the point of checking.</p>
+<p>Students do not need to reproduce the Python. Ask them to watch the decision structure: write, run, inspect, adjust. The script makes the checks repeatable; it does not make the model’s coding deterministic.</p>
+<p>If an error occurs, use it to illustrate the agent loop. Do not promise or manufacture an error.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>At scale: compare with human coding</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href=""></a>Compare the AI codes for the 30 messages in hand-codes.csv with my</span>
+<span id="cb8-2"><a href=""></a>codes in that file. Summarise agreement for each code and list every</span>
+<span id="cb8-3"><a href=""></a>mismatch with the message, both coding decisions, and a possible reason.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>The statistic is a summary; the <strong>mismatches</strong> tell us what to inspect and revise.</li>
+<li>A message isolated from its thread can lose crucial context.</li>
+<li>Human coding is a comparison point, not an unquestionable gold standard.</li>
+</ul>
+<aside class="notes">
+<p>[~3 min] Read one mismatch and ask the room: researcher, AI, both, or neither?</p>
+<p>If discussing Cohen’s kappa, define it briefly as agreement corrected for chance, then return attention to the disagreements and their causes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Making AI coding defensible</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Move</th>
+<th>What it looks like</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Validate against human coding</strong></td>
+<td>Hand-code an appropriate sample, compare, and inspect disagreements</td>
+</tr>
+<tr class="even">
+<td><strong>Revise the codebook</strong></td>
+<td>Clarify vague definitions and exclusions exposed by disagreements</td>
+</tr>
+<tr class="odd">
+<td><strong>Route uncertainty to people</strong></td>
+<td>Send low-confidence, unclear and identifying cases to manual review</td>
+</tr>
+<tr class="even">
+<td><strong>Document the run</strong></td>
+<td>Keep the data, codebook or Skill, model/version, date, outputs and decisions</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>[~1.5 min] Point back to what the class did: human baseline, Skill output, discussion, revised rule, small-batch test, and research log.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>What can still go wrong</h2>
+<ul>
+<li><strong>Privacy and ethics:</strong> check approval and tool suitability before material goes in</li>
+<li><strong>Context loss:</strong> one row without its thread, encounter or interview can be misread</li>
+<li><strong>Flattening:</strong> models can favour common readings and miss minority or unexpected ones</li>
+<li><strong>False confidence:</strong> consistent output can still rest on a poor codebook or interpretation</li>
+</ul>
+<aside class="notes">
+<p>[~1 min] Linger on flattening. In ethnographic work, the unusual voice may be analytically important, and it is precisely what an automated first cut can smooth over.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section class="title-slide slide level1 section center">
+<h1>Part 4: Making it reproducible and defensible</h1>
+<aside class="notes">
+<p>[~1:33] We have used a Skill for the judgement-rich procedure and a script for the fixed checks. Part 4 asks what must remain after the demonstration so the workflow can be inspected and defended.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Reproducible by design</h2>
+<ul>
+<li>For fixed operations: <strong>same data + same code + same environment → same result</strong></li>
+<li>Model-generated coding is <strong>not deterministic</strong></li>
+<li>So preserve the procedure, inputs, outputs, settings and decisions</li>
+<li>For interpretive work, the immediate goal may be <strong>transparency and auditability</strong>, not identical interpretation</li>
+</ul>
+<div class="keypoint">
+<p>A seed makes a random sample retrievable, not methodologically correct by itself.</p>
+</div>
+<aside class="notes">
+<p>[~2 min] Do not tell students that saving a script makes the AI coding reproducible. The script preserves the checks; the model’s outputs may still vary.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>What to keep</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Keep</th>
+<th>Example from today</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>The data</strong> or retrieval method</td>
+<td>de-identified <code>fieldnotes.csv</code> and <code>messages.csv</code>, with export date</td>
+</tr>
+<tr class="even">
+<td><strong>The procedure</strong></td>
+<td><code>codebook.md</code>, the Skill and the check script</td>
+</tr>
+<tr class="odd">
+<td><strong>The checks</strong></td>
+<td>human codes, AI codes, disagreements and agreement summaries</td>
+</tr>
+<tr class="even">
+<td><strong>The decisions</strong></td>
+<td>accept / reject / modify decisions; codebook revisions and reasons</td>
+</tr>
+<tr class="odd">
+<td><strong>The tool details</strong></td>
+<td>model/version, settings and date run</td>
+</tr>
+</tbody>
+</table>
+<div class="keypoint">
+<p>Save, inspect, reuse and describe the codebook, Skill, script and decision log. Do not rely on a chat transcript as the research record.</p>
+</div>
+</section>
+<section class="slide level2">
+<h2>A light habit: dated folders + a research log</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href=""></a>2026-10-23_hawker-telegram/</span>
+<span id="cb9-2"><a href=""></a>├── fieldnotes.csv</span>
+<span id="cb9-3"><a href=""></a>├── codebook.md</span>
+<span id="cb9-4"><a href=""></a>├── messages.csv</span>
+<span id="cb9-5"><a href=""></a>├── research-log.md</span>
+<span id="cb9-6"><a href=""></a>├── hand-codes.csv</span>
+<span id="cb9-7"><a href=""></a>├── coded-messages.csv</span>
+<span id="cb9-8"><a href=""></a>└── check_coded.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Tell the agent: <strong>“After each step, draft a dated entry in research-log.md.”</strong></p>
+<div class="keypoint">
+<p><strong>Add a reflexive note:</strong> What did the tool make more visible? What did it flatten, obscure, or encourage you to treat as data?</p>
+<p>Treat the agent’s log as a draft. Check and correct it.</p>
+</div>
+</section>
+<section class="slide level2 smaller">
+<h2>Skills: where do they live?</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Where the file lives</strong></p>
+<ul>
+<li>Project only: <code>.claude/skills/</code> in the project folder</li>
+<li>Across your projects: <code>~/.claude/skills/</code></li>
+<li>Codex uses the same broad idea with its own skills location</li>
+</ul>
+<p>The Skill is a text file you can inspect, version and retain with the project.</p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="images/reused/skill-anatomy.png" style="width:80.0%"></p>
+</div></div>
+<aside class="notes">
+<p>[~1 min] This slide comes after students have used and revised a Skill, so the storage detail now answers a real question. Confirm current product-specific paths before delivery.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller">
+<h2>Verification and research integrity</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Check: show me where that came from</strong></p>
+<ul>
+<li>Citation → DOI and supporting passage</li>
+<li>Code → exact words plus note or message ID</li>
+<li>Count or chart → script plus input data</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><strong>Record and disclose</strong></p>
+<ul>
+<li>Maintain the research log</li>
+<li>Check relevant course, journal or funder policy</li>
+<li>Disclose the tool, model/version, task and human review</li>
+</ul>
+</div></div>
+<div class="caution">
+<p><strong>Sensitive data:</strong> participant data, unpublished results and confidential material require appropriate approval and a suitable tool before use. <strong>Publicly visible is not the same as ethically unrestricted.</strong></p>
+</div>
+</section>
+<section class="slide level2">
+<h2>A disclosure, for example</h2>
+<blockquote>
+<p>We used [tool and model] on [date] to propose provisional codes for de-identified field-note excerpts using the codebook in Appendix A. The researcher reviewed every code against the original text, revised the codebook after disagreement analysis, and retained final interpretive responsibility.</p>
+</blockquote>
+<p><span class="small muted">A generic example. Adapt it to the requirements of the course, institution, journal, funder and study.</span></p>
+</section>
+<section class="slide level2">
+<h2>Before you use third-party Skills and connectors</h2>
+<ul>
+<li>A Skill or connector can operate with your access to files, accounts and data</li>
+<li>Treat it like code you did not write: <strong>inspect it before use</strong></li>
+<li>Use sources you can inspect and trust</li>
+<li>Apply the same caution you would to a browser extension or executable</li>
+</ul>
+<aside class="notes">
+<p>[~1 min] If time is short, cover this warning verbally rather than allowing it to create a second ending.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Take-home</h2>
+<div class="big">
+<p>If you cannot defend it without the AI in the room, you are not done.</p>
+</div>
+<p><br></p>
+<p><strong>Hand over the task</strong> | <strong>Check what comes back</strong> | <strong>Keep the procedure</strong></p>
+<p>Try next: write one repeated research task as a documented procedure. Turn it into a Skill only if useful.</p>
+<p>Slides: <a href="https://bellaratmelia.github.io/ntude-2026/">NTU Digital Ethnography guest seminar</a></p>
+<p>Questions? My email is <strong>bellar@smu.edu.sg</strong></p>
+<div class="small muted">
+<p>Sample field notes and chat messages in this session are fictional and were written for teaching purposes.</p>
+</div>
+<aside class="notes">
+<p>Read the opening ground rule again, then pause.</p>
+<p>Recap in one breath: “An agent can act. Connectors let it reach sources. Skills preserve judgement-rich instructions. Scripts handle the fixed checks. You remain responsible for defending the result.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2 smaller scrollable">
+<h2>Selected studies on AI-assisted qualitative coding</h2>
+<div class="small">
+<p>Ashwin, J., Chhabra, A., &amp; Rao, V. (2025). Using large language models for qualitative analysis can introduce serious bias. <em>Sociological Methods &amp; Research</em>. <a href="https://arxiv.org/abs/2309.17147" class="uri">https://arxiv.org/abs/2309.17147</a></p>
+<p>boyd, d.&nbsp;(2010). Social network sites as networked publics: Affordances, dynamics, and implications. In Z. Papacharissi (Ed.), <em>A networked self</em> (pp.&nbsp;39–58). Routledge.</p>
+<p>Chew, R., Bollenbacher, J., Wenger, M., Speer, J., &amp; Kim, A. (2023). LLM-assisted content analysis: Using large language models to support deductive coding. <em>arXiv:2306.14924</em>. <a href="https://arxiv.org/abs/2306.14924" class="uri">https://arxiv.org/abs/2306.14924</a></p>
+<p>De Paoli, S. (2024). Performing an inductive thematic analysis of semi-structured interviews with a large language model. <em>Social Science Computer Review, 42</em>(4), 997–1019. <a href="https://doi.org/10.1177/08944393231220483" class="uri">https://doi.org/10.1177/08944393231220483</a></p>
+<p>Gilardi, F., Alizadeh, M., &amp; Kubli, M. (2023). ChatGPT outperforms crowd workers for text-annotation tasks. <em>PNAS, 120</em>(30), e2305016120. <a href="https://doi.org/10.1073/pnas.2305016120" class="uri">https://doi.org/10.1073/pnas.2305016120</a></p>
+<p>Pangakis, N., Wolken, S., &amp; Fasching, N. (2023). Automated annotation with generative AI requires validation. <em>arXiv:2306.00176</em>. <a href="https://arxiv.org/abs/2306.00176" class="uri">https://arxiv.org/abs/2306.00176</a></p>
+<p>Xiao, Z., Yuan, X., Liao, Q. V., Abdelghani, R., &amp; Oudeyer, P.-Y. (2023). Supporting qualitative analysis with large language models: Combining codebook with GPT-3 for deductive coding. <em>IUI ’23 Companion</em>. <a href="https://arxiv.org/abs/2304.10548" class="uri">https://arxiv.org/abs/2304.10548</a></p>
+</div>
+<aside class="notes">
+<p>Backup slide, after Take-home. Don’t present it; it’s there for anyone flipping through the slides later. Same list, with notes, in materials/reading-list.md.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+<h2>Never paste API keys into chat</h2>
+<ul>
+<li>Some APIs require a <strong>key</strong></li>
+<li>A key pasted into chat, code or a shared folder can be copied, misused and billed to you</li>
+<li>Keep it outside the script, such as in an environment variable or an excluded <code>.env</code> file</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb10-2"><a href=""></a>api_key <span class="op">=</span> os.environ[<span class="st">"ANTHROPIC_API_KEY"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="caution">
+<p>If the folder may be shared or committed to Git, exclude <code>.env</code>. If a key has been exposed, revoke it and create a replacement.</p>
+</div>
+<aside class="notes">
+<p>Backup slide, after Take-home. Not presented: there’s no API demo today. It’s here for anyone who goes on to use an API (the Claude API, Scopus, a publisher API) after the session.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>23 October 2026 - Guest seminar for Digital Ethnography</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="index_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="index_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="index_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="index_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="index_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': true,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 6.0e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+                // target, if specified
+                link.setAttribute("target", "_blank");
+                if (link.getAttribute("rel") === null) {
+                  link.setAttribute("rel", "noopener");
+                }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
