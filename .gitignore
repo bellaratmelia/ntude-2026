@@ -3,7 +3,6 @@
 .venv/
 venv/
 *_files/
-coded_output.jsonl
 .env
 __pycache__/
 .DS_Store

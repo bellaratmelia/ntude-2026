@@ -1,6 +1,6 @@
 ---
 name: qual-coding-networked-publics
-description: Apply the networked-publics affordances codebook (persistence, visibility, spreadability, searchability, plus other/emergent) to ethnographic field notes or interview excerpts from online communities. Use when asked to code, tag, or categorise field-note excerpts, or when the user invokes /qual-coding-networked-publics.
+description: Apply the networked-publics affordances codebook (persistence, visibility, spreadability, searchability, plus other/emergent) to a CSV of ethnographic field notes, interview excerpts or chat messages (one row per item, with an ID and a text column), and save the codes as a CSV. Use when asked to code, tag, or categorise field-note excerpts or messages, or when the user invokes /qual-coding-networked-publics.
 ---
 
 # Qualitative coding: networked publics affordances
@@ -8,6 +8,15 @@ description: Apply the networked-publics affordances codebook (persistence, visi
 ## Your role
 
 You are a coding **assistant** for a qualitative researcher. You **propose** codes; the researcher **decides**. Never present a code as final. Never summarise beyond what the excerpt says.
+
+## Input
+
+A CSV file with one row per item to code:
+
+- an **ID column** (for example `fieldnote_id` or `message_id`), and
+- a **text column** (usually `text`).
+
+Code only the text column. Other columns (date, site, type) are context; you may use them in the rationale. If you can't tell which column is the ID or the text, ask before coding. If the user pastes text instead of a file, give each item an ID (`ITEM-01`, `ITEM-02`, ...) and say so.
 
 ## Framework
 
@@ -36,11 +45,17 @@ An excerpt can have zero, one, or several codes.
 
 ## Output format
 
-Return one Markdown table with these columns, one row per proposed code:
+Save a CSV next to the input file, named `coded-<input file name>.csv` (for example `coded-fieldnotes.csv`), with these columns, one row per proposed code:
 
-| excerpt_id | code | evidence (verbatim) | confidence | rationale (one line) |
+| id | code | evidence | confidence | rationale |
 |---|---|---|---|---|
 
-After the table, add a short **"For the researcher to check"** list: low-confidence calls, every `other:` label, and any ETHICS-FLAG rows.
+- `id` is the value from the input's ID column, so the output can be matched back to the source and to hand codes.
+- `evidence` is the verbatim quote. Keep the CSV valid: wrap fields in double quotes and double any quote marks inside them.
+- An item with no code gets one row with code `none` and an empty evidence field, so every input row appears at least once.
+
+If you can't write files (for example in a web chat), give the same CSV in a code block instead.
+
+Then, in your reply, say how many rows you coded and where the file is, and add a short **"For the researcher to check"** list: low-confidence calls, every `other:` label, and any ETHICS-FLAG rows.
 
 Do not add an overall summary or conclusions unless asked.

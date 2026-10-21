@@ -26,7 +26,7 @@ While people settle: "If you haven't opened Claude Code or Codex yet, start it n
 1. Core concepts, and a tour of Claude Code / Codex 
 2. Finding and checking sources for a literature review
 3. Coding with a codebook: field notes, then a whole chat export
-4. Making it reproducible: logs, scripts, Skills
+4. Making it reproducible and defensible: logs, Skills, integrity
 
 
 ::: {.notes}
@@ -39,7 +39,7 @@ Walk through the parts in one breath each:
 - Part 1: what an agent is, and a short tour of the tool.
 - Part 2: using it to find sources, and checking them.
 - Part 3: coding field notes with a codebook, you and the AI, then the same logic on the group's whole chat export.
-- Part 4: making sure you can repeat it and defend it.
+- Part 4: making sure you can repeat it and defend it, ending with the integrity checks.
 
 Then the close.
 
@@ -50,11 +50,10 @@ Run sheet (core ends by 8:30; anything after is bonus):
 - 7:03–7:23 Part 2: literature discovery and checking
 - 7:23–7:28 Short break / reset (use it as buffer if behind)
 - 7:28–8:03 Part 3: field-note coding, human check, then scale
-- 8:03–8:23 Part 4: logs, reproducibility, Skills
-- 8:23–8:30 Integrity and take-home
+- 8:03–8:30 Part 4: logs, reproducibility, Skills, then integrity and take-home (integrity starts by 8:23)
 - After 8:30, if the room has time: questions, live Skill demo, Git, troubleshooting
 
-If time slips, cut in this order: Remote/SSH (already gone) → modes table (just say "start in Plan") → live connector setup → API-key code (say the warning) → "Level up" → live Skill creation (show the finished SKILL.md).
+If time slips, cut in this order: Remote/SSH (already gone) → modes table (just say "start in Plan") → live connector setup → "Level up" → live Skill creation (show the finished SKILL.md).
 
 Never cut: the first task, checking real references, Try 3 (code it yourself), the "before you give it research material" slide, the research log, the final accountability line.
 :::
@@ -63,8 +62,8 @@ Never cut: the first task, checking real references, Try 3 (code it yourself), t
 ## A note before we begin
 
 - **Practitioner-led**: what I've learned supporting researchers
-- Tools change **fast**. The **mental model** shouldn't
-- Research **methods**: your professor's call
+- Tools change **fast**, so today's focus is on the **mental model**
+- For study-specific methodological decisions, follow your faculty and ethics guidance
 
 ::: {.keypoint}
 Questions and corrections welcome. Let's make it two-way exchange!
@@ -120,17 +119,14 @@ Ideally, before today you have:
 
 <br>
 
-No Claude Code or Codex? Pair up and take a role:
+No Claude Code or Codex? Please pair up with someone who has it. 
 
-- **Driver**: has the tool, runs the workflow
-- **Reviewer**: reads the plan, challenges the output, checks sources, approves or rejects
+If pairing, one person drives and the other checks the plan, permissions, and output. Swap when useful.
 
 ::: {.notes}
 [~30 sec] Say it quickly; don't read the list.
 
-Frame the reviewer role as real work, not a consolation: "Reviewing is the job the rest of today is about. The reviewer is the one who says yes or no." Swap roles between activities if both people have access.
 
-Everything I show is in the materials, so anyone can redo it later.
 :::
 
 ## A ground rule
@@ -184,18 +180,18 @@ Most of us are familiar with the **I type, it answers** pattern.
 
 Three new ideas today:
 
-| | The idea | What it means for you |
+| Capability | The idea | What it means for you |
 |---|---|---|
-| **It can act** | Agents plan and take steps, not just reply | Hand over a task, not just a question |
-| **It can reach things** | Connectors open your files, databases, tools | Results retrieved from identifiable sources, not only model memory |
-| **It can follow your procedures** | Skills hold your instructions, written once | The same documented instructions every time |
+| **It can act** | Agents plan and take steps, not just a quick reply | Hand over a task instead of a question |
+| **It can reach things** | Connectors extend access to outside services and sources | Results retrieved from identifiable sources, not only model memory |
+| **It can follow your procedures** | Skills hold your instructions / prompt | The same documented instructions every time |
 
 ::: {.notes}
 [~2 min] This slide is the map for the whole session.
 
 - "It can act": that's the agent idea, the next few slides.
 - "It can reach things": connectors, end of Part 1, used in Part 2.
-- "It can follow your procedures": Skills, planted at the end of Part 1, built in Part 4.
+- "It can follow your procedures": We use a prepared Skill in Part 3, then revise and generalise it together.
 
 "Steering" is the right-hand column: you decide the task, the sources and the procedure.
 :::
@@ -205,26 +201,28 @@ Three new ideas today:
 ::: {.columns}
 ::: {.column width="50%"}
 ### A chatbot
-is a **consultant you email**.
+is like a **colleague on the phone**.
 
-- You send a question, it sends back an answer
-- It only knows what you paste in and what it learned in training
-- You do all the legwork in between
+- Can advise, draft and explain, sometimes very well
+- Only sees what you read out, paste, or upload
+- Can't open your files or run anything: You still carry files and outputs back and forth
 :::
 ::: {.column width="50%"}
 ### An agent
-is a **research assistant you hand a task to**.
+is like a **research assistant at your desk**.
 
-- It has a desk, files and tools
-- It works through several steps on its own
-- It reports back, and you check the work
+- Can open your files and use your tools
+- Works through several steps on its own
+- Reports back, and you check the work
 :::
 :::
 
 ::: {.notes}
 Same underlying model in both cases. What's different is what it's allowed to touch and whether it can take more than one step before coming back to you. In glossary terms: same model, different harness.
 
-[~2 min] Lean on the analogy: most people here have supervised or been an RA. "You wouldn't take an RA's literature table without spot-checking it. Same here."
+[~2 min] The contrast is access, not effort or intelligence. A brilliant colleague on the phone still only knows what you tell them, and you still do the copying, pasting and running. Sit them at your desk and they can open the files themselves.
+
+Lean on the analogy: most people here have supervised or been an RA. "You wouldn't take an RA's literature table without spot-checking it. Same here."
 
 The "desk" comes back on the context slide.
 :::
@@ -234,10 +232,10 @@ The "desk" comes back on the context slide.
 | Web chat (Claude.ai / ChatGPT.com) | Claude Code / Codex |
 |---|---|
 | Runs in a browser | Runs on **your computer**, in **your project folder** |
-| Sees only what you paste or upload | Reads many files and sees how they relate |
-| Hands you text and code to copy back | Creates, edits and organises files itself |
+| Sees only what you paste or upload | Reads files directly from the project folder and can examine how they relate |
+| Hands you text and code to copy back | Creates, edits and organizes files itself |
 | You run the output yourself | Runs scripts and commands, **with your permission** |
-| Best for questions and one-off outputs | Best for multi-step work: act, check, continue |
+| Best for questions and one-off outputs | Best for multi-step work i.e. act, check, continue |
 
 ::: {.notes}
 [~1.5 min] Don't read the table row by row. Pick two rows:
@@ -249,7 +247,7 @@ The "desk" comes back on the context slide.
 ## More access, not "better"
 
 ::: {.caution}
-Claude Code and Codex aren't automatically **better** than web chat. They have more **access** and more ability to **act**, which is why permissions, checkpoints and your review matter.
+Claude Code and Codex aren't automatically **better** than web chat. They have more **access** and more ability to **act**, which is why permissions, checkpoints and your review matter even more.
 :::
 
 ::: {.notes}
@@ -262,13 +260,13 @@ This is the fence for the whole session: an agent isn't a smarter chatbot, it's 
 
 | Ask | Think about |
 |---|---|
-| **May I use it?** | Consent, ethics approval, platform expectations, confidentiality |
+| **May I use it?** | Consent, IRB/ethics approval, platform expectations, confidentiality |
 | **May this tool receive it?** | Institutional approval, provider terms, retention and training settings |
-| **What's the minimum it needs?** | De-identify, minimise, or use fictional / synthetic material |
+| **What's the minimum it needs?** | De-identify, minimise, aggregate, or use fictional / synthetic material |
 | **What must stay with me?** | Interpretation, contextual judgement, inclusion decisions, final claims |
 
 ::: {.caution}
-**"Local" ≠ private.** The files stay on your machine, but what the agent reads is sent to the model provider.
+**"Local" ≠ private.** While the files stay on your machine, remember that what the agent reads is sent to the model provider.
 
 **Public ≠ unrestricted.** Publicly visible posts aren't automatically ethically unrestricted, context-free, or fine to send to a third-party model.
 :::
@@ -300,8 +298,9 @@ Everything we use today is fictional, written for teaching, so we can skip the f
 
 <br>
 
-- A chatbot does **one** pass. An agent goes round this loop until it thinks it's finished.
-- "Thinks it's finished" is the catch. **You** decide when it's actually finished.
+- A conventional chat exchange presents **one** response at a time. 
+- An agent can continue acting, observing, and adjusting across a task until it **thinks** it's finished.
+- That said, **you** decide when it's actually finished.
 
 ::: {.notes}
 We'll see the loop live in Part 3, when the script hits an error and the agent fixes it. Point back to this slide then.
@@ -317,7 +316,7 @@ Think of **context** as the agent's desk.
 
 - Everything goes on the desk: instructions, files, results, replies
 - The desk is **big but not infinite**
-- Long sessions **drift**: early rules get buried
+- Long sessions may **drift** and early rules may get buried
 
 ::: {.keypoint}
 **Habits:** fresh session per task · instructions in a **file** · ask for a progress summary
@@ -339,7 +338,7 @@ The useful question isn't "which product?" but **where does it run, and what can
 
 | Option | Where it runs |
 |---|---|
-| **Local** | Your computer: your files, your terminal. The default, and what we use today |
+| **Local** | Your computer: your files, your terminal. The default option and what we use today |
 | **Cloud** | The provider's machine. Good for long tasks; starts from a fresh copy, so it can't see your local folders |
 
 ::: {.notes}
@@ -388,7 +387,7 @@ Claude Code: the mode picker next to the message box. Codex: the approvals setti
 
 ## Tour: first task {.activity background-color="var(--mist)"}
 
-[TRY · 5 min · Plan mode]{.chip .chip-try}
+[5 min · Plan mode]{.chip .chip-try}
 
 Open the workshop folder in Claude Code or Codex, then:
 
@@ -407,7 +406,7 @@ Look for:
 ::: {.notes}
 Show-and-tell fallback: I run it on screen. Keep to 5 minutes. Don't teach terminal commands; the desktop apps avoid most of that. The point is: an agent on your own machine works on your files and leaves a record.
 
-The file is materials/data/fieldwork-log.csv: a fictional fieldwork log for the same Telegram hawker group as the field notes (40 entries, March to May 2026, columns fieldnote_id, date, site, type, minutes). FN-01 to FN-06 match the excerpts in fieldnotes.md. Expected result: March 9 entries, April 17, May 14; mostly observation, a few archive and interview.
+The file is materials/data/fieldwork-log.csv: a fictional fieldwork log for the same Telegram hawker group as the field notes (40 entries, March to May 2026, columns fieldnote_id, date, site, type, minutes). FN-01 to FN-06 match the excerpts in fieldnotes.csv. Expected result: March 9 entries, April 17, May 14; mostly observation, a few archive and interview.
 
 Frame it: "This is the kind of file you already keep. The agent is working on your records, not the internet."
 
@@ -420,21 +419,20 @@ Name what they just met, pointing back to the glossary: the model wrote the plan
 
 ## Connectors: USB-C ports for AI
 
-::: {.columns}
-::: {.column width="55%"}
-- A **connector** plugs the AI into a source: PubMed, a scholarly index, Google Drive, Zotero
+
+- A **connector** plugs the AI into a source: a scholarly index, Google Drive, or Zotero
 - **MCP** (Model Context Protocol) is the **standard** behind them, like USB-C is the standard behind the cable
 - You don't need to build one. You need to know they **exist** and what each one can **reach**
-:::
-::: {.column width="45%"}
-**Without a connector:** the AI answers from training memory, which is out of date and can invent sources.
+
+## Connectors: why they help
+
+**Without a connector:** without access to a retrievable source, it may rely on model knowledge, which can be outdated or wrong.
 
 **With a connector:** it searches a live source and can show you **where** each result came from.
-:::
-:::
+
 
 ::: {.caution}
-A connector acts **with your access**. Treat it like a browser extension: know who made it before you switch it on.
+A connector acts **with your access**. A word of caution: Treat it like a browser extension and check who made it before you switch it on.
 :::
 
 ::: {.notes}
@@ -455,10 +453,10 @@ Stress the right column: memory vs a live source. That's the whole of Part 2 in 
 |---|---|---|
 | Retyped, drifts each time | Saved once, same instructions every run | Same code every run |
 | Text only | Uses the agent's tools, can bundle scripts | Does exactly what's written |
-| Flexible, hard to repeat | **Flexible and repeatable** | Most deterministic, least flexible |
+| Flexible, hard to repeat | **Flexible, with repeatable instructions** | Most deterministic, least flexible |
 
 ::: {.keypoint}
-Not as fixed as a script, but it can deal with the messy case a script can't. Useful for: a **coding scheme**, **screening criteria**, your department's **citation quirks**.
+Not as fixed as a python script, but it can deal with the messy case a script can't. Useful for things like **coding scheme** or **screening criteria**.
 :::
 
 ::: {.notes}
@@ -512,7 +510,10 @@ If you have a real (anonymised) example from a consultation, tell it here. A sto
 | **Zotero** | **Your own** saved library | Community MCP server |
 | **Your library's databases** | Licensed content (Scopus, WoS, publisher platforms) | Mostly **not** reachable. Use the library |
 
-[Directory checked October 2026. Re-check the week of the session.]{.small .muted}
+::: {.keypoint}
+For advanced users: an open API such as OpenAlex can also be incorporated into a custom workflow.
+:::
+
 
 ::: {.notes}
 Library angle worth stressing: connectors mostly reach open indexes. Paywalled full text and licensed databases are usually out of reach, so "the AI didn't find it" often means "the AI couldn't see it". The library's discovery tools and librarians are still part of the workflow.
@@ -613,12 +614,12 @@ Ask the AI to help with the second column too ("flag preprints and anything you 
 This slide is the checklist for the activity that comes next.
 :::
 
-## Try 2: your topic, three checks {.activity background-color="var(--mist)"}
+## Try 2: check a reference from your topic {.activity background-color="var(--mist)"}
 
-[TRY · 8 min · pairs]{.chip .chip-try}
+[TRY · 5 min · pairs]{.chip .chip-try}
 
 1. Run the discovery prompt with **your own topic**
-2. Pick **three references** and open each one:
+2. Pick **one or two references** and open them:
    - Does the DOI or link open **the paper the table names**?
    - **Right** authors, year and venue?
    - Does the paper actually **say the one-line finding**? (Read the abstract at least)
@@ -629,22 +630,19 @@ If some people have no connector set up, pair them with someone who does: the co
 
 Show-and-tell fallback: I run it once with a connector and once without, on a volunteer's topic, and we check three refs together on screen.
 
-Start the timer. Remind them: the prompt is in materials/prompts/literature-discovery.md, so copy it rather than typing it.
+Start the timer. Remind them: the prompt is in the online slides, so copy it rather than typing it.
 
-At 6 minutes: "Two minutes. Finish whichever reference you're on."
 :::
 
-## Discussion: your three references {.discuss background-color="var(--surface-raised)"}
+## Discussion: your result {.discuss background-color="var(--surface-raised)"}
 
-[DISCUSS · 4 min]{.chip .chip-talk}
+[DISCUSS · 5 min]{.chip .chip-talk}
 
-- How many of your three checked out?
+- Does your reference check out?
 - What do you **know** exists on your topic that didn't show up? Why might that be?
-- Would you put any of these in a paper without opening them?
+- Which check changed your level of trust most?
 
 ::: {.notes}
-Quick tally first: "Three out of three? Two? One? Zero?" Hands.
-
 Spend most of the time on the second question. It brings back the coverage point: books, non-English work and paywalled journals are often invisible.
 
 Close: "So the connector is a good start for finding things. It doesn't replace your judgement, or the library."
@@ -654,9 +652,8 @@ Then plant the refrain for the rest of the session: "Show me where that came fro
 
 # Part 3: Coding with a codebook {.section}
 
-
 ::: {.notes}
-[~0:58] Part 2 was other people's writing. Now your own material: field notes. We code them by hand, then with the AI, compare, and only then show the same logic at scale.
+[~0:58] Part 2 was about checking other people's writing. Now we move to our own material: fictional field notes and chat messages. We will code by hand, compare our decisions with an AI, improve the written procedure, and only then test whether that procedure can scale.
 :::
 
 ## Where AI coding fits
@@ -666,26 +663,24 @@ Then plant the refrain for the rest of the session: "Show me where that came fro
 ### Good first cut
 **Deductive coding:** you already have a codebook and want to apply it.
 
-Sorting, tagging, applying definitions, at a pace no human coder can match.
+Useful for sorting, tagging, and applying stated definitions across larger collections.
 :::
 ::: {.column width="50%"}
-### Weak
-**Inductive or interpretive work:** building themes from scratch, reading what isn't said.
+### Use with greater caution
+**Inductive or interpretive work:** building themes from scratch and reading what is not said.
 
-Here your judgement *is* the method.
+Here, your judgement *is* the method.
 :::
 :::
 
 ::: {.big}
-A fast, literal research assistant: great at sorting, shaky on subtext.
+A fast, literal research assistant: useful for a first cut, shaky on subtext.
 :::
 
 ::: {.notes}
-[~1.5 min] This frames all of Part 3. Everything we do next is deductive: a codebook exists (boyd's affordances), and we ask the AI to apply it.
+[~1.5 min] Everything we do next is deductive: a codebook already exists, and we ask the AI to apply it.
 
-"It's increasingly used this way as a first cut. Note 'first cut': you still check it, the way you'd check a second coder."
-
-If someone asks about inductive coding: it can suggest candidate themes to react to, but the themes you report have to come from your reading, not its.
+Emphasise "first cut". You still check it, as you would check another coder. If asked about inductive coding: an AI can propose candidate themes for the researcher to react to, but the reported interpretation must come from the researcher's reading and argument.
 :::
 
 ## What the studies found {.smaller}
@@ -693,26 +688,20 @@ If someone asks about inductive coding: it can suggest candidate themes to react
 | Study | What they did | What they found |
 |---|---|---|
 | Xiao et al. (2023) | Expert codebook + GPT-3 on children's questions | Fair to substantial agreement with expert coders |
-| Chew et al. (2023) | LLM-assisted content analysis on four public datasets | Often comparable to human coders, and it shows which codes the model is only **guessing** |
-| Gilardi et al. (2023), *PNAS* | ChatGPT annotating ~6,000 tweets and news articles | Beat crowd workers on stance, topic and frame, at a fraction of the cost |
-| Pangakis et al. (2023) | GPT-4 replicating 27 coding tasks from published studies | Good on some tasks, poor on others. **Validate every task** |
-| De Paoli (2024), *SSCR* | GPT-3.5 doing inductive thematic analysis of interviews | Recovered most themes from the original studies. Exploratory |
-| Ashwin et al. (2025), *SMR* | LLM coding of Rohingya refugee interviews | Errors **not random**: they varied with who was speaking |
-
-[Full references and links: `materials/reading-list.md`]{.small .muted}
+| Chew et al. (2023) | LLM-assisted content analysis on four public datasets | Often comparable to human coders; also exposed codes the model was only **guessing** |
+| Gilardi et al. (2023), *PNAS* | ChatGPT annotating about 6,000 tweets and news articles | Outperformed crowd workers on the tasks examined |
+| Pangakis et al. (2023) | GPT-4 replicating 27 coding tasks from published studies | Good on some tasks, poor on others: **validate every task** |
+| De Paoli (2024), *SSCR* | GPT-3.5 doing inductive thematic analysis of interviews | Recovered many themes from the original studies; exploratory |
+| Ashwin et al. (2025), *SMR* | LLM coding of Rohingya refugee interviews | Errors were **not random**: they varied with who was speaking |
 
 ::: {.notes}
-[~2 min] Don't read the table. Pick three rows:
+[~2 min] Do not read the table. Use three rows:
 
-- Chew et al.: deductive coding with a codebook can get near human agreement, which is what we're about to try.
-- Pangakis et al.: "it worked in someone's paper" doesn't mean it works on your data. Check every task, every time.
-- Ashwin et al.: the one for ethnographers. The model's mistakes weren't random; they lined up with characteristics of the people interviewed. That's bias in your findings, not just noise. Their recommendation was to train a simpler model on careful human codes instead.
+- Chew et al.: deductive coding with a codebook can approach human agreement, which is what we are about to test.
+- Pangakis et al.: success in one published study does not validate the method for your task or data.
+- Ashwin et al.: the model's errors aligned with characteristics of the people interviewed. For ethnographers, that can bias findings rather than merely add noise.
 
-De Paoli is the counterpoint to the previous slide: someone has tried inductive analysis, and it partly worked. Still exploratory, and the interpretation stayed with the researcher.
-
-Most of these used older models (GPT-3, 3.5, 4). Models have improved; the need to validate hasn't changed.
-
-If running behind: skip, and point to the reading list.
+If running behind, skip the slide and point students to the reading list.
 :::
 
 ## A codebook, written for the AI {.smaller}
@@ -721,24 +710,20 @@ Six fictional field notes from a Singapore hawker-food Telegram group, coded wit
 
 | Code | Apply when | Not when |
 |---|---|---|
-| `persistence` | Old posts resurface; can't delete; referring back | Just memory or nostalgia |
-| `visibility` | Who can see it; public vs private; audiences collide | Content is simply posted |
-| `spreadability` | Forwarding, reposting, screenshots, cross-posting | Only viewed, not moved |
-| `searchability` | Platform search shapes what's findable | Looking things up offline |
-| `other: …` | Something you can **name** that these miss | A dumping ground |
+| `persistence` | Old posts resurface; content cannot be deleted; people refer back | Memory or nostalgia alone |
+| `visibility` | Who can see it; public versus private; audiences collide | Content is simply posted |
+| `spreadability` | Forwarding, reposting, screenshots, or cross-posting | Content is viewed but not moved |
+| `searchability` | Platform search shapes what is findable | Looking something up offline |
+| `other: ...` | Something these codes miss and you can **name** | A dumping ground |
 
 **Rules:** quote the **exact words** for every code · "nothing fits" is allowed · flag anything identifying
 
-[Full codebook: `materials/skills/qual-coding/SKILL.md` · notes: `materials/data/fieldnotes.md`]{.small .muted}
+[Full codebook: `materials/skills/qual-coding/SKILL.md` · notes: `materials/data/fieldnotes.csv`]{.small .muted}
 
 ::: {.notes}
-[~2 min] "You already write these for human coders. This is the same document, written so an AI can follow it too."
+[~2 min] "You already write documents like this for human coders. This is the same procedure written so an AI can follow it too."
 
-Point out the "Not when" column: that's where most of the judgement lives, and where the AI tends to slip. Example: Auntie L's paper notebook (FN-05) is not searchability.
-
-The rules line is the Part 2 refrain again: show me where that came from. For a code, that's the exact words in the note.
-
-Framework is boyd (2010). If your professor uses a different framework, swap it in; the procedure is the same.
+Point out the "Not when" column. That is where much of the judgement lives. The exact-words rule repeats the Part 2 question: show me where that came from.
 :::
 
 ## Try 3: code it yourself first {.activity background-color="var(--mist)"}
@@ -760,68 +745,136 @@ the thumbs-up emoji; one wrote "but the IG is public what, anyone
 can see anyway".
 ```
 
-For each code: **excerpt · code · exact words · confidence** (high / medium / low)
+For each decision: **excerpt · code · exact words · confidence** (high / medium / low)
+
+You do not need to identify every possible code. Make one or two defensible coding decisions for each excerpt.
 
 ::: {.notes}
-Everyone can do this one, with or without the tool. Reviewers in each pair do it too.
+Everyone can do this activity, with or without a paid tool. Reviewers in each pair should code too.
 
-Paper or a blank doc is fine: excerpt · code · exact words · confidence.
+At five minutes: "Two minutes. Make sure every code has a quotation."
 
-Start the timer. While they work, start the AI demo on the next slide so it's ready when the timer ends (Plan mode, don't approve yet).
-
-At 5 minutes: "Two minutes. Make sure every code has a quote."
-
-Don't reveal your own codes. Their reading is the baseline.
+Do not reveal your own coding. The students' readings establish the human baseline.
 :::
 
-## Demo: the AI codes the same notes
+## Skills, briefly
 
-[SHOW · follow along if you like]{.chip .chip-learn}
+A **Skill** is the written procedure from Part 1, saved so the agent can apply it again.
+
+For this task, it preserves:
+
+- the code definitions and exclusions;
+- the required evidence and confidence;
+- the permission to say **"nothing fits"**;
+- the identifying-information flag;
+- the output structure.
+
+::: {.keypoint}
+The Skill does **not** make the coding valid or deterministic. It preserves the instructions we want to test.
+:::
+
+::: {.notes}
+[~1 min] This is a bridge, not a technical lesson. Show the prepared `SKILL.md` briefly if useful. Do not discuss paths or automatic triggering yet.
+
+Say: "I prepared this Skill before the session because I wanted you to interpret the excerpts before watching me build software. It contains the same codebook and rules you just used."
+:::
+
+## Demo: the Skill codes the same notes
+
+(using qual-coding-networked-publics)
 
 ```text
 /qual-coding-networked-publics
-Code the excerpts in fieldnotes.md. Quote the exact words for
-every code. If nothing fits, say so.
+Code fieldnotes.csv. Quote the exact words for every code.
+If nothing fits, say so.
 ```
 
 **Look for:**
 
-- Does every code have a **verbatim** quote?
+- First compare its decisions for **FN-02** and **FN-04** with yours.
+- Does every code have a **verbatim** quotation?
 - Where is confidence **low**? What went into **`other:`**?
 - Did it raise an **ethics flag**? (Hint: FN-03)
 
 ::: {.notes}
-[~4 min] The Skill is in materials/skills/qual-coding/; copy it to the project's .claude/skills/ before the session. Codex: paste SKILL.md as the first message instead.
+[~4 min] Run the prepared Skill. Scroll to FN-02 and FN-04 first so students can compare its decisions with their own. Then inspect FN-03 for the identifying-information flag. Finally open coded-fieldnotes.csv, which the Skill saves next to the input: one row per code, the same shape the chat-export demo will produce.
 
-Scroll to FN-02 and FN-04 first, so people can compare with what they just did. Then FN-03: the uncle's face, forwarded to other groups. If it flagged it, good. If not, that's a talking point too.
-
-If the run is slow or misbehaves: open materials/sample-ai-output.md.
-
-Fictional notes, so the "before you give it research material" questions from Part 1 don't block us. With real notes they would come first.
+If the run is slow or fails, open `materials/sample-ai-output.md`. The interface is incidental; the coding decisions are what the class needs to inspect.
 :::
 
 ## Discussion: you vs the AI {.discuss background-color="var(--surface-raised)"}
 
-[DISCUSS · 5 min · pairs, then room]{.chip .chip-talk}
+[DISCUSS]{.chip .chip-talk}
 
-- Where did you **disagree**? Your reading, its reading, or the **codebook**?
-- What did it **miss**: irony, context, tone, what isn't in the note?
+- Where did you **disagree**: your reading, its reading, or the **codebook**?
+- What did it **miss**: irony, context, tone, platform vernacular, or what is absent?
 - What **one line** would you add to the codebook?
 
 ::: {.keypoint}
-**Agreement isn't interpretive validity.** A model can apply a code consistently and still miss irony, context, positionality, platform vernacular, or what's absent from the record.
+**Agreement is not interpretive validity.** A model can apply a code consistently and still miss context, positionality, platform vernacular, or what is absent from the record.
 :::
 
 ::: {.notes}
-Two minutes in pairs, three as a room.
+Two minutes in pairs, then three minutes as a room.
 
-Good places to look: FN-04's "but the IG is public what" (visibility, but also an argument about it, which the codebook can't hold); FN-02's search in Chinese (searchability, and also language).
+Each AI code receives one human decision in the audit log: accept, reject, or modify, with a reason.
 
-Each AI code gets one of: accept / reject / modify, with a reason, in the log (materials/audit-log-template.md). That decision is yours, not the AI's.
+Collect two or three proposed codebook changes. Choose one and type it into the codebook live. This creates the reason for the next slide: we tested a procedure, found a weakness, and now preserve the revision.
+:::
 
-Collect two or three "one line I'd add" answers. Type one into codebook.md live; it goes into the Skill in Part 4.
+## Build together: turn the codebook into a Skill
 
-Read the keypoint in your own words. This is the sentence that stops "codebook + AI + agreement" from sounding like all of qualitative analysis.
+[BUILD TOGETHER · follow along if useful]{.chip .chip-learn}
+
+```text
+/skill-creator
+Revise the qualitative-coding Skill using the codebook clarification
+we just agreed. Then generalise it as a Skill called code-with-codebook.
+
+It should ask for:
+- a codebook with each code's definition, when to apply it, and when not to;
+- a CSV containing an ID column and a text column.
+
+For every coding decision, save: id, code, verbatim evidence,
+confidence, rationale, and an identifying-information flag.
+"Nothing fits" is allowed. Log the model, date, input files and
+number of rows in research-log.md.
+```
+
+We tested the procedure, improved it, and saved the revision.
+
+
+::: {.notes}
+[~5 min] This is not "building a Skill because Skills are interesting." It is preserving a procedure the class has just tested and revised.
+
+Say explicitly: "The Skill is not what makes the method defensible. The codebook, evidence, human checking and decision record do. The Skill preserves the revised instructions."
+
+Show the resulting `SKILL.md`, but do not spend time teaching folder paths. If the live creation is slow, open the prepared revised version and compare the changed rule.
+:::
+
+## Try 4: test your Skill on a small batch
+
+[TEST · first 20 rows only]{.chip .chip-try}
+
+```text
+/code-with-codebook
+Use the codebook in codebook.md to code messages.csv.
+The ID column is message_id and the text column is text.
+Process the first 20 rows only, save the results as coded-sample.csv,
+and add the run to research-log.md.
+```
+
+**Before scaling, inspect:**
+
+- Are the output fields complete?
+- Does each code have verbatim evidence?
+- Which cases are low-confidence or unclear?
+- Did the revised codebook line change the relevant decisions?
+
+::: {.notes}
+[~3 min] The habit is: test a small batch before spending money and time on the full archive.
+
+If the run is slow or misbehaves, use the prepared output. Transition: the Skill holds the judgement-rich instructions; next we add a script for the checks that have one right answer.
 :::
 
 ## Same logic, at scale
@@ -829,248 +882,208 @@ Read the keypoint in your own words. This is the sentence that stops "codebook +
 ::: {.columns}
 ::: {.column width="50%"}
 ### Six field notes
-**Asking the librarian at the desk.**
+**Coding side by side with another coder**
 
-You, the AI and a codebook, checked line by line.
+You, the AI and a codebook can discuss each note.
 :::
 ::: {.column width="50%"}
-### The whole chat export
-**Hiring them to process 500 requests overnight.**
+### The whole digital export
+**Applying the procedure across an archive**
 
-A script: scale, consistency, and a record of exactly what you did.
+The Skill codes every message; a script checks the output and logs the run.
 :::
 :::
 
 <br>
 
-Same group, same codebook, same moves: **codebook → AI codes → human check → fix the codebook**.
+Same method: **codebook → AI codes → human check → revise → test again**.
 
 ::: {.notes}
-[~1:16] [~1 min] Now the proof of scale. Same group as the field notes, but instead of six notes, the group's messages: messages.csv, 210 fictional messages (a real group of 2,000 members would have thousands).
+[~1 min] The Skill holds the judgement-rich procedure. The script checks what it produced. They are complements, not competitors.
 
-The key word is "a record of exactly what you did". A script is a record. A conversation isn't, really.
-
-You don't need to read Python to use this. You do need to know the script exists and keep it.
+Do not say that the script makes the interpretation certain. It makes the checks repeatable; the model's coding may still vary.
 :::
 
-## At scale: code every message
-
-[Plan mode first. Watch the agent loop.]{.chip .chip-learn}
-
-```text
-Write a Python script that codes each message in messages.csv
-with the codebook in skills/qual-coding/SKILL.md, using the Claude
-API. Read the API key from .env, never put it in the code.
-Run it on the first 20 messages only and show me the results.
-Log the model, the date and how many messages to research-log.md.
-```
-
-**Watch for:** plan → write → run → **error** → read the error → fix → run again.
-
-**Then:** do the 20 look right? Only now run all 210.
-
-::: {.notes}
-[~4 min] Run in Plan mode. Read the plan aloud before approving: "Is this what I'd ask an RA to do? Yes, go."
-
-The error-fixing moment is the best illustration of the agent loop in the whole session. Common real errors: the CSV's quoting or emoji encoding, a missing package, the key not loaded from .env. Point back to the loop slide.
-
-If there's no error this time, say so: "No error today. Usually there is one."
-
-"First 20 only" is the habit to name: check a small batch before you spend money and time on all of it.
-
-Needs ANTHROPIC_API_KEY in .env on the presenting laptop (API billing, separate from the Claude subscription). Backup: materials/api/code_excerpts.py already does this: python materials/api/code_excerpts.py materials/data/messages.csv --limit 20. Record a backup run too.
-
-This also sets up the API-key slide in Part 4.
-:::
-
-## At scale: check against a human
-
-```text
-Compare your codes for the 30 messages in hand-codes.csv against
-my codes in that file. Show agreement for each code (Cohen's kappa),
-and list every mismatch with the message, both codes, and your best
-guess why.
-```
-
-- Mismatches aren't failures. They show where the **codebook** is unclear, or the message is ambiguous
-- One message at a time **strips context**: "It was me. I was wrong. Please delete" means little on its own
-
-::: {.notes}
-[~3 min] Before the session: hand-code the 30 messages in materials/data/hand-codes.csv yourself (picked with seed 42; the my_codes and evidence columns are empty on purpose). Then run the comparison once as a backup.
-
-Same as the "you vs the AI" discussion, just bigger: you were the human check for the field notes; hand-codes.csv is the human check here.
-
-Read one mismatch aloud and ask the room who's right: me, the AI, or neither.
-
-The second bullet is the reflexive point for ethnographers: coding message by message is a choice that flattens the thread. Good material for the reflexive note in Part 4.
-
-Cohen's kappa in one line, if asked: agreement between two coders, corrected for the agreement you'd get by chance. Same number you'd report for a second human coder. With only 30 messages it'll be noisy; that's fine for a demo.
-:::
-
-## Making AI coding defensible {.smaller}
+## Skill, script, or hybrid? {.smaller}
 
 ::: {.columns}
-::: {.column width="55%"}
-**Four moves**
+::: {.column width="33%"}
+### Skill
+Best when the task needs interpretation:
+
+- apply definitions;
+- extract evidence;
+- explain rationale;
+- flag uncertainty.
+
+**Repeatable instructions; outputs may vary.**
+:::
+::: {.column width="33%"}
+### Script
+Best when the operation can be fully specified:
+
+- filter and deduplicate;
+- sample with a seed;
+- validate columns;
+- calculate agreement;
+- make tables and charts.
+
+**Fixed code for fixed operations.**
+:::
+::: {.column width="33%"}
+### Hybrid
+For judgement at scale:
+
+- Skill or codebook defines the method;
+- script validates, samples and logs;
+- model proposes codes;
+- researcher reviews disagreements.
+:::
+:::
+
+::: {.notes}
+[~2 min] This is the conceptual distinction students need before the Python demonstration.
+
+Use ordinary code when ordinary code can answer the question. For example, selecting every row where `forwarded = yes` should be a filter, not an LLM task.
+:::
+
+## At scale: code everything, check it with a script
+
+[WATCH THE WORKFLOW · no Python knowledge required]{.chip .chip-learn}
+
+The first 20 looked right, so the Skill codes all 210 messages. Then:
+
+```text
+Write a Python script that checks coded-messages.csv against
+messages.csv: every message_id appears at least once, every row
+has id, code, evidence and confidence, and every evidence quote
+appears word for word in the original message. Run it, list any
+problems, and log the date and result in research-log.md.
+```
+
+**Watch for:** plan → write → run → inspect → adjust → rerun
+
+::: {.notes}
+[~4 min] Two steps. First run /code-with-codebook on all of messages.csv, saving coded-messages.csv (start it during the previous slide if it's slow). Then the check script.
+
+The Skill does the judgement; the script does the checks that have one right answer. That's the hybrid from the last slide.
+
+The verbatim check is "show me where that came from", automated: a quote the model paraphrased or invented gets caught by code that gives the same answer every time. If it finds problems, good: that's the point of checking.
+
+Students do not need to reproduce the Python. Ask them to watch the decision structure: write, run, inspect, adjust. The script makes the checks repeatable; it does not make the model's coding deterministic.
+
+If an error occurs, use it to illustrate the agent loop. Do not promise or manufacture an error.
+:::
+
+## At scale: compare with human coding
+
+```text
+Compare the AI codes for the 30 messages in hand-codes.csv with my
+codes in that file. Summarise agreement for each code and list every
+mismatch with the message, both coding decisions, and a possible reason.
+```
+
+- The statistic is a summary; the **mismatches** tell us what to inspect and revise.
+- A message isolated from its thread can lose crucial context.
+- Human coding is a comparison point, not an unquestionable gold standard.
+
+::: {.notes}
+[~3 min] Read one mismatch and ask the room: researcher, AI, both, or neither?
+
+If discussing Cohen's kappa, define it briefly as agreement corrected for chance, then return attention to the disagreements and their causes.
+:::
+
+## Making AI coding defensible
 
 | Move | What it looks like |
 |---|---|
-| **Validate against yourself** | Hand-code an appropriate sample (for example, 50–100 items for an initial validation exercise), compare, and examine disagreements. Same as checking a second coder |
-| **Fix the codebook** | Disagreements usually point to a vague definition. Useful for human coders too |
-| **Route uncertainty to people** | Low-confidence and "unclear" go to manual review. Our Skill already lists them |
-| **Document the run** | Model and version, prompt, settings, date. Outputs shift between versions |
-:::
-::: {.column width="45%"}
-**Watch-outs**
-
-- **Privacy and ethics:** check your ethics approval first; de-identify before anything goes in
-- **Context loss:** one row without its thread or interview can be misread
-- **Flattening:** models favour the common reading and can miss minority or unexpected ones
-:::
-:::
+| **Validate against human coding** | Hand-code an appropriate sample, compare, and inspect disagreements |
+| **Revise the codebook** | Clarify vague definitions and exclusions exposed by disagreements |
+| **Route uncertainty to people** | Send low-confidence, unclear and identifying cases to manual review |
+| **Document the run** | Keep the data, codebook or Skill, model/version, date, outputs and decisions |
 
 ::: {.notes}
-[~2 min] This is the slide to photograph. It turns the last three slides into a procedure.
-
-Walk the four moves quickly, pointing back at what we just did: hand-codes.csv was the first move (30 rows, a teaching demo; a real study needs more), the "one line I'd add" in the discussion was the second, the "For the researcher to check" list from the Skill is the third, and the research log is the fourth (more in Part 4).
-
-Of the watch-outs, linger on flattening. For ethnographers it's the one that matters most: the unusual voice in the group is often the interesting one, and it's exactly what a model tends to smooth over. Privacy we covered in Part 1; context loss we just saw.
-
-If running behind: say "four moves, three watch-outs, it's in the slides" and move on.
+[~1.5 min] Point back to what the class did: human baseline, Skill output, discussion, revised rule, small-batch test, and research log.
 :::
 
-## At scale: rules or a model?
+## What can still go wrong
 
-| | Rule-based | LLM-based |
-|---|---|---|
-| How | Keywords: "forward", "screenshot", "search", "delete" | The model reads each message against the codebook |
-| Cost | Free, instant | Costs per message (small, but not zero) |
-| Consistency | Identical every run | Close, but can vary |
-| Handles nuance | Poorly: "but IG also public what" | Better, still not perfect |
-| Easy to explain in methods | Very | Yes, if you keep the codebook and model version |
+- **Privacy and ethics:** check approval and tool suitability before material goes in
+- **Context loss:** one row without its thread, encounter or interview can be misread
+- **Flattening:** models can favour common readings and miss minority or unexpected ones
+- **False confidence:** consistent output can still rest on a poor codebook or interpretation
 
 ::: {.notes}
-[~2 min] Ask the room: "Which would you rather defend to a reviewer?" Wait a few seconds. There's no single right answer, which is the point.
-
-A common good answer: rules to find candidates (every forwarded message), the model for the ones rules can't decide, and you for the ones that matter.
-
-If running behind, skip this slide.
+[~1 min] Linger on flattening. In ethnographic work, the unusual voice may be analytically important, and it is precisely what an automated first cut can smooth over.
 :::
 
-# Part 4: Making it reproducible: logs, scripts, Skills {.section}
-
+# Part 4: Making it reproducible and defensible {.section}
 
 ::: {.notes}
-[~1:33] Now the "defend it" part. What do you need to keep, so you or anyone else can do it again?
+[~1:33] We have used a Skill for the judgement-rich procedure and a script for the fixed checks. Part 4 asks what must remain after the demonstration so the workflow can be inspected and defended.
 :::
 
 ## Reproducible by design
 
-- **Reproducible**: same data + same code → same result, later, by anyone
-- The AI is **not deterministic**
-- So reproducibility lives in **what you keep**, like a **script** you can re-run
+- For fixed operations: **same data + same code + same environment → same result**
+- Model-generated coding is **not deterministic**
+- So preserve the procedure, inputs, outputs, settings and decisions
+- For interpretive work, the immediate goal may be **transparency and auditability**, not identical interpretation
 
 ::: {.keypoint}
-**Random seed:** "Pick 30 messages to hand-code, using seed 42" gives the same 30 every time.
+A seed makes a random sample retrievable, not methodologically correct by itself.
 :::
 
 ::: {.notes}
-[~2 min] The key line is the third bullet: reproducibility lives in what you keep, not in the generation step.
-
-Not deterministic means the same prompt can produce different results on different runs. So you don't rely on the AI giving the same answer twice; you keep the script it wrote and re-run that.
-
-For qualitative researchers: "reproducible" may not be the word you'd use for your own work. Think "transparent" or "auditable": someone can follow how you got from data to claims.
+[~2 min] Do not tell students that saving a script makes the AI coding reproducible. The script preserves the checks; the model's outputs may still vary.
 :::
 
 ## What to keep
 
 | Keep | Example from today |
 |---|---|
-| **The data** (or how to get it again) | de-identified `fieldnotes.md` and `messages.csv`, with the export date |
-| **The procedure** | `codebook.md` / the Skill, the coding script |
-| **The checks** | your hand codes vs the AI's; `hand-codes.csv` and agreement |
-| **The decisions** | accept / reject / modify for each code; codebook changes, and why |
-| **The tool** | model name and version, date run |
+| **The data** or retrieval method | de-identified `fieldnotes.csv` and `messages.csv`, with export date |
+| **The procedure** | `codebook.md`, the Skill and the check script |
+| **The checks** | human codes, AI codes, disagreements and agreement summaries |
+| **The decisions** | accept / reject / modify decisions; codebook revisions and reasons |
+| **The tool details** | model/version, settings and date run |
 
 ::: {.keypoint}
-The codebook, the script and the decision log are things you can **save, rerun, and cite** in a methods section. A chat transcript is not.
-:::
-
-::: {.notes}
-[~2 min] Point at the files from Part 3 in the folder on screen, one per row. Everything on this table already exists from what we just did.
-
-"The decisions" row is the one people forget. It's also the one reviewers and examiners care about most. For coding, that's the accept / reject / modify log from the "you vs the AI" discussion.
+Save, inspect, reuse and describe the codebook, Skill, script and decision log. Do not rely on a chat transcript as the research record.
 :::
 
 ## A light habit: dated folders + a research log
 
-You don't need Git to start. You need **this**:
-
 ```text
 2026-10-23_hawker-telegram/
-├── fieldnotes.md        ← de-identified excerpts
-├── codebook.md          ← the codes, and every change to them
-├── messages.csv         ← chat export, member IDs pseudonymised
-├── research-log.md      ← what I asked, what it did, what I decided
+├── fieldnotes.csv
+├── codebook.md
+├── messages.csv
+├── research-log.md
 ├── hand-codes.csv
-├── coded-messages.jsonl
-└── code_messages.py
+├── coded-messages.csv
+└── check_coded.py
 ```
 
-Then tell the agent: **"After each step, add a dated entry to research-log.md."**
+Tell the agent: **"After each step, draft a dated entry in research-log.md."**
 
 ::: {.keypoint}
-**Add a reflexive note:** what did the tool make more visible? What did it flatten, obscure, or encourage you to treat as data?
+**Add a reflexive note:** What did the tool make more visible? What did it flatten, obscure, or encourage you to treat as data?
+
+Treat the agent's log as a draft. Check and correct it.
 :::
 
-::: {.notes}
-The AI maintaining its own log is the easiest win of the whole session. Read it at the end of the day; correct anything wrong.
-
-[~2 min] If time allows, type the instruction into the running session and show the entry it writes.
-
-Template is in materials/audit-log-template.md.
-
-The reflexive note is the one the agent can't write for you. It's what connects this to ethnographic practice rather than only reproducibility: your position, your relationship to the field, and what the tool did to how you saw the material. One or two lines per session is enough.
-:::
-
-## Never paste API keys into chat
-
-- Some APIs need a **key** (Claude API, Scopus, some publisher APIs)
-- A key in a chat, a script, or a shared folder can be **copied and misused**, and billed to you
-- Keep it in a **`.env` file** or an environment variable; the script reads it from there
-
-```python
-import os
-api_key = os.environ["ANTHROPIC_API_KEY"]   # never the key itself in the file
-```
-
-::: {.caution}
-If you ever share the folder or put it on GitHub, `.env` stays behind: list it in `.gitignore`. If you've ever pasted a key into a chat, revoke it and make a new one.
-:::
-
-::: {.notes}
-[~2 min] Keep it short. An API key is a password that costs money. The coding script in Part 3 needed one, and read it from .env. If running behind, skip the code block and just say the warning.
-
-You don't need to understand the code. Just know the pattern: the key lives somewhere separate, and the script fetches it.
-
-"If you've ever pasted one into a chat, revoke it today. No judgement, everyone has done it."
-:::
-
-## Skills, briefly
-
-- The saved prompt from Part 1, packaged: **instructions and optional files** that guide the agent through one task
-- Lives in a `SKILL.md` file: a **name**, a **description**, the **instructions**. Can bundle scripts, templates, reference files
-- Runs **automatically** (the description matches your request) or **on demand** (`/skill-name`)
-
-## Skills - where does it live?
+## Skills: where do they live? {.smaller}
 
 ::: {.columns}
 ::: {.column width="50%"}
-**Where it lives**
+**Where the file lives**
 
-- Just you, every project: `~/.claude/skills/`
-- This project only: `.claude/skills/` in the folder
-- Codex has the same idea: `~/.codex/skills/`
+- Project only: `.claude/skills/` in the project folder
+- Across your projects: `~/.claude/skills/`
+- Codex uses the same broad idea with its own skills location
+
+The Skill is a text file you can inspect, version and retain with the project.
 :::
 ::: {.column width="50%"}
 ![](images/reused/skill-anatomy.png){width="80%"}
@@ -1078,50 +1091,7 @@ You don't need to understand the code. Just know the pattern: the key lives some
 :::
 
 ::: {.notes}
-Tip from the SMU workshop: a sharp description = reliable auto-triggering. Codex's skills folder: double-check the path the week of the session.
-
-[~2 min] Back to the saved-prompt idea from Part 1. We already used one in Part 3 (qual-coding). Now we make our own version, with the codebook line the room added.
-
-Open materials/skills/qual-coding/SKILL.md briefly so they see it's just a text file.
-:::
-
-## Closing the loop: turn the demo into a Skill
-
-[SHOW-AND-TELL · follow along if you like]{.chip .chip-learn}
-
-```text
-/skill-creator
-Turn what we did today into a Skill called code-fieldnotes:
-codebook.md (with the line we added), verbatim evidence for every
-code, "nothing fits" allowed, flag anything identifying, and log
-each accept / reject / modify decision in research-log.md.
-```
-
-::: {.big}
-A one-off demo becomes a reusable workflow.
-:::
-
-Next month, new field notes: same Skill, same codebook, same kind of record.
-
-::: {.notes}
-If the Skill lands in a temporary session folder, ask it to move it to ~/.claude/skills/. Show the resulting SKILL.md briefly. Same structure as the qual-coding Skill in materials/.
-
-[~6 min] This is the payoff of the session. Slow down.
-
-After it's created, start a fresh session and paste a new fictional excerpt (or invent one with the room on the spot). Show that it picks up the Skill, quotes evidence and asks for your decision without being told the steps. That's the moment the three ideas from Part 1 come together: it acts, it reaches, it follows your procedure.
-
-Fallback if time is short or the live run misbehaves: skip the prompt and open materials/skills/qual-coding/SKILL.md. "This is the finished version. Notice it's just the procedure we already followed: codebook, verbatim evidence, your decision, a log." Same point, two minutes.
-:::
-
-
-# Integrity check {.section}
-
-[7 min · Q&A after]{.section-meta}
-
-Could you defend it without the AI in the room?
-
-::: {.notes}
-[~1:53] Last section. Back to the ground rule: can you defend it without the AI in the room?
+[~1 min] This slide comes after students have used and revised a Skill, so the storage detail now answers a real question. Confirm current product-specific paths before delivery.
 :::
 
 ## Verification and research integrity {.smaller}
@@ -1130,90 +1100,53 @@ Could you defend it without the AI in the room?
 ::: {.column width="50%"}
 **Check: show me where that came from**
 
-- Citation → the DOI, and the passage that says it
-- Code → the exact words + note or message ID
-- Count or chart → the script + its input data
+- Citation → DOI and supporting passage
+- Code → exact words plus note or message ID
+- Count or chart → script plus input data
 :::
 ::: {.column width="50%"}
 **Record and disclose**
 
-- Keep the research log as you go
-- Check your **journal's or funder's** AI policy
-- Disclose: tool, model, version, what it did, what you did
+- Maintain the research log
+- Check relevant course, journal or funder policy
+- Disclose the tool, model/version, task and human review
 :::
 :::
 
 ::: {.caution}
-**Sensitive data:** participant data, unpublished results and anything under a confidentiality agreement need ethics approval and an institution-approved tool first, local or not. **Publicly visible isn't the same as unrestricted.**
-:::
-
-::: {.notes}
-[~2 min] Each "check" bullet maps to something we did today: Try 2 (citations), Try 3 and its discussion (codes), the chat-export demo (codes at scale, and the numbers from the script). It's the refrain: show me where that came from.
-
-On disclosure: "If you kept the research log, the disclosure statement mostly writes itself."
-
-The sensitive-data box matters for ethnographers in particular: online community data often counts as participant data even when it's publicly visible. Defer to the professor and the IRB on specifics.
+**Sensitive data:** participant data, unpublished results and confidential material require appropriate approval and a suitable tool before use. **Publicly visible is not the same as ethically unrestricted.**
 :::
 
 ## A disclosure, for example
 
-> We used [tool and model] on [date] to propose provisional codes for de-identified field-note excerpts, using the codebook in Appendix A. The researcher reviewed every code against the original text, revised the codebook after disagreement analysis, and retained final interpretive responsibility.
+> We used [tool and model] on [date] to propose provisional codes for de-identified field-note excerpts using the codebook in Appendix A. The researcher reviewed every code against the original text, revised the codebook after disagreement analysis, and retained final interpretive responsibility.
 
-[A generic example. Adapt it to your institution, journal, funder and study.]{.small .muted}
+[A generic example. Adapt it to the requirements of the course, institution, journal, funder and study.]{.small .muted}
 
-::: {.notes}
-[~1 min] "If you kept the research log, most of this writes itself." Point at each part: what tool, when, on what material, with what procedure, what the human did, who holds responsibility.
+## Before you use third-party Skills and connectors
 
-Don't present it as a template anyone has approved. Check the journal's or funder's AI policy, and the professor's expectations for coursework.
-:::
-
-## Before you grab Skills and connectors from the internet
-
-- A Skill or MCP server can run **with your access**: your files, your accounts, your data
-- Treat it like any code you didn't write: **read before you run**
-- Download only from sources you can **inspect and trust**
-- Same care you'd give a browser extension or an executable file
+- A Skill or connector can operate with your access to files, accounts and data
+- Treat it like code you did not write: **inspect it before use**
+- Use sources you can inspect and trust
+- Apply the same caution you would to a browser extension or executable
 
 ::: {.notes}
-[~2 min] After today, people will go looking for ready-made Skills. Good, but a Skill is instructions your agent will follow with your access. Read it first; it's only a text file.
-:::
-
-## Level up when you're ready {.smaller}
-
-::: {.columns}
-::: {.column width="50%"}
-### Git and GitHub
-Save points and an "undo" for every file, with a note on what changed. "My codebook in week 2 vs week 6" in one command.
-
-Covered in the SMU Libraries workshop: **smu.sg/vibecoding**
-:::
-::: {.column width="50%"}
-### Shareable outputs
-Most tools can publish a result as a web page to share with a supervisor.
-
-Handy, not research-critical.
-:::
-:::
-
-::: {.notes}
-[~1 min] Signpost only. Don't demo. "When dated folders start to feel messy, that's when Git is worth learning."
-
-If running behind, skip this slide.
+[~1 min] If time is short, cover this warning verbally rather than allowing it to create a second ending.
 :::
 
 ## Take-home
 
 ::: {.big}
-If you can't defend it without the AI in the room, you're not done.
+If you cannot defend it without the AI in the room, you are not done.
 :::
 
 <br>
 
 **Hand over the task** | **Check what comes back** | **Keep the procedure**
 
-**Try this week:** write down one task you repeat (screening, coding, formatting references) as a Skill.
+Try next: write one repeated research task as a documented procedure. Turn it into a Skill only if useful.
 
-Materials: **TODO: GitHub Pages URL** 
+Slides: [NTU Digital Ethnography guest seminar](https://bellaratmelia.github.io/ntude-2026/)
 
 Questions? My email is **bellar@smu.edu.sg**
 
@@ -1222,17 +1155,10 @@ Sample field notes and chat messages in this session are fictional and were writ
 :::
 
 ::: {.notes}
-[~2 min] Same sentence as the start. Read it again, then pause.
+Read the opening ground rule again, then pause.
 
-The middle line mirrors the promise from the first slide: you can now hand an agent a task on your own files, check what it brings back, and keep the procedure so you can reuse and defend it.
+Recap in one breath: "An agent can act. Connectors let it reach sources. Skills preserve judgement-rich instructions. Scripts handle the fixed checks. You remain responsible for defending the result."
 
-Recap in one breath: "An agent can act. Connectors let it reach your sources. Skills let you steer it with your own procedure. And you're still the one who has to defend the result."
-
-The homework: one task, one Skill. For this class, a field-note coding scheme is a natural first one.
-
-Leave this slide up for Q&A; it has the contact details. If it's quiet, seed with: "What's one task in your research you'd hand to an agent, and one you never would?"
-
-Close with a line, not "thank you": "Your field notes are already full of procedures. Go teach one to an agent, and stay the one who can defend it." Then thank the professor and the class.
 :::
 
 ## Selected studies on AI-assisted qualitative coding {.smaller .scrollable}
@@ -1255,4 +1181,23 @@ Xiao, Z., Yuan, X., Liao, Q. V., Abdelghani, R., & Oudeyer, P.-Y. (2023). Suppor
 
 ::: {.notes}
 Backup slide, after Take-home. Don't present it; it's there for anyone flipping through the slides later. Same list, with notes, in materials/reading-list.md.
+:::
+
+## Never paste API keys into chat
+
+- Some APIs require a **key**
+- A key pasted into chat, code or a shared folder can be copied, misused and billed to you
+- Keep it outside the script, such as in an environment variable or an excluded `.env` file
+
+```python
+import os
+api_key = os.environ["ANTHROPIC_API_KEY"]
+```
+
+::: {.caution}
+If the folder may be shared or committed to Git, exclude `.env`. If a key has been exposed, revoke it and create a replacement.
+:::
+
+::: {.notes}
+Backup slide, after Take-home. Not presented: there's no API demo today. It's here for anyone who goes on to use an API (the Claude API, Scopus, a publisher API) after the session.
 :::

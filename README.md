@@ -2,7 +2,7 @@
 
 Slides and materials for a guest seminar for the MA in Digital Ethnography, NTU.
 
-**Slides:** TODO: GitHub Pages URL
+**Slides:** https://bellaratmelia.github.io/ntude-2026/
 
 ## What's here
 
@@ -13,19 +13,18 @@ Slides and materials for a guest seminar for the MA in Digital Ethnography, NTU.
 | `materials/sample-ai-output.md` | Example AI coding output, for anyone without AI access |
 | `materials/before-the-session.md` | Pre-session note for students (laptop, Claude Code or Codex, Driver / Reviewer pairing) |
 | `materials/skills/qual-coding/SKILL.md` | A ready-made qualitative coding Skill (networked publics affordances) |
-| `materials/data/fieldnotes.md` | Six **fictional** field-note excerpts for practice |
+| `materials/data/fieldnotes.csv` | Six **fictional** field-note excerpts from a made-up hawker-food Telegram group ("Makan Kakis SG"), one row each |
 | `materials/data/messages.csv` | 210 **fictional** chat messages from the same group, for the at-scale demo |
 | `materials/data/hand-codes.csv` | 30 of those messages (seed 42), left blank for hand coding |
 | `materials/reading-list.md` | Studies on using AI for content analysis and qualitative coding |
 | `materials/audit-log-template.md` | A decision log for AI-assisted coding |
-| `materials/api/code_excerpts.py` | Optional: run the coding Skill over a dataset via the Claude API |
 
 ## Using the coding Skill
 
 - **Claude.ai:** Settings → Capabilities → Skills → upload the `qual-coding` folder (zipped).
 - **Claude Code:** copy the `qual-coding` folder into `~/.claude/skills/` (personal) or `.claude/skills/` inside a project.
 
-Then ask Claude to code some field notes, or type `/qual-coding-networked-publics`.
+Then ask Claude to code a CSV (one row per item, with an ID column and a `text` column), or type `/qual-coding-networked-publics`. It saves the codes as `coded-<file name>.csv`.
 
 Swap in your own framework by editing the **Framework** and **Codebook** sections.
 
