@@ -1,9 +1,9 @@
 ---
-name: qual-coding-networked-publics
-description: Apply the networked-publics affordances codebook (persistence, visibility, spreadability, searchability, plus other/emergent) to a CSV of ethnographic field notes, interview excerpts or chat messages (one row per item, with an ID and a text column), and save the codes as a CSV. Use when asked to code, tag, or categorise field-note excerpts or messages, or when the user invokes /qual-coding-networked-publics.
+name: qual-coding-message-purpose
+description: Apply the message-purpose codebook (sharing-news, asking, judging-food, remembering, complaining, group-rules, plus other/emergent) to a CSV of ethnographic field notes, interview excerpts or chat messages (one row per item, with an ID and a text column), and save the codes as a CSV. Use when asked to code, tag, or categorise field-note excerpts or messages, or when the user invokes /qual-coding-message-purpose.
 ---
 
-# Qualitative coding: networked publics affordances
+# Qualitative coding: message purpose
 
 ## Your role
 
@@ -20,17 +20,21 @@ Code only the text column. Other columns (date, site, type) are context; you may
 
 ## Framework
 
-Based on danah boyd's account of the affordances of networked publics (boyd, 2010, "Social network sites as networked publics: Affordances, dynamics, and implications"). Replace this section with your own framework if you are using a different one.
+A simple descriptive codebook: each code says what a message, or a moment in a field note, is **doing** in the group. It was written for this teaching session and isn't drawn from a published framework. Replace this section with your own framework if you are using a different one.
 
 ## Codebook
 
+The same codebook is in `data/codebook.csv`.
+
 | Code | Definition | Apply when | Do NOT apply when |
 |---|---|---|---|
-| `persistence` | Online expressions are recorded and archived; they outlast the moment. | Old posts resurface; people refer back to earlier messages; someone can't delete something. | The text only mentions memory or nostalgia, with no recorded content involved (consider `other`). |
-| `visibility` | Content can be seen by audiences beyond the one intended. | Concern about who can see something; public vs. private framing; context collapse between audiences. | The content is simply posted, with no reference to audience. |
-| `spreadability` | Content can be easily copied, forwarded, or reposted. | Forwarding, reposting, screenshots, cross-posting between platforms or groups. | Content is only viewed, not moved. |
-| `searchability` | Content can be found through search. | People search, or fail to search, platform content; search tools shape what is findable. | People look things up offline (menus, notebooks). That is not platform searchability. |
-| `other` | Something analytically interesting that the codes above don't capture. | A recurring idea, tension, or practice. Give it a short provisional label, e.g. `other: nostalgia`. | Use only when you can name what it is. Don't use it as a dumping ground. |
+| `sharing-news` | Passes on information or updates to the group. | Announcements, forwarded posts, stall closures or openings, opening hours, links to earlier information. | The message is mainly an opinion of the food (use `judging-food`). |
+| `asking` | Asks the group for information, help or clarification. | A genuine question about stalls, people, events or the group itself. | The question is rhetorical and the message is really complaining or joking (code what it is doing instead). |
+| `judging-food` | Recommends, reviews or rates food or stalls. | Praise, criticism or comparisons of food or stalls, e.g. "best in the east", "overrated". | Facts about a stall with no opinion (use `sharing-news`). |
+| `remembering` | Recalls the past: earlier experiences, stalls that have gone, how things used to be. | Personal or shared memories, nostalgia, "remember when". | Pointing to an earlier chat message only as a source of information (use `sharing-news`). |
+| `complaining` | Expresses frustration, objection or criticism about people, platforms or changes. | Objecting to how something was done; frustration with a platform, a trend or a person. | The criticism is only about how the food tastes (use `judging-food`). |
+| `group-rules` | Concerns how the group runs: admin actions, rules, and what members may share or should do. | Requests to the admin, pinning, telling someone off ("scroll up"), agreeing not to share, debates about where content belongs. | The admin is only mentioned in passing. |
+| `other` | Something interesting that the codes above don't capture. | A recurring idea, tension or practice. Give it a short provisional label, e.g. `other: credit`. | Use only when you can name what it is. Don't use it as a dumping ground. |
 
 An excerpt can have zero, one, or several codes.
 

@@ -4,6 +4,11 @@ project:
   render:
     - "*.qmd"
     - "!materials/"
+  resources:
+    - materials/data/fieldwork-log.csv
+    - materials/data/fieldnotes.csv
+    - materials/data/codebook.csv
+    - materials/data/messages.csv
 
 format:
   revealjs:

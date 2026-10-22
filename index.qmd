@@ -7,6 +7,20 @@ format:
     footer: "23 October 2026 - Guest seminar for Digital Ethnography"
 ---
 
+## About Me
+
+- **Senior Librarian**, Research and Data Services, **SMU Libraries**
+- I help researchers adopt **computational, reproducible and responsible** approaches to research
+- I teach R, Python and Git, and **evaluate AI tools** for research workflows
+- **NTU alumna**: MSc Information Studies, 2018
+
+::: {.notes}
+[0:00] Welcome, thank the professor, then introduce yourself in a few sentences. Keep it under a minute.
+
+The question behind most of my work: how can researchers use new tools well without losing sight of rigour, openness and care? That's also the question behind today.
+
+:::
+
 ## By the end of today, you'll be able to
 
 - Hand an AI agent a research task on **your own files**
@@ -14,9 +28,7 @@ format:
 - Turn what worked into a **procedure you can reuse and defend**
 
 ::: {.notes}
-[0:00] Welcome, introduce yourself in one line (librarian at SMU Libraries, supporting researchers with data and digital tools) and thank the professor.
-
-Then this promise, slowly. These three lines are the whole session: Parts 1 and 3 are the first line, Part 2 and the human coding check in Part 3 are the second, Part 4 is the third.
+Read this promise slowly. These three lines are the whole session: Parts 1 and 3 are the first line, Part 2 and the human coding check in Part 3 are the second, Part 4 is the third.
 
 While people settle: "If you haven't opened Claude Code or Codex yet, start it now. The first hands-on bit is in about 25 minutes."
 :::
@@ -127,6 +139,27 @@ If pairing, one person drives and the other checks the plan, permissions, and ou
 [~30 sec] Say it quickly; don't read the list.
 
 
+:::
+
+## Get the practice data
+
+Save all four files into **one new folder**, then start Claude Code or Codex in that folder.
+
+| File | What it is |
+|---|---|
+| [fieldwork-log.csv](materials/data/fieldwork-log.csv){download="fieldwork-log.csv"} | A 40-entry fieldwork log, for the first task |
+| [fieldnotes.csv](materials/data/fieldnotes.csv){download="fieldnotes.csv"} | Six field-note excerpts to code |
+| [codebook.csv](materials/data/codebook.csv){download="codebook.csv"} | The codebook: each code, when to apply it, and when not to |
+| [messages.csv](materials/data/messages.csv){download="messages.csv"} | 210 chat messages, for coding at scale |
+
+::: {.small .muted}
+The field notes and messages are fictional, written for teaching purposes.
+:::
+
+::: {.notes}
+[~1 min] Give people a moment to click all four. The common slip is files landing in Downloads while the agent is started somewhere else, so say "same folder" twice.
+
+If the links don't download, the files are also in the GitHub repo under materials/data.
 :::
 
 ## A ground rule
@@ -706,24 +739,28 @@ If running behind, skip the slide and point students to the reading list.
 
 ## A codebook, written for the AI {.smaller}
 
-Six fictional field notes from a Singapore hawker-food Telegram group, coded with **boyd's networked-publics affordances**:
+Six fictional field notes from a Singapore hawker-food Telegram group, coded by **what each moment is doing** in the group:
 
 | Code | Apply when | Not when |
 |---|---|---|
-| `persistence` | Old posts resurface; content cannot be deleted; people refer back | Memory or nostalgia alone |
-| `visibility` | Who can see it; public versus private; audiences collide | Content is simply posted |
-| `spreadability` | Forwarding, reposting, screenshots, or cross-posting | Content is viewed but not moved |
-| `searchability` | Platform search shapes what is findable | Looking something up offline |
+| `sharing-news` | Updates, announcements, forwarded posts | It's mainly an opinion of the food |
+| `asking` | A genuine question to the group | The question is rhetorical |
+| `judging-food` | Recommending, reviewing or rating food | Facts with no opinion |
+| `remembering` | Past experiences, stalls that are gone | Pointing to an old message for info |
+| `complaining` | Frustration with people, platforms or changes | It's only about how the food tastes |
+| `group-rules` | Admin actions, rules, what may be shared | The admin is only mentioned |
 | `other: ...` | Something these codes miss and you can **name** | A dumping ground |
 
 **Rules:** quote the **exact words** for every code · "nothing fits" is allowed · flag anything identifying
 
-[Full codebook: `materials/skills/qual-coding/SKILL.md` · notes: `materials/data/fieldnotes.csv`]{.small .muted}
+[Full codebook: `codebook.csv` (slide 8) · notes: `fieldnotes.csv`]{.small .muted}
 
 ::: {.notes}
 [~2 min] "You already write documents like this for human coders. This is the same procedure written so an AI can follow it too."
 
 Point out the "Not when" column. That is where much of the judgement lives. The exact-words rule repeats the Part 2 question: show me where that came from.
+
+This codebook is deliberately simple and descriptive, so the session is about the method rather than the theory. In your own research you would use your framework instead; the procedure stays the same.
 :::
 
 ## Try 3: code it yourself first {.activity background-color="var(--mist)"}
@@ -781,10 +818,10 @@ Say: "I prepared this Skill before the session because I wanted you to interpret
 
 ## Demo: the Skill codes the same notes
 
-(using qual-coding-networked-publics)
+(using qual-coding-message-purpose)
 
 ```text
-/qual-coding-networked-publics
+/qual-coding-message-purpose
 Code fieldnotes.csv. Quote the exact words for every code.
 If nothing fits, say so.
 ```
@@ -858,7 +895,7 @@ Show the resulting `SKILL.md`, but do not spend time teaching folder paths. If t
 
 ```text
 /code-with-codebook
-Use the codebook in codebook.md to code messages.csv.
+Use the codebook in codebook.csv to code messages.csv.
 The ID column is message_id and the text column is text.
 Process the first 20 rows only, save the results as coded-sample.csv,
 and add the run to research-log.md.
@@ -1043,7 +1080,7 @@ A seed makes a random sample retrievable, not methodologically correct by itself
 | Keep | Example from today |
 |---|---|
 | **The data** or retrieval method | de-identified `fieldnotes.csv` and `messages.csv`, with export date |
-| **The procedure** | `codebook.md`, the Skill and the check script |
+| **The procedure** | `codebook.csv`, the Skill and the check script |
 | **The checks** | human codes, AI codes, disagreements and agreement summaries |
 | **The decisions** | accept / reject / modify decisions; codebook revisions and reasons |
 | **The tool details** | model/version, settings and date run |
@@ -1057,7 +1094,7 @@ Save, inspect, reuse and describe the codebook, Skill, script and decision log. 
 ```text
 2026-10-23_hawker-telegram/
 ├── fieldnotes.csv
-├── codebook.md
+├── codebook.csv
 ├── messages.csv
 ├── research-log.md
 ├── hand-codes.csv
@@ -1146,7 +1183,7 @@ If you cannot defend it without the AI in the room, you are not done.
 
 Try next: write one repeated research task as a documented procedure. Turn it into a Skill only if useful.
 
-Slides: [NTU Digital Ethnography guest seminar](https://bellaratmelia.github.io/ntude-2026/)
+Slides: [NTU Digital Ethnography guest seminar](https://bellaratmelia.github.io/ntude-2026/) (the practice data is on slide 8)
 
 Questions? My email is **bellar@smu.edu.sg**
 
@@ -1165,8 +1202,6 @@ Recap in one breath: "An agent can act. Connectors let it reach sources. Skills 
 
 ::: {.small}
 Ashwin, J., Chhabra, A., & Rao, V. (2025). Using large language models for qualitative analysis can introduce serious bias. *Sociological Methods & Research*. <https://arxiv.org/abs/2309.17147>
-
-boyd, d. (2010). Social network sites as networked publics: Affordances, dynamics, and implications. In Z. Papacharissi (Ed.), *A networked self* (pp. 39–58). Routledge.
 
 Chew, R., Bollenbacher, J., Wenger, M., Speer, J., & Kim, A. (2023). LLM-assisted content analysis: Using large language models to support deductive coding. *arXiv:2306.14924*. <https://arxiv.org/abs/2306.14924>
 
