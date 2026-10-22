@@ -378,6 +378,53 @@ Bella Ratmelia
       }</style></aside>
 </section>
 <section class="slide level2">
+<h2>Get the practice data</h2>
+<p>Save all four files into <strong>one new folder</strong>, then start Claude Code or Codex in that folder.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>File</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="materials/data/fieldwork-log.csv" download="fieldwork-log.csv">fieldwork-log.csv</a></td>
+<td>A 40-entry fieldwork log, for the first task</td>
+</tr>
+<tr class="even">
+<td><a href="materials/data/fieldnotes.csv" download="fieldnotes.csv">fieldnotes.csv</a></td>
+<td>Six field-note excerpts to code</td>
+</tr>
+<tr class="odd">
+<td><a href="materials/data/codebook.csv" download="codebook.csv">codebook.csv</a></td>
+<td>The codebook: each code, when to apply it, and when not to</td>
+</tr>
+<tr class="even">
+<td><a href="materials/data/messages.csv" download="messages.csv">messages.csv</a></td>
+<td>210 chat messages, for coding at scale</td>
+</tr>
+</tbody>
+</table>
+<div class="small muted">
+<p>The field notes and messages are fictional, written for teaching purposes.</p>
+</div>
+<aside class="notes">
+<p>[~1 min] Give people a moment to click all four. The common slip is files landing in Downloads while the agent is started somewhere else, so say “same folder” twice.</p>
+<p>If the links don’t download, the files are also in the GitHub repo under materials/data.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
 <h2>A ground rule</h2>
 <div class="big">
 <p>If you can’t defend it without the AI in the room, you’re not done.</p>
@@ -1376,7 +1423,7 @@ Bella Ratmelia
 </section>
 <section class="slide level2 smaller">
 <h2>A codebook, written for the AI</h2>
-<p>Six fictional field notes from a Singapore hawker-food Telegram group, coded with <strong>boyd’s networked-publics affordances</strong>:</p>
+<p>Six fictional field notes from a Singapore hawker-food Telegram group, coded by <strong>what each moment is doing</strong> in the group:</p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 33%">
@@ -1392,24 +1439,34 @@ Bella Ratmelia
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>persistence</code></td>
-<td>Old posts resurface; content cannot be deleted; people refer back</td>
-<td>Memory or nostalgia alone</td>
+<td><code>sharing-news</code></td>
+<td>Updates, announcements, forwarded posts</td>
+<td>It’s mainly an opinion of the food</td>
 </tr>
 <tr class="even">
-<td><code>visibility</code></td>
-<td>Who can see it; public versus private; audiences collide</td>
-<td>Content is simply posted</td>
+<td><code>asking</code></td>
+<td>A genuine question to the group</td>
+<td>The question is rhetorical</td>
 </tr>
 <tr class="odd">
-<td><code>spreadability</code></td>
-<td>Forwarding, reposting, screenshots, or cross-posting</td>
-<td>Content is viewed but not moved</td>
+<td><code>judging-food</code></td>
+<td>Recommending, reviewing or rating food</td>
+<td>Facts with no opinion</td>
 </tr>
 <tr class="even">
-<td><code>searchability</code></td>
-<td>Platform search shapes what is findable</td>
-<td>Looking something up offline</td>
+<td><code>remembering</code></td>
+<td>Past experiences, stalls that are gone</td>
+<td>Pointing to an old message for info</td>
+</tr>
+<tr class="odd">
+<td><code>complaining</code></td>
+<td>Frustration with people, platforms or changes</td>
+<td>It’s only about how the food tastes</td>
+</tr>
+<tr class="even">
+<td><code>group-rules</code></td>
+<td>Admin actions, rules, what may be shared</td>
+<td>The admin is only mentioned</td>
 </tr>
 <tr class="odd">
 <td><code>other: ...</code></td>
@@ -1419,10 +1476,11 @@ Bella Ratmelia
 </tbody>
 </table>
 <p><strong>Rules:</strong> quote the <strong>exact words</strong> for every code · “nothing fits” is allowed · flag anything identifying</p>
-<p><span class="small muted">Full codebook: <code>materials/skills/qual-coding/SKILL.md</code> · notes: <code>materials/data/fieldnotes.csv</code></span></p>
+<p><span class="small muted">Full codebook: <code>codebook.csv</code> (slide 8) · notes: <code>fieldnotes.csv</code></span></p>
 <aside class="notes">
 <p>[~2 min] “You already write documents like this for human coders. This is the same procedure written so an AI can follow it too.”</p>
 <p>Point out the “Not when” column. That is where much of the judgement lives. The exact-words rule repeats the Part 2 question: show me where that came from.</p>
+<p>This codebook is deliberately simple and descriptive, so the session is about the method rather than the theory. In your own research you would use your framework instead; the procedure stays the same.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1499,8 +1557,8 @@ Bella Ratmelia
 </section>
 <section class="slide level2">
 <h2>Demo: the Skill codes the same notes</h2>
-<p>(using qual-coding-networked-publics)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>/qual-coding-networked-publics</span>
+<p>(using qual-coding-message-purpose)</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>/qual-coding-message-purpose</span>
 <span id="cb4-2"><a href=""></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
 <span id="cb4-3"><a href=""></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Look for:</strong></p>
@@ -1588,7 +1646,7 @@ Bella Ratmelia
 <h2>Try 4: test your Skill on a small batch</h2>
 <p><span class="chip chip-try">TEST · first 20 rows only</span></p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>/code-with-codebook</span>
-<span id="cb6-2"><a href=""></a>Use the codebook in codebook.md to code messages.csv.</span>
+<span id="cb6-2"><a href=""></a>Use the codebook in codebook.csv to code messages.csv.</span>
 <span id="cb6-3"><a href=""></a>The ID column is message_id and the text column is text.</span>
 <span id="cb6-4"><a href=""></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
 <span id="cb6-5"><a href=""></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1875,7 +1933,7 @@ Bella Ratmelia
 </tr>
 <tr class="even">
 <td><strong>The procedure</strong></td>
-<td><code>codebook.md</code>, the Skill and the check script</td>
+<td><code>codebook.csv</code>, the Skill and the check script</td>
 </tr>
 <tr class="odd">
 <td><strong>The checks</strong></td>
@@ -1899,7 +1957,7 @@ Bella Ratmelia
 <h2>A light habit: dated folders + a research log</h2>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href=""></a>2026-10-23_hawker-telegram/</span>
 <span id="cb9-2"><a href=""></a>├── fieldnotes.csv</span>
-<span id="cb9-3"><a href=""></a>├── codebook.md</span>
+<span id="cb9-3"><a href=""></a>├── codebook.csv</span>
 <span id="cb9-4"><a href=""></a>├── messages.csv</span>
 <span id="cb9-5"><a href=""></a>├── research-log.md</span>
 <span id="cb9-6"><a href=""></a>├── hand-codes.csv</span>
@@ -1998,7 +2056,7 @@ Bella Ratmelia
 <p><br></p>
 <p><strong>Hand over the task</strong> | <strong>Check what comes back</strong> | <strong>Keep the procedure</strong></p>
 <p>Try next: write one repeated research task as a documented procedure. Turn it into a Skill only if useful.</p>
-<p>Slides: <a href="https://bellaratmelia.github.io/ntude-2026/">NTU Digital Ethnography guest seminar</a></p>
+<p>Slides: <a href="https://bellaratmelia.github.io/ntude-2026/">NTU Digital Ethnography guest seminar</a> (the practice data is on slide 8)</p>
 <p>Questions? My email is <strong>bellar@smu.edu.sg</strong></p>
 <div class="small muted">
 <p>Sample field notes and chat messages in this session are fictional and were written for teaching purposes.</p>
@@ -2022,7 +2080,6 @@ Bella Ratmelia
 <h2>Selected studies on AI-assisted qualitative coding</h2>
 <div class="small">
 <p>Ashwin, J., Chhabra, A., &amp; Rao, V. (2025). Using large language models for qualitative analysis can introduce serious bias. <em>Sociological Methods &amp; Research</em>. <a href="https://arxiv.org/abs/2309.17147" class="uri">https://arxiv.org/abs/2309.17147</a></p>
-<p>boyd, d.&nbsp;(2010). Social network sites as networked publics: Affordances, dynamics, and implications. In Z. Papacharissi (Ed.), <em>A networked self</em> (pp.&nbsp;39–58). Routledge.</p>
 <p>Chew, R., Bollenbacher, J., Wenger, M., Speer, J., &amp; Kim, A. (2023). LLM-assisted content analysis: Using large language models to support deductive coding. <em>arXiv:2306.14924</em>. <a href="https://arxiv.org/abs/2306.14924" class="uri">https://arxiv.org/abs/2306.14924</a></p>
 <p>De Paoli, S. (2024). Performing an inductive thematic analysis of semi-structured interviews with a large language model. <em>Social Science Computer Review, 42</em>(4), 997–1019. <a href="https://doi.org/10.1177/08944393231220483" class="uri">https://doi.org/10.1177/08944393231220483</a></p>
 <p>Gilardi, F., Alizadeh, M., &amp; Kubli, M. (2023). ChatGPT outperforms crowd workers for text-annotation tasks. <em>PNAS, 120</em>(30), e2305016120. <a href="https://doi.org/10.1073/pnas.2305016120" class="uri">https://doi.org/10.1073/pnas.2305016120</a></p>

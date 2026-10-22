@@ -1,0 +1,8 @@
+code,definition,apply_when,do_not_apply_when
+sharing-news,"Passes on information or updates to the group.","Announcements, forwarded posts, stall closures or openings, opening hours, links to earlier information.","The message is mainly an opinion of the food (use judging-food)."
+asking,"Asks the group for information, help or clarification.","A genuine question about stalls, people, events or the group itself.","The question is rhetorical and the message is really complaining or joking (code what it is doing instead)."
+judging-food,"Recommends, reviews or rates food or stalls.","Praise, criticism or comparisons of food or stalls, e.g. ""best in the east"", ""overrated"".","Facts about a stall with no opinion (use sharing-news)."
+remembering,"Recalls the past: earlier experiences, stalls that have gone, how things used to be.","Personal or shared memories, nostalgia, ""remember when"".","Pointing to an earlier chat message only as a source of information (use sharing-news)."
+complaining,"Expresses frustration, objection or criticism about people, platforms or changes.","Objecting to how something was done; frustration with a platform, a trend or a person.","The criticism is only about how the food tastes (use judging-food)."
+group-rules,"Concerns how the group runs: admin actions, rules, and what members may share or should do.","Requests to the admin, pinning, telling someone off (""scroll up""), agreeing not to share, debates about where content belongs.","The admin is only mentioned in passing."
+other,"Something interesting that the codes above don't capture.","A recurring idea, tension or practice. Give it a short provisional label, e.g. other: credit.","Use only when you can name what it is. Don't use it as a dumping ground."
