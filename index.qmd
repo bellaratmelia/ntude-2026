@@ -143,7 +143,7 @@ If pairing, one person drives and the other checks the plan, permissions, and ou
 
 ## Get the practice data
 
-Save all four files into **one new folder**, then start Claude Code or Codex in that folder.
+Save all five files into **one new folder**, then start Claude Code or Codex in that folder.
 
 | File | What it is |
 |---|---|
@@ -151,13 +151,14 @@ Save all four files into **one new folder**, then start Claude Code or Codex in 
 | [fieldnotes.csv](materials/data/fieldnotes.csv){download="fieldnotes.csv"} | Six field-note excerpts to code |
 | [codebook.csv](materials/data/codebook.csv){download="codebook.csv"} | The codebook: each code, when to apply it, and when not to |
 | [messages.csv](materials/data/messages.csv){download="messages.csv"} | 210 chat messages, for coding at scale |
+| [hand-codes.csv](materials/data/hand-codes.csv){download="hand-codes.csv"} | My own codes for 30 of those messages, for the comparison at the end |
 
 ::: {.small .muted}
 The field notes and messages are fictional, written for teaching purposes.
 :::
 
 ::: {.notes}
-[~1 min] Give people a moment to click all four. The common slip is files landing in Downloads while the agent is started somewhere else, so say "same folder" twice.
+[~1 min] Give people a moment to click all five. The common slip is files landing in Downloads while the agent is started somewhere else, so say "same folder" twice.
 
 If the links don't download, the files are also in the GitHub repo under materials/data.
 :::
