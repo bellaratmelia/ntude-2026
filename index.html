@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2729701055d00b5a40fb2c6c71cd8593.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.25">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-00e53432ecefdaf1505b49ef12097a38.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.10.18">
 
   <meta name="author" content="Bella Ratmelia">
   <title>From Chatbot to Research Assistant</title>
@@ -17,10 +17,16 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    code{white-space: pre-wrap;}
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -96,7 +102,7 @@
     code span.vs { color: #1f2d3a; } /* VerbatimString */
     code span.wa { color: #51606f; font-weight: bold; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-f2b46bb7defcff343e47d60e0deda982.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-bd4bd003e0fae55a41862e900d3d4455.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -200,7 +206,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Bella Ratmelia 
+Bella Ratmelia
 </div>
 </div>
 </div>
@@ -379,7 +385,7 @@ Bella Ratmelia
 </section>
 <section class="slide level2">
 <h2>Get the practice data</h2>
-<p>Save all four files into <strong>one new folder</strong>, then start Claude Code or Codex in that folder.</p>
+<p>Save all five files into <strong>one new folder</strong>, then start Claude Code or Codex in that folder.</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -404,13 +410,17 @@ Bella Ratmelia
 <td><a href="materials/data/messages.csv" download="messages.csv">messages.csv</a></td>
 <td>210 chat messages, for coding at scale</td>
 </tr>
+<tr class="odd">
+<td><a href="materials/data/hand-codes.csv" download="hand-codes.csv">hand-codes.csv</a></td>
+<td>My own codes for 30 of those messages, for the comparison at the end</td>
+</tr>
 </tbody>
 </table>
 <div class="small muted">
 <p>The field notes and messages are fictional, written for teaching purposes.</p>
 </div>
 <aside class="notes">
-<p>[~1 min] Give people a moment to click all four. The common slip is files landing in Downloads while the agent is started somewhere else, so say “same folder” twice.</p>
+<p>[~1 min] Give people a moment to click all five. The common slip is files landing in Downloads while the agent is started somewhere else, so say “same folder” twice.</p>
 <p>If the links don’t download, the files are also in the GitHub repo under materials/data.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -927,9 +937,9 @@ Bella Ratmelia
 <h2>Tour: first task</h2>
 <p><span class="chip chip-try">5 min · Plan mode</span></p>
 <p>Open the workshop folder in Claude Code or Codex, then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>Look at fieldwork-log.csv. Count my fieldwork entries by month and</span>
-<span id="cb1-2"><a href=""></a>type, make a bar chart, and save it as fieldwork-by-month.png. Then</span>
-<span id="cb1-3"><a href=""></a>add a two-line note to README.md saying what you did and when.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="" aria-label="1"></a>Look at fieldwork-log.csv. Count my fieldwork entries by month and</span>
+<span id="cb1-2"><a href="" aria-label="2"></a>type, make a bar chart, and save it as fieldwork-by-month.png. Then</span>
+<span id="cb1-3"><a href="" aria-label="3"></a>add a two-line note to README.md saying what you did and when.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Look for:</p>
 <ul>
 <li>It <strong>plans</strong> before acting</li>
@@ -1191,13 +1201,13 @@ Bella Ratmelia
 <div class="demo">
 <p>Connector on: Consensus (or PubMed for health topics).</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>Find recent (2020 onwards) peer-reviewed papers that use digital</span>
-<span id="cb2-2"><a href=""></a>ethnography to study online communities.</span>
-<span id="cb2-3"><a href=""></a></span>
-<span id="cb2-4"><a href=""></a>Return a table: citation, year, type (empirical / review / methods /</span>
-<span id="cb2-5"><a href=""></a>opinion), and a one-sentence finding. Give the DOI for each.</span>
-<span id="cb2-6"><a href=""></a>Only include papers you actually retrieved from the search.</span>
-<span id="cb2-7"><a href=""></a>Do not fill gaps from memory. Tell me which source each came from.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="" aria-label="1"></a>Find recent (2020 onwards) peer-reviewed papers that use digital</span>
+<span id="cb2-2"><a href="" aria-label="2"></a>ethnography to study online communities.</span>
+<span id="cb2-3"><a href="" aria-label="3"></a></span>
+<span id="cb2-4"><a href="" aria-label="4"></a>Return a table: citation, year, type (empirical / review / methods /</span>
+<span id="cb2-5"><a href="" aria-label="5"></a>opinion), and a one-sentence finding. Give the DOI for each.</span>
+<span id="cb2-6"><a href="" aria-label="6"></a>Only include papers you actually retrieved from the search.</span>
+<span id="cb2-7"><a href="" aria-label="7"></a>Do not fill gaps from memory. Tell me which source each came from.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <aside class="notes">
 <p>Point out the guardrails in the prompt: “only include papers you actually retrieved” and “which source”. Open two DOIs live.</p>
 <p>[~4 min] While it runs, read the prompt aloud and underline the last three lines: those are the steering. Point out the “type” column: a small classification task, which Part 3 does properly with a codebook.</p>
@@ -1496,18 +1506,18 @@ Bella Ratmelia
 <section class="slide level2 activity" data-background-color="var(--mist)">
 <h2>Try 3: code it yourself first</h2>
 <p><span class="chip chip-try">TRY · 7 min · alone · no AI</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>[FN-02] 6 Mar, 12.30pm. A new member asked whether a char kway teow</span>
-<span id="cb3-2"><a href=""></a>stall at a hawker centre in Ang Mo Kio is "still good". Three people</span>
-<span id="cb3-3"><a href=""></a>replied with links to old messages in the group from 2023. One wrote</span>
-<span id="cb3-4"><a href=""></a>"scroll up lah, we discussed already". The new member said the search</span>
-<span id="cb3-5"><a href=""></a>bar "doesn't find anything" when she types the stall name in Chinese.</span>
-<span id="cb3-6"><a href=""></a></span>
-<span id="cb3-7"><a href=""></a>[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's</span>
-<span id="cb3-8"><a href=""></a>review without crediting them. The member complained in the Telegram</span>
-<span id="cb3-9"><a href=""></a>group: "I wrote it for the group, not for IG." Admin apologised and</span>
-<span id="cb3-10"><a href=""></a>said they would "ask first next time". Several members reacted with</span>
-<span id="cb3-11"><a href=""></a>the thumbs-up emoji; one wrote "but the IG is public what, anyone</span>
-<span id="cb3-12"><a href=""></a>can see anyway".</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="" aria-label="1"></a>[FN-02] 6 Mar, 12.30pm. A new member asked whether a char kway teow</span>
+<span id="cb3-2"><a href="" aria-label="2"></a>stall at a hawker centre in Ang Mo Kio is "still good". Three people</span>
+<span id="cb3-3"><a href="" aria-label="3"></a>replied with links to old messages in the group from 2023. One wrote</span>
+<span id="cb3-4"><a href="" aria-label="4"></a>"scroll up lah, we discussed already". The new member said the search</span>
+<span id="cb3-5"><a href="" aria-label="5"></a>bar "doesn't find anything" when she types the stall name in Chinese.</span>
+<span id="cb3-6"><a href="" aria-label="6"></a></span>
+<span id="cb3-7"><a href="" aria-label="7"></a>[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's</span>
+<span id="cb3-8"><a href="" aria-label="8"></a>review without crediting them. The member complained in the Telegram</span>
+<span id="cb3-9"><a href="" aria-label="9"></a>group: "I wrote it for the group, not for IG." Admin apologised and</span>
+<span id="cb3-10"><a href="" aria-label="10"></a>said they would "ask first next time". Several members reacted with</span>
+<span id="cb3-11"><a href="" aria-label="11"></a>the thumbs-up emoji; one wrote "but the IG is public what, anyone</span>
+<span id="cb3-12"><a href="" aria-label="12"></a>can see anyway".</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For each decision: <strong>excerpt · code · exact words · confidence</strong> (high / medium / low)</p>
 <p>You do not need to identify every possible code. Make one or two defensible coding decisions for each excerpt.</p>
 <aside class="notes">
@@ -1558,9 +1568,9 @@ Bella Ratmelia
 <section class="slide level2">
 <h2>Demo: the Skill codes the same notes</h2>
 <p>(using qual-coding-message-purpose)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>/qual-coding-message-purpose</span>
-<span id="cb4-2"><a href=""></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
-<span id="cb4-3"><a href=""></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="" aria-label="1"></a>/qual-coding-message-purpose</span>
+<span id="cb4-2"><a href="" aria-label="2"></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
+<span id="cb4-3"><a href="" aria-label="3"></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Look for:</strong></p>
 <ul>
 <li>First compare its decisions for <strong>FN-02</strong> and <strong>FN-04</strong> with yours.</li>
@@ -1613,18 +1623,18 @@ Bella Ratmelia
 <section class="slide level2">
 <h2>Build together: turn the codebook into a Skill</h2>
 <p><span class="chip chip-learn">BUILD TOGETHER · follow along if useful</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>/skill-creator</span>
-<span id="cb5-2"><a href=""></a>Revise the qualitative-coding Skill using the codebook clarification</span>
-<span id="cb5-3"><a href=""></a>we just agreed. Then generalise it as a Skill called code-with-codebook.</span>
-<span id="cb5-4"><a href=""></a></span>
-<span id="cb5-5"><a href=""></a>It should ask for:</span>
-<span id="cb5-6"><a href=""></a>- a codebook with each code's definition, when to apply it, and when not to;</span>
-<span id="cb5-7"><a href=""></a>- a CSV containing an ID column and a text column.</span>
-<span id="cb5-8"><a href=""></a></span>
-<span id="cb5-9"><a href=""></a>For every coding decision, save: id, code, verbatim evidence,</span>
-<span id="cb5-10"><a href=""></a>confidence, rationale, and an identifying-information flag.</span>
-<span id="cb5-11"><a href=""></a>"Nothing fits" is allowed. Log the model, date, input files and</span>
-<span id="cb5-12"><a href=""></a>number of rows in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="" aria-label="1"></a>/skill-creator</span>
+<span id="cb5-2"><a href="" aria-label="2"></a>Revise the qualitative-coding Skill using the codebook clarification</span>
+<span id="cb5-3"><a href="" aria-label="3"></a>we just agreed. Then generalise it as a Skill called code-with-codebook.</span>
+<span id="cb5-4"><a href="" aria-label="4"></a></span>
+<span id="cb5-5"><a href="" aria-label="5"></a>It should ask for:</span>
+<span id="cb5-6"><a href="" aria-label="6"></a>- a codebook with each code's definition, when to apply it, and when not to;</span>
+<span id="cb5-7"><a href="" aria-label="7"></a>- a CSV containing an ID column and a text column.</span>
+<span id="cb5-8"><a href="" aria-label="8"></a></span>
+<span id="cb5-9"><a href="" aria-label="9"></a>For every coding decision, save: id, code, verbatim evidence,</span>
+<span id="cb5-10"><a href="" aria-label="10"></a>confidence, rationale, and an identifying-information flag.</span>
+<span id="cb5-11"><a href="" aria-label="11"></a>"Nothing fits" is allowed. Log the model, date, input files and</span>
+<span id="cb5-12"><a href="" aria-label="12"></a>number of rows in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We tested the procedure, improved it, and saved the revision.</p>
 <aside class="notes">
 <p>[~5 min] This is not “building a Skill because Skills are interesting.” It is preserving a procedure the class has just tested and revised.</p>
@@ -1645,11 +1655,11 @@ Bella Ratmelia
 <section class="slide level2">
 <h2>Try 4: test your Skill on a small batch</h2>
 <p><span class="chip chip-try">TEST · first 20 rows only</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>/code-with-codebook</span>
-<span id="cb6-2"><a href=""></a>Use the codebook in codebook.csv to code messages.csv.</span>
-<span id="cb6-3"><a href=""></a>The ID column is message_id and the text column is text.</span>
-<span id="cb6-4"><a href=""></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
-<span id="cb6-5"><a href=""></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="" aria-label="1"></a>/code-with-codebook</span>
+<span id="cb6-2"><a href="" aria-label="2"></a>Use the codebook in codebook.csv to code messages.csv.</span>
+<span id="cb6-3"><a href="" aria-label="3"></a>The ID column is message_id and the text column is text.</span>
+<span id="cb6-4"><a href="" aria-label="4"></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
+<span id="cb6-5"><a href="" aria-label="5"></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Before scaling, inspect:</strong></p>
 <ul>
 <li>Are the output fields complete?</li>
@@ -1754,11 +1764,11 @@ Bella Ratmelia
 <h2>At scale: code everything, check it with a script</h2>
 <p><span class="chip chip-learn">WATCH THE WORKFLOW · no Python knowledge required</span></p>
 <p>The first 20 looked right, so the Skill codes all 210 messages. Then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href=""></a>Write a Python script that checks coded-messages.csv against</span>
-<span id="cb7-2"><a href=""></a>messages.csv: every message_id appears at least once, every row</span>
-<span id="cb7-3"><a href=""></a>has id, code, evidence and confidence, and every evidence quote</span>
-<span id="cb7-4"><a href=""></a>appears word for word in the original message. Run it, list any</span>
-<span id="cb7-5"><a href=""></a>problems, and log the date and result in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="" aria-label="1"></a>Write a Python script that checks coded-messages.csv against</span>
+<span id="cb7-2"><a href="" aria-label="2"></a>messages.csv: every message_id appears at least once, every row</span>
+<span id="cb7-3"><a href="" aria-label="3"></a>has id, code, evidence and confidence, and every evidence quote</span>
+<span id="cb7-4"><a href="" aria-label="4"></a>appears word for word in the original message. Run it, list any</span>
+<span id="cb7-5"><a href="" aria-label="5"></a>problems, and log the date and result in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Watch for:</strong> plan → write → run → inspect → adjust → rerun</p>
 <aside class="notes">
 <p>[~4 min] Two steps. First run /code-with-codebook on all of messages.csv, saving coded-messages.csv (start it during the previous slide if it’s slow). Then the check script.</p>
@@ -1780,9 +1790,9 @@ Bella Ratmelia
 </section>
 <section class="slide level2">
 <h2>At scale: compare with human coding</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href=""></a>Compare the AI codes for the 30 messages in hand-codes.csv with my</span>
-<span id="cb8-2"><a href=""></a>codes in that file. Summarise agreement for each code and list every</span>
-<span id="cb8-3"><a href=""></a>mismatch with the message, both coding decisions, and a possible reason.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="" aria-label="1"></a>Compare the AI codes for the 30 messages in hand-codes.csv with my</span>
+<span id="cb8-2"><a href="" aria-label="2"></a>codes in that file. Summarise agreement for each code and list every</span>
+<span id="cb8-3"><a href="" aria-label="3"></a>mismatch with the message, both coding decisions, and a possible reason.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The statistic is a summary; the <strong>mismatches</strong> tell us what to inspect and revise.</li>
 <li>A message isolated from its thread can lose crucial context.</li>
@@ -1955,14 +1965,14 @@ Bella Ratmelia
 </section>
 <section class="slide level2">
 <h2>A light habit: dated folders + a research log</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href=""></a>2026-10-23_hawker-telegram/</span>
-<span id="cb9-2"><a href=""></a>├── fieldnotes.csv</span>
-<span id="cb9-3"><a href=""></a>├── codebook.csv</span>
-<span id="cb9-4"><a href=""></a>├── messages.csv</span>
-<span id="cb9-5"><a href=""></a>├── research-log.md</span>
-<span id="cb9-6"><a href=""></a>├── hand-codes.csv</span>
-<span id="cb9-7"><a href=""></a>├── coded-messages.csv</span>
-<span id="cb9-8"><a href=""></a>└── check_coded.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="" aria-label="1"></a>2026-10-23_hawker-telegram/</span>
+<span id="cb9-2"><a href="" aria-label="2"></a>├── fieldnotes.csv</span>
+<span id="cb9-3"><a href="" aria-label="3"></a>├── codebook.csv</span>
+<span id="cb9-4"><a href="" aria-label="4"></a>├── messages.csv</span>
+<span id="cb9-5"><a href="" aria-label="5"></a>├── research-log.md</span>
+<span id="cb9-6"><a href="" aria-label="6"></a>├── hand-codes.csv</span>
+<span id="cb9-7"><a href="" aria-label="7"></a>├── coded-messages.csv</span>
+<span id="cb9-8"><a href="" aria-label="8"></a>└── check_coded.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tell the agent: <strong>“After each step, draft a dated entry in research-log.md.”</strong></p>
 <div class="keypoint">
 <p><strong>Add a reflexive note:</strong> What did the tool make more visible? What did it flatten, obscure, or encourage you to treat as data?</p>
@@ -2107,8 +2117,8 @@ Bella Ratmelia
 <li>A key pasted into chat, code or a shared folder can be copied, misused and billed to you</li>
 <li>Keep it outside the script, such as in an environment variable or an excluded <code>.env</code> file</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="im">import</span> os</span>
-<span id="cb10-2"><a href=""></a>api_key <span class="op">=</span> os.environ[<span class="st">"ANTHROPIC_API_KEY"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-label="1"></a><span class="im">import</span> os</span>
+<span id="cb10-2"><a href="" aria-label="2"></a>api_key <span class="op">=</span> os.environ[<span class="st">"ANTHROPIC_API_KEY"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caution">
 <p>If the folder may be shared or committed to Git, exclude <code>.env</code>. If a key has been exposed, revoke it and create a replacement.</p>
 </div>
