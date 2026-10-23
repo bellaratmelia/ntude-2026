@@ -6,8 +6,8 @@
 <script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-00e53432ecefdaf1505b49ef12097a38.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.10.18">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting-2729701055d00b5a40fb2c6c71cd8593.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
 
   <meta name="author" content="Bella Ratmelia">
   <title>From Chatbot to Research Assistant</title>
@@ -17,16 +17,10 @@
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reset.css">
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/reveal.css">
   <style>
-    /* Default styles provided by pandoc.
-    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-    */
+    code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: 1.5em;}
-    div.column{flex: auto;}
-    @media screen {
-    div.columns{gap: min(4vw, 1.5em);}
-    div.column{overflow-x: auto;}
-    }
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
     ul.task-list li input[type="checkbox"] {
@@ -102,7 +96,7 @@
     code span.vs { color: #1f2d3a; } /* VerbatimString */
     code span.wa { color: #51606f; font-weight: bold; } /* Warning */
   </style>
-  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-bd4bd003e0fae55a41862e900d3d4455.css">
+  <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto-f2b46bb7defcff343e47d60e0deda982.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -206,7 +200,7 @@
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Bella Ratmelia
+Bella Ratmelia 
 </div>
 </div>
 </div>
@@ -220,20 +214,6 @@ Bella Ratmelia
 <li>I teach R, Python and Git, and <strong>evaluate AI tools</strong> for research workflows</li>
 <li><strong>NTU alumna</strong>: MSc Information Studies, 2018</li>
 </ul>
-<aside class="notes">
-<p>[0:00] Welcome, thank the professor, then introduce yourself in a few sentences. Keep it under a minute.</p>
-<p>The question behind most of my work: how can researchers use new tools well without losing sight of rigour, openness and care? That’s also the question behind today.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>By the end of today, you’ll be able to</h2>
@@ -242,20 +222,6 @@ Bella Ratmelia
 <li><strong>Check</strong> the sources and codes it brings back</li>
 <li>Turn what worked into a <strong>procedure you can reuse and defend</strong></li>
 </ul>
-<aside class="notes">
-<p>Read this promise slowly. These three lines are the whole session: Parts 1 and 3 are the first line, Part 2 and the human coding check in Part 3 are the second, Part 4 is the third.</p>
-<p>While people settle: “If you haven’t opened Claude Code or Codex yet, start it now. The first hands-on bit is in about 25 minutes.”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Today</h2>
@@ -265,40 +231,6 @@ Bella Ratmelia
 <li>Coding with a codebook: field notes, then a whole chat export</li>
 <li>Making it reproducible and defensible: logs, Skills, integrity</li>
 </ol>
-<aside class="notes">
-<p>The overarching idea for the whole session: what can the AI reach, and how do you steer it?</p>
-<p>Say it out loud and slowly. It’s the question we come back to at every section break.</p>
-<p>Walk through the parts in one breath each:</p>
-<ul>
-<li>Part 1: what an agent is, and a short tour of the tool.</li>
-<li>Part 2: using it to find sources, and checking them.</li>
-<li>Part 3: coding field notes with a codebook, you and the AI, then the same logic on the group’s whole chat export.</li>
-<li>Part 4: making sure you can repeat it and defend it, ending with the integrity checks.</li>
-</ul>
-<p>Then the close.</p>
-<p>Run sheet (core ends by 8:30; anything after is bonus):</p>
-<ul>
-<li>6:30–6:38 Opening and calibration</li>
-<li>6:38–7:03 Part 1 and first task</li>
-<li>7:03–7:23 Part 2: literature discovery and checking</li>
-<li>7:23–7:28 Short break / reset (use it as buffer if behind)</li>
-<li>7:28–8:03 Part 3: field-note coding, human check, then scale</li>
-<li>8:03–8:30 Part 4: logs, reproducibility, Skills, then integrity and take-home (integrity starts by 8:23)</li>
-<li>After 8:30, if the room has time: questions, live Skill demo, Git, troubleshooting</li>
-</ul>
-<p>If time slips, cut in this order: Remote/SSH (already gone) → modes table (just say “start in Plan”) → live connector setup → “Level up” → live Skill creation (show the finished SKILL.md).</p>
-<p>Never cut: the first task, checking real references, Try 3 (code it yourself), the “before you give it research material” slide, the research log, the final accountability line.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>A note before we begin</h2>
@@ -310,29 +242,6 @@ Bella Ratmelia
 <div class="keypoint">
 <p>Questions and corrections welcome. Let’s make it two-way exchange!</p>
 </div>
-<aside class="notes">
-<p>[~30 sec] Keep this short. The essential version: “I support researchers using data and digital tools. Today is practitioner-led, not a research-methods lecture. Tools will change, but the questions of access, steering, verification and accountability will stay.”</p>
-<p>The full version of each point, only if the room wants it:</p>
-<ul>
-<li>Practitioner-led: this is based on what I’ve learned from experimenting with these tools in my day-to-day work supporting researchers.</li>
-<li>The tools and practices are evolving quickly. Some of what I show will look different by next semester, and some of you may know parts of it better than I do. Today is about a mental model that should survive the next few product updates.</li>
-<li>Anything related to research methods is strictly in the domain of your professor.</li>
-<li>Questions, corrections and lessons from your own experiments are welcome.</li>
-</ul>
-<p>Or paraphrase:</p>
-<p>“I’m not a methods person and I’m not selling a product. I support researchers, and I’ve spent a lot of time breaking these tools so you don’t have to. Menus will change. The way of thinking about them shouldn’t.”</p>
-<p>On methods: “If anything I say about method conflicts with what your professor says, your professor wins.”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Where are you now?</h2>
@@ -343,21 +252,6 @@ Bella Ratmelia
 <li class="fragment">I’ve connected one to <strong>another app</strong> (Drive, Zotero, a database)</li>
 <li class="fragment">I’ve had one <strong>run code</strong> or <strong>edit files</strong> for me</li>
 </ol>
-<aside class="notes">
-<p>[~1 min] Ask each one and keep hands up as you go. Expect most hands on 1 and 2, a few on 3, very few on 4.</p>
-<p>Read the room out loud: “So most of us are here [1–2]. Today is about getting from here to here [3–4].”</p>
-<p>If many hands go up on 4, say you’ll go faster through the tour and spend more time on Parts 3 and 4.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Checklist</h2>
@@ -369,19 +263,6 @@ Bella Ratmelia
 <p><br></p>
 <p>No Claude Code or Codex? Please pair up with someone who has it.</p>
 <p>If pairing, one person drives and the other checks the plan, permissions, and output. Swap when useful.</p>
-<aside class="notes">
-<p>[~30 sec] Say it quickly; don’t read the list.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Get the practice data</h2>
@@ -419,58 +300,17 @@ Bella Ratmelia
 <div class="small muted">
 <p>The field notes and messages are fictional, written for teaching purposes.</p>
 </div>
-<aside class="notes">
-<p>[~1 min] Give people a moment to click all five. The common slip is files landing in Downloads while the agent is started somewhere else, so say “same folder” twice.</p>
-<p>If the links don’t download, the files are also in the GitHub repo under materials/data.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>A ground rule</h2>
 <div class="big">
 <p>If you can’t defend it without the AI in the room, you’re not done.</p>
 </div>
-<aside class="notes">
-<p>[~30 sec] Read it, then pause. Let it land.</p>
-<p>“Imagine your examiner or a reviewer asks: why did you include this paper, why is this code applied here? ‘Claude said so’ isn’t an answer. Everything today is about getting to an answer you can give yourself.”</p>
-<p>This line comes back at the very end.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section>
 <section class="title-slide slide level1 section center">
 <h1>Part 1: Core concepts</h1>
-<aside class="notes">
-<p>[~0:08] Part 1, about 25 minutes, including a 5-minute hands-on.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2 smaller">
 <h2>Words I’ll use</h2>
@@ -516,25 +356,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~2 min] Don’t read the table. Say: “These words get used loosely online. Don’t memorise them; the first activity makes them concrete, and I’ll point back.”</p>
-<p>Make only two points, then move on:</p>
-<ul>
-<li>Model vs harness. Same model in claude.ai and in Claude Code; the harness is what changes what it can do. That’s the whole “chat vs agent” difference coming up.</li>
-<li>The one-liner: “The harness gives it tools, connectors give it reach, Skills give it your method.”</li>
-</ul>
-<p>Context gets its own slide later (the desk). Connectors and Skills get their own slides at the end of Part 1.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>What can the AI reach, and how do you steer it?</h2>
@@ -571,25 +392,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~2 min] This slide is the map for the whole session.</p>
-<ul>
-<li>“It can act”: that’s the agent idea, the next few slides.</li>
-<li>“It can reach things”: connectors, end of Part 1, used in Part 2.</li>
-<li>“It can follow your procedures”: We use a prepared Skill in Part 3, then revise and generalise it together.</li>
-</ul>
-<p>“Steering” is the right-hand column: you decide the task, the sources and the procedure.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Chat vs agent</h2>
@@ -611,22 +413,6 @@ Bella Ratmelia
 <li>Reports back, and you check the work</li>
 </ul>
 </div></div>
-<aside class="notes">
-<p>Same underlying model in both cases. What’s different is what it’s allowed to touch and whether it can take more than one step before coming back to you. In glossary terms: same model, different harness.</p>
-<p>[~2 min] The contrast is access, not effort or intelligence. A brilliant colleague on the phone still only knows what you tell them, and you still do the copying, pasting and running. Sit them at your desk and they can open the files themselves.</p>
-<p>Lean on the analogy: most people here have supervised or been an RA. “You wouldn’t take an RA’s literature table without spot-checking it. Same here.”</p>
-<p>The “desk” comes back on the context slide.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>In practice: web chat vs Claude Code / Codex</h2>
@@ -664,43 +450,12 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~1.5 min] Don’t read the table row by row. Pick two rows:</p>
-<ul>
-<li>“Runs on your computer, in your project folder.” That’s the big shift.</li>
-<li>“Runs scripts, with your permission.” That’s why we’ll talk about modes in a minute.</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>More access, not “better”</h2>
 <div class="caution">
 <p>Claude Code and Codex aren’t automatically <strong>better</strong> than web chat. They have more <strong>access</strong> and more ability to <strong>act</strong>, which is why permissions, checkpoints and your review matter even more.</p>
 </div>
-<aside class="notes">
-<p>[~30 sec] Say it plainly: more access means more ways for things to go wrong. Web chat is still the right tool for a quick question.</p>
-<p>This is the fence for the whole session: an agent isn’t a smarter chatbot, it’s the same model with more reach.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>Before you give it research material</h2>
@@ -738,22 +493,6 @@ Bella Ratmelia
 <p><strong>“Local” ≠ private.</strong> While the files stay on your machine, remember that what the agent reads is sent to the model provider.</p>
 <p><strong>Public ≠ unrestricted.</strong> Publicly visible posts aren’t automatically ethically unrestricted, context-free, or fine to send to a third-party model.</p>
 </div>
-<aside class="notes">
-<p>[~2 min] This comes before any tool demo on purpose. For ethnographers, ethics isn’t a closing caution; it decides whether the workflow should happen at all.</p>
-<p>Walk the four questions top to bottom. The first two are “should this go in at all?”, the third is “how little can I send?”, the fourth is “what never gets handed over?”.</p>
-<p>On “public ≠ unrestricted”: “Most of you will hear ‘but it was public’ from someone this year. Public to the group members who posted it is not the same as public to a model provider.” Defer specifics to the professor and your IRB.</p>
-<p>Everything we use today is fictional, written for teaching, so we can skip the first three questions. With your real field notes, you can’t.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>The agent loop</h2>
@@ -773,21 +512,6 @@ Bella Ratmelia
 <li>An agent can continue acting, observing, and adjusting across a task until it <strong>thinks</strong> it’s finished.</li>
 <li>That said, <strong>you</strong> decide when it’s actually finished.</li>
 </ul>
-<aside class="notes">
-<p>We’ll see the loop live in Part 3, when the script hits an error and the agent fixes it. Point back to this slide then.</p>
-<p>[~2 min] Example to talk through: “Find the CSV, count the rows. Oops, the year column has text in it. Clean that, count again.”</p>
-<p>Stress the second bullet. Agents are confident about being finished. That’s where you come in.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Context: the agent’s working memory</h2>
@@ -800,22 +524,6 @@ Bella Ratmelia
 <div class="keypoint">
 <p><strong>Habits:</strong> fresh session per task · instructions in a <strong>file</strong> · ask for a progress summary</p>
 </div>
-<aside class="notes">
-<p>[~2 min] Back to the desk from the chat-vs-agent slide.</p>
-<p>The full version: everything in the session sits on the desk (your instructions, files it read, search results, its own replies). As the pile grows, early instructions get buried, which is why it “forgets” a rule you set an hour ago. Put important instructions in a file (or a Skill), not in message 3 of 40.</p>
-<p>Ask: “Has anyone had a long chat where it started ignoring something you told it earlier?” Expect nods. That’s context.</p>
-<p>The habit that matters most for researchers: write instructions in a file. It’s also the bridge to Skills later.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Where the code runs</h2>
@@ -842,23 +550,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~1 min] Back to “what can it reach?”: the answer depends on where it runs.</p>
-<p>Today: local. Cloud is worth knowing about for long jobs, but it can’t see your laptop’s folders.</p>
-<p>Either way, the content it reads goes to the model provider (previous “before you give it research material” slide).</p>
-<p>If someone asks about lab servers: both tools can also run on another machine over SSH. Not needed today.</p>
-<p>If people ask where to pick local vs cloud, show the menu live in the app. No screenshot on purpose: the menus keep moving.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Tour: how much should it ask you?</h2>
@@ -896,21 +587,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>Codex calls these approval settings: Ask for approval, Approve for me, Full access. Same idea.</p>
-<p>[~1.5 min] This is “how do you steer it?” Modes are a dial from “check everything” to “trust everything”.</p>
-<p>If running behind: skip the table, go straight to the next slide and just say “start in Plan”.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Tour: start in Plan mode</h2>
@@ -918,52 +594,20 @@ Bella Ratmelia
 <p>For research work, start in <strong>Plan mode</strong>.</p>
 </div>
 <p>Read the plan the way you’d read a research assistant’s proposal, then let it act.</p>
-<aside class="notes">
-<p>[~1 min] Show where the mode switch is in the app, live (no screenshots on the slide: the UI changes too often). Everyone set Plan mode now, ready for the next slide.</p>
-<p>Claude Code: the mode picker next to the message box. Codex: the approvals setting. Check both the week before in case they’ve moved.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 activity" data-background-color="var(--mist)">
 <h2>Tour: first task</h2>
 <p><span class="chip chip-try">5 min · Plan mode</span></p>
 <p>Open the workshop folder in Claude Code or Codex, then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="" aria-label="1"></a>Look at fieldwork-log.csv. Count my fieldwork entries by month and</span>
-<span id="cb1-2"><a href="" aria-label="2"></a>type, make a bar chart, and save it as fieldwork-by-month.png. Then</span>
-<span id="cb1-3"><a href="" aria-label="3"></a>add a two-line note to README.md saying what you did and when.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href=""></a>Look at fieldwork-log.csv. Count my fieldwork entries by month and</span>
+<span id="cb1-2"><a href=""></a>type, make a bar chart, and save it as fieldwork-by-month.png. Then</span>
+<span id="cb1-3"><a href=""></a>add a two-line note to README.md saying what you did and when.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Look for:</p>
 <ul>
 <li>It <strong>plans</strong> before acting</li>
 <li>It <strong>reads</strong> the actual file instead of guessing</li>
 <li>It <strong>leaves things behind</strong>: a chart and a note, in your folder</li>
 </ul>
-<aside class="notes">
-<p>Show-and-tell fallback: I run it on screen. Keep to 5 minutes. Don’t teach terminal commands; the desktop apps avoid most of that. The point is: an agent on your own machine works on your files and leaves a record.</p>
-<p>The file is materials/data/fieldwork-log.csv: a fictional fieldwork log for the same Telegram hawker group as the field notes (40 entries, March to May 2026, columns fieldnote_id, date, site, type, minutes). FN-01 to FN-06 match the excerpts in fieldnotes.csv. Expected result: March 9 entries, April 17, May 14; mostly observation, a few archive and interview.</p>
-<p>Frame it: “This is the kind of file you already keep. The agent is working on your records, not the internet.”</p>
-<p>Start the timer. Walk around. Common snags: folder not opened, not logged in, permission prompt they don’t understand (“say yes, it’s asking to write a file”).</p>
-<p>When the time is up, ask one person: “Did it plan first? Did you approve the plan?” Then open the chart and the README on screen.</p>
-<p>Name what they just met, pointing back to the glossary: the model wrote the plan, the harness asked your permission, reading the CSV and saving the chart were tools, and the CSV was on its desk (context).</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Connectors: USB-C ports for AI</h2>
@@ -980,21 +624,6 @@ Bella Ratmelia
 <div class="caution">
 <p>A connector acts <strong>with your access</strong>. A word of caution: Treat it like a browser extension and check who made it before you switch it on.</p>
 </div>
-<aside class="notes">
-<p>Claude Code: connectors added to your claude.ai account are available when you log in with that account; you can also add MCP servers per project. Codex: MCP servers are added in its settings. Check both the week before.</p>
-<p>[~3 min] The key line: “You don’t need to build one.” People hear “protocol” and switch off. If running behind, skip the live setup mechanics; the setup steps are in the materials.</p>
-<p>Stress the right column: memory vs a live source. That’s the whole of Part 2 in one contrast.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>Skills: a saved prompt that can act</h2>
@@ -1034,41 +663,11 @@ Bella Ratmelia
 <div class="keypoint">
 <p>Not as fixed as a python script, but it can deal with the messy case a script can’t. Useful for things like <strong>coding scheme</strong> or <strong>screening criteria</strong>.</p>
 </div>
-<aside class="notes">
-<p>Just plant the idea here. We use one in Part 3 and build one at the end of Part 4.</p>
-<p>[~2 min] Tell your own story: “I used to keep my prompts in a doc and paste them in every time. Now I save them as a Skill and just call it.”</p>
-<p>Precisely: a Skill doesn’t give the agent new abilities. It uses the tools the harness already has (read files, run code, connectors), and it can bring its own scripts and reference files along. That’s why it can do steps, not just answer.</p>
-<p>The middle column is the point: more repeatable than a pasted prompt, more flexible than a script. Pick a script when you need the identical result every time (counting, filtering); pick a Skill when the task needs judgement, like applying a codebook.</p>
-<p>For this audience: “You already write coding guides for human coders. A Skill is the same document, written for the AI.”</p>
-<p>Recap Part 1 in one line before moving on: an agent acts, connectors let it reach things, Skills steer it.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section class="title-slide slide level1 section center">
 <h1>Part 2: Finding and checking sources for a literature review</h1>
-<aside class="notes">
-<p>[~0:33] Back to the question: what can it reach? Now we point it at the literature.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2">
 <h2>Why connectors matter for a lit review</h2>
@@ -1081,21 +680,6 @@ Bella Ratmelia
 <div class="caution">
 <p>A connector improves <strong>provenance</strong>: you can see where a result came from. It doesn’t show that the source <strong>supports the claim</strong>. Finding, coverage and interpretation are separate checks.</p>
 </div>
-<aside class="notes">
-<p>[~2 min] Three ways a reference goes wrong, from most to least obvious. The third is the dangerous one: the paper exists, so a quick check passes, but it doesn’t support the claim.</p>
-<p>The caution box is the headline for Part 2. Don’t let anyone leave with “connector = safe literature search”. A connector fixes the first problem (made-up papers) far more than the third (papers that don’t say what the AI claims).</p>
-<p>If you have a real (anonymised) example from a consultation, tell it here. A story beats the bullet list.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>What can it reach?</h2>
@@ -1143,20 +727,6 @@ Bella Ratmelia
 <div class="keypoint">
 <p>For advanced users: an open API such as OpenAlex can also be incorporated into a custom workflow.</p>
 </div>
-<aside class="notes">
-<p>Library angle worth stressing: connectors mostly reach open indexes. Paywalled full text and licensed databases are usually out of reach, so “the AI didn’t find it” often means “the AI couldn’t see it”. The library’s discovery tools and librarians are still part of the workflow.</p>
-<p>[~2 min] For ethnographers specifically: a lot of the relevant work is in books, edited volumes and regional journals, which open indexes cover poorly. Expect gaps.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>How to switch on a connector</h2>
@@ -1179,50 +749,19 @@ Bella Ratmelia
 <p>In a terminal instead: <code>codex mcp add &lt;name&gt; --url &lt;address&gt;</code></p>
 </div></div>
 <p><span class="small muted">Menus change often. Checked October 2026 against the Claude Code and Codex docs.</span></p>
-<aside class="notes">
-<p>[~30 sec] Reference slide, for later. Don’t read it: do it live once in the demo on the next slide, and tell them “the steps are on this slide for when you get home.”</p>
-<p>Claude side: connectors added on claude.ai show up in Claude Code automatically when you’re logged in with that account. They don’t load if you’ve logged in with an API key.</p>
-<p>Codex side: there’s no shared directory in the same way; you add each server by its address. Some ask you to sign in the first time (codex mcp login <name>).</name></p>
-<p>If running behind: skip straight to the demo.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Demo: explore with a connector</h2>
 <div class="demo">
 <p>Connector on: Consensus (or PubMed for health topics).</p>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href="" aria-label="1"></a>Find recent (2020 onwards) peer-reviewed papers that use digital</span>
-<span id="cb2-2"><a href="" aria-label="2"></a>ethnography to study online communities.</span>
-<span id="cb2-3"><a href="" aria-label="3"></a></span>
-<span id="cb2-4"><a href="" aria-label="4"></a>Return a table: citation, year, type (empirical / review / methods /</span>
-<span id="cb2-5"><a href="" aria-label="5"></a>opinion), and a one-sentence finding. Give the DOI for each.</span>
-<span id="cb2-6"><a href="" aria-label="6"></a>Only include papers you actually retrieved from the search.</span>
-<span id="cb2-7"><a href="" aria-label="7"></a>Do not fill gaps from memory. Tell me which source each came from.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<aside class="notes">
-<p>Point out the guardrails in the prompt: “only include papers you actually retrieved” and “which source”. Open two DOIs live.</p>
-<p>[~4 min] While it runs, read the prompt aloud and underline the last three lines: those are the steering. Point out the “type” column: a small classification task, which Part 3 does properly with a codebook.</p>
-<p>If the connector is slow or down: switch to the recorded run.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb2-1"><a href=""></a>Find recent (2020 onwards) peer-reviewed papers that use digital</span>
+<span id="cb2-2"><a href=""></a>ethnography to study online communities.</span>
+<span id="cb2-3"><a href=""></a></span>
+<span id="cb2-4"><a href=""></a>Return a table: citation, year, type (empirical / review / methods /</span>
+<span id="cb2-5"><a href=""></a>opinion), and a one-sentence finding. Give the DOI for each.</span>
+<span id="cb2-6"><a href=""></a>Only include papers you actually retrieved from the search.</span>
+<span id="cb2-7"><a href=""></a>Do not fill gaps from memory. Tell me which source each came from.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section class="slide level2 smaller">
 <h2>Discerning, not just finding</h2>
@@ -1247,21 +786,6 @@ Bella Ratmelia
 <div class="keypoint">
 <p>Ask the AI to help with the second column too (“flag preprints and anything you can’t confirm is peer-reviewed”), then spot-check its flags.</p>
 </div>
-<aside class="notes">
-<p>[~2 min] Left column: is it true? Right column: is it useful? The AI can help with both, but you’re the one who signs off.</p>
-<p>“Relevant to my question, or just similar wording?” is the one people skip. Search matches words, not meaning.</p>
-<p>This slide is the checklist for the activity that comes next.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 activity" data-background-color="var(--mist)">
 <h2>Try 2: check a reference from your topic</h2>
@@ -1276,21 +800,6 @@ Bella Ratmelia
 <li><strong>Peer-reviewed</strong>, preprint, or retracted?</li>
 </ul></li>
 </ol>
-<aside class="notes">
-<p>If some people have no connector set up, pair them with someone who does: the contrast in invented references is usually striking.</p>
-<p>Show-and-tell fallback: I run it once with a connector and once without, on a volunteer’s topic, and we check three refs together on screen.</p>
-<p>Start the timer. Remind them: the prompt is in the online slides, so copy it rather than typing it.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 discuss" data-background-color="var(--surface-raised)">
 <h2>Discussion: your result</h2>
@@ -1300,38 +809,11 @@ Bella Ratmelia
 <li>What do you <strong>know</strong> exists on your topic that didn’t show up? Why might that be?</li>
 <li>Which check changed your level of trust most?</li>
 </ul>
-<aside class="notes">
-<p>Spend most of the time on the second question. It brings back the coverage point: books, non-English work and paywalled journals are often invisible.</p>
-<p>Close: “So the connector is a good start for finding things. It doesn’t replace your judgement, or the library.”</p>
-<p>Then plant the refrain for the rest of the session: “Show me where that came from.” For a reference, that’s the DOI and the passage. In Part 3 it’ll be the exact words in a field note.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section class="title-slide slide level1 section center">
 <h1>Part 3: Coding with a codebook</h1>
-<aside class="notes">
-<p>[~0:58] Part 2 was about checking other people’s writing. Now we move to our own material: fictional field notes and chat messages. We will code by hand, compare our decisions with an AI, improve the written procedure, and only then test whether that procedure can scale.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2">
 <h2>Where AI coding fits</h2>
@@ -1348,20 +830,6 @@ Bella Ratmelia
 <div class="big">
 <p>A fast, literal research assistant: useful for a first cut, shaky on subtext.</p>
 </div>
-<aside class="notes">
-<p>[~1.5 min] Everything we do next is deductive: a codebook already exists, and we ask the AI to apply it.</p>
-<p>Emphasise “first cut”. You still check it, as you would check another coder. If asked about inductive coding: an AI can propose candidate themes for the researcher to react to, but the reported interpretation must come from the researcher’s reading and argument.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>What the studies found</h2>
@@ -1411,25 +879,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~2 min] Do not read the table. Use three rows:</p>
-<ul>
-<li>Chew et al.: deductive coding with a codebook can approach human agreement, which is what we are about to test.</li>
-<li>Pangakis et al.: success in one published study does not validate the method for your task or data.</li>
-<li>Ashwin et al.: the model’s errors aligned with characteristics of the people interviewed. For ethnographers, that can bias findings rather than merely add noise.</li>
-</ul>
-<p>If running behind, skip the slide and point students to the reading list.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>A codebook, written for the AI</h2>
@@ -1487,54 +936,24 @@ Bella Ratmelia
 </table>
 <p><strong>Rules:</strong> quote the <strong>exact words</strong> for every code · “nothing fits” is allowed · flag anything identifying</p>
 <p><span class="small muted">Full codebook: <code>codebook.csv</code> (slide 8) · notes: <code>fieldnotes.csv</code></span></p>
-<aside class="notes">
-<p>[~2 min] “You already write documents like this for human coders. This is the same procedure written so an AI can follow it too.”</p>
-<p>Point out the “Not when” column. That is where much of the judgement lives. The exact-words rule repeats the Part 2 question: show me where that came from.</p>
-<p>This codebook is deliberately simple and descriptive, so the session is about the method rather than the theory. In your own research you would use your framework instead; the procedure stays the same.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 activity" data-background-color="var(--mist)">
 <h2>Try 3: code it yourself first</h2>
 <p><span class="chip chip-try">TRY · 7 min · alone · no AI</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href="" aria-label="1"></a>[FN-02] 6 Mar, 12.30pm. A new member asked whether a char kway teow</span>
-<span id="cb3-2"><a href="" aria-label="2"></a>stall at a hawker centre in Ang Mo Kio is "still good". Three people</span>
-<span id="cb3-3"><a href="" aria-label="3"></a>replied with links to old messages in the group from 2023. One wrote</span>
-<span id="cb3-4"><a href="" aria-label="4"></a>"scroll up lah, we discussed already". The new member said the search</span>
-<span id="cb3-5"><a href="" aria-label="5"></a>bar "doesn't find anything" when she types the stall name in Chinese.</span>
-<span id="cb3-6"><a href="" aria-label="6"></a></span>
-<span id="cb3-7"><a href="" aria-label="7"></a>[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's</span>
-<span id="cb3-8"><a href="" aria-label="8"></a>review without crediting them. The member complained in the Telegram</span>
-<span id="cb3-9"><a href="" aria-label="9"></a>group: "I wrote it for the group, not for IG." Admin apologised and</span>
-<span id="cb3-10"><a href="" aria-label="10"></a>said they would "ask first next time". Several members reacted with</span>
-<span id="cb3-11"><a href="" aria-label="11"></a>the thumbs-up emoji; one wrote "but the IG is public what, anyone</span>
-<span id="cb3-12"><a href="" aria-label="12"></a>can see anyway".</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb3-1"><a href=""></a>[FN-02] 6 Mar, 12.30pm. A new member asked whether a char kway teow</span>
+<span id="cb3-2"><a href=""></a>stall at a hawker centre in Ang Mo Kio is "still good". Three people</span>
+<span id="cb3-3"><a href=""></a>replied with links to old messages in the group from 2023. One wrote</span>
+<span id="cb3-4"><a href=""></a>"scroll up lah, we discussed already". The new member said the search</span>
+<span id="cb3-5"><a href=""></a>bar "doesn't find anything" when she types the stall name in Chinese.</span>
+<span id="cb3-6"><a href=""></a></span>
+<span id="cb3-7"><a href=""></a>[FN-04] 19 Mar, 7.05pm. The Instagram account reposted a member's</span>
+<span id="cb3-8"><a href=""></a>review without crediting them. The member complained in the Telegram</span>
+<span id="cb3-9"><a href=""></a>group: "I wrote it for the group, not for IG." Admin apologised and</span>
+<span id="cb3-10"><a href=""></a>said they would "ask first next time". Several members reacted with</span>
+<span id="cb3-11"><a href=""></a>the thumbs-up emoji; one wrote "but the IG is public what, anyone</span>
+<span id="cb3-12"><a href=""></a>can see anyway".</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>For each decision: <strong>excerpt · code · exact words · confidence</strong> (high / medium / low)</p>
 <p>You do not need to identify every possible code. Make one or two defensible coding decisions for each excerpt.</p>
-<aside class="notes">
-<p>Everyone can do this activity, with or without a paid tool. Reviewers in each pair should code too.</p>
-<p>At five minutes: “Two minutes. Make sure every code has a quotation.”</p>
-<p>Do not reveal your own coding. The students’ readings establish the human baseline.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Skills, briefly</h2>
@@ -1550,27 +969,13 @@ Bella Ratmelia
 <div class="keypoint">
 <p>The Skill does <strong>not</strong> make the coding valid or deterministic. It preserves the instructions we want to test.</p>
 </div>
-<aside class="notes">
-<p>[~1 min] This is a bridge, not a technical lesson. Show the prepared <code>SKILL.md</code> briefly if useful. Do not discuss paths or automatic triggering yet.</p>
-<p>Say: “I prepared this Skill before the session because I wanted you to interpret the excerpts before watching me build software. It contains the same codebook and rules you just used.”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Demo: the Skill codes the same notes</h2>
 <p>(using qual-coding-message-purpose)</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="" aria-label="1"></a>/qual-coding-message-purpose</span>
-<span id="cb4-2"><a href="" aria-label="2"></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
-<span id="cb4-3"><a href="" aria-label="3"></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href=""></a>/qual-coding-message-purpose</span>
+<span id="cb4-2"><a href=""></a>Code fieldnotes.csv. Quote the exact words for every code.</span>
+<span id="cb4-3"><a href=""></a>If nothing fits, say so.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Look for:</strong></p>
 <ul>
 <li>First compare its decisions for <strong>FN-02</strong> and <strong>FN-04</strong> with yours.</li>
@@ -1578,20 +983,6 @@ Bella Ratmelia
 <li>Where is confidence <strong>low</strong>? What went into <strong><code>other:</code></strong>?</li>
 <li>Did it raise an <strong>ethics flag</strong>? (Hint: FN-03)</li>
 </ul>
-<aside class="notes">
-<p>[~4 min] Run the prepared Skill. Scroll to FN-02 and FN-04 first so students can compare its decisions with their own. Then inspect FN-03 for the identifying-information flag. Finally open coded-fieldnotes.csv, which the Skill saves next to the input: one row per code, the same shape the chat-export demo will produce.</p>
-<p>If the run is slow or fails, open <code>materials/sample-ai-output.md</code>. The interface is incidental; the coding decisions are what the class needs to inspect.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 discuss" data-background-color="var(--surface-raised)">
 <h2>Discussion: you vs the AI</h2>
@@ -1604,62 +995,32 @@ Bella Ratmelia
 <div class="keypoint">
 <p><strong>Agreement is not interpretive validity.</strong> A model can apply a code consistently and still miss context, positionality, platform vernacular, or what is absent from the record.</p>
 </div>
-<aside class="notes">
-<p>Two minutes in pairs, then three minutes as a room.</p>
-<p>Each AI code receives one human decision in the audit log: accept, reject, or modify, with a reason.</p>
-<p>Collect two or three proposed codebook changes. Choose one and type it into the codebook live. This creates the reason for the next slide: we tested a procedure, found a weakness, and now preserve the revision.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Build together: turn the codebook into a Skill</h2>
 <p><span class="chip chip-learn">BUILD TOGETHER · follow along if useful</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="" aria-label="1"></a>/skill-creator</span>
-<span id="cb5-2"><a href="" aria-label="2"></a>Revise the qualitative-coding Skill using the codebook clarification</span>
-<span id="cb5-3"><a href="" aria-label="3"></a>we just agreed. Then generalise it as a Skill called code-with-codebook.</span>
-<span id="cb5-4"><a href="" aria-label="4"></a></span>
-<span id="cb5-5"><a href="" aria-label="5"></a>It should ask for:</span>
-<span id="cb5-6"><a href="" aria-label="6"></a>- a codebook with each code's definition, when to apply it, and when not to;</span>
-<span id="cb5-7"><a href="" aria-label="7"></a>- a CSV containing an ID column and a text column.</span>
-<span id="cb5-8"><a href="" aria-label="8"></a></span>
-<span id="cb5-9"><a href="" aria-label="9"></a>For every coding decision, save: id, code, verbatim evidence,</span>
-<span id="cb5-10"><a href="" aria-label="10"></a>confidence, rationale, and an identifying-information flag.</span>
-<span id="cb5-11"><a href="" aria-label="11"></a>"Nothing fits" is allowed. Log the model, date, input files and</span>
-<span id="cb5-12"><a href="" aria-label="12"></a>number of rows in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href=""></a>/skill-creator</span>
+<span id="cb5-2"><a href=""></a>Revise the qualitative-coding Skill using the codebook clarification</span>
+<span id="cb5-3"><a href=""></a>we just agreed. Then generalise it as a Skill called code-with-codebook.</span>
+<span id="cb5-4"><a href=""></a></span>
+<span id="cb5-5"><a href=""></a>It should ask for:</span>
+<span id="cb5-6"><a href=""></a>- a codebook with each code's definition, when to apply it, and when not to;</span>
+<span id="cb5-7"><a href=""></a>- a CSV containing an ID column and a text column.</span>
+<span id="cb5-8"><a href=""></a></span>
+<span id="cb5-9"><a href=""></a>For every coding decision, save: id, code, verbatim evidence,</span>
+<span id="cb5-10"><a href=""></a>confidence, rationale, and an identifying-information flag.</span>
+<span id="cb5-11"><a href=""></a>"Nothing fits" is allowed. Log the model, date, input files and</span>
+<span id="cb5-12"><a href=""></a>number of rows in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>We tested the procedure, improved it, and saved the revision.</p>
-<aside class="notes">
-<p>[~5 min] This is not “building a Skill because Skills are interesting.” It is preserving a procedure the class has just tested and revised.</p>
-<p>Say explicitly: “The Skill is not what makes the method defensible. The codebook, evidence, human checking and decision record do. The Skill preserves the revised instructions.”</p>
-<p>Show the resulting <code>SKILL.md</code>, but do not spend time teaching folder paths. If the live creation is slow, open the prepared revised version and compare the changed rule.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Try 4: test your Skill on a small batch</h2>
 <p><span class="chip chip-try">TEST · first 20 rows only</span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="" aria-label="1"></a>/code-with-codebook</span>
-<span id="cb6-2"><a href="" aria-label="2"></a>Use the codebook in codebook.csv to code messages.csv.</span>
-<span id="cb6-3"><a href="" aria-label="3"></a>The ID column is message_id and the text column is text.</span>
-<span id="cb6-4"><a href="" aria-label="4"></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
-<span id="cb6-5"><a href="" aria-label="5"></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href=""></a>/code-with-codebook</span>
+<span id="cb6-2"><a href=""></a>Use the codebook in codebook.csv to code messages.csv.</span>
+<span id="cb6-3"><a href=""></a>The ID column is message_id and the text column is text.</span>
+<span id="cb6-4"><a href=""></a>Process the first 20 rows only, save the results as coded-sample.csv,</span>
+<span id="cb6-5"><a href=""></a>and add the run to research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Before scaling, inspect:</strong></p>
 <ul>
 <li>Are the output fields complete?</li>
@@ -1667,20 +1028,6 @@ Bella Ratmelia
 <li>Which cases are low-confidence or unclear?</li>
 <li>Did the revised codebook line change the relevant decisions?</li>
 </ul>
-<aside class="notes">
-<p>[~3 min] The habit is: test a small batch before spending money and time on the full archive.</p>
-<p>If the run is slow or misbehaves, use the prepared output. Transition: the Skill holds the judgement-rich instructions; next we add a script for the checks that have one right answer.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Same logic, at scale</h2>
@@ -1696,20 +1043,6 @@ Bella Ratmelia
 </div></div>
 <p><br></p>
 <p>Same method: <strong>codebook → AI codes → human check → revise → test again</strong>.</p>
-<aside class="notes">
-<p>[~1 min] The Skill holds the judgement-rich procedure. The script checks what it produced. They are complements, not competitors.</p>
-<p>Do not say that the script makes the interpretation certain. It makes the checks repeatable; the model’s coding may still vary.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>Skill, script, or hybrid?</h2>
@@ -1745,73 +1078,28 @@ Bella Ratmelia
 <li>researcher reviews disagreements.</li>
 </ul>
 </div></div>
-<aside class="notes">
-<p>[~2 min] This is the conceptual distinction students need before the Python demonstration.</p>
-<p>Use ordinary code when ordinary code can answer the question. For example, selecting every row where <code>forwarded = yes</code> should be a filter, not an LLM task.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>At scale: code everything, check it with a script</h2>
 <p><span class="chip chip-learn">WATCH THE WORKFLOW · no Python knowledge required</span></p>
 <p>The first 20 looked right, so the Skill codes all 210 messages. Then:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="" aria-label="1"></a>Write a Python script that checks coded-messages.csv against</span>
-<span id="cb7-2"><a href="" aria-label="2"></a>messages.csv: every message_id appears at least once, every row</span>
-<span id="cb7-3"><a href="" aria-label="3"></a>has id, code, evidence and confidence, and every evidence quote</span>
-<span id="cb7-4"><a href="" aria-label="4"></a>appears word for word in the original message. Run it, list any</span>
-<span id="cb7-5"><a href="" aria-label="5"></a>problems, and log the date and result in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href=""></a>Write a Python script that checks coded-messages.csv against</span>
+<span id="cb7-2"><a href=""></a>messages.csv: every message_id appears at least once, every row</span>
+<span id="cb7-3"><a href=""></a>has id, code, evidence and confidence, and every evidence quote</span>
+<span id="cb7-4"><a href=""></a>appears word for word in the original message. Run it, list any</span>
+<span id="cb7-5"><a href=""></a>problems, and log the date and result in research-log.md.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p><strong>Watch for:</strong> plan → write → run → inspect → adjust → rerun</p>
-<aside class="notes">
-<p>[~4 min] Two steps. First run /code-with-codebook on all of messages.csv, saving coded-messages.csv (start it during the previous slide if it’s slow). Then the check script.</p>
-<p>The Skill does the judgement; the script does the checks that have one right answer. That’s the hybrid from the last slide.</p>
-<p>The verbatim check is “show me where that came from”, automated: a quote the model paraphrased or invented gets caught by code that gives the same answer every time. If it finds problems, good: that’s the point of checking.</p>
-<p>Students do not need to reproduce the Python. Ask them to watch the decision structure: write, run, inspect, adjust. The script makes the checks repeatable; it does not make the model’s coding deterministic.</p>
-<p>If an error occurs, use it to illustrate the agent loop. Do not promise or manufacture an error.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>At scale: compare with human coding</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href="" aria-label="1"></a>Compare the AI codes for the 30 messages in hand-codes.csv with my</span>
-<span id="cb8-2"><a href="" aria-label="2"></a>codes in that file. Summarise agreement for each code and list every</span>
-<span id="cb8-3"><a href="" aria-label="3"></a>mismatch with the message, both coding decisions, and a possible reason.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb8-1"><a href=""></a>Compare the AI codes for the 30 messages in hand-codes.csv with my</span>
+<span id="cb8-2"><a href=""></a>codes in that file. Summarise agreement for each code and list every</span>
+<span id="cb8-3"><a href=""></a>mismatch with the message, both coding decisions, and a possible reason.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
 <li>The statistic is a summary; the <strong>mismatches</strong> tell us what to inspect and revise.</li>
 <li>A message isolated from its thread can lose crucial context.</li>
 <li>Human coding is a comparison point, not an unquestionable gold standard.</li>
 </ul>
-<aside class="notes">
-<p>[~3 min] Read one mismatch and ask the room: researcher, AI, both, or neither?</p>
-<p>If discussing Cohen’s kappa, define it briefly as agreement corrected for chance, then return attention to the disagreements and their causes.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Making AI coding defensible</h2>
@@ -1845,19 +1133,6 @@ Bella Ratmelia
 </tr>
 </tbody>
 </table>
-<aside class="notes">
-<p>[~1.5 min] Point back to what the class did: human baseline, Skill output, discussion, revised rule, small-batch test, and research log.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>What can still go wrong</h2>
@@ -1867,36 +1142,11 @@ Bella Ratmelia
 <li><strong>Flattening:</strong> models can favour common readings and miss minority or unexpected ones</li>
 <li><strong>False confidence:</strong> consistent output can still rest on a poor codebook or interpretation</li>
 </ul>
-<aside class="notes">
-<p>[~1 min] Linger on flattening. In ethnographic work, the unusual voice may be analytically important, and it is precisely what an automated first cut can smooth over.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section></section>
 <section>
 <section class="title-slide slide level1 section center">
 <h1>Part 4: Making it reproducible and defensible</h1>
-<aside class="notes">
-<p>[~1:33] We have used a Skill for the judgement-rich procedure and a script for the fixed checks. Part 4 asks what must remain after the demonstration so the workflow can be inspected and defended.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section class="slide level2">
 <h2>Reproducible by design</h2>
@@ -1909,19 +1159,6 @@ Bella Ratmelia
 <div class="keypoint">
 <p>A seed makes a random sample retrievable, not methodologically correct by itself.</p>
 </div>
-<aside class="notes">
-<p>[~2 min] Do not tell students that saving a script makes the AI coding reproducible. The script preserves the checks; the model’s outputs may still vary.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>What to keep</h2>
@@ -1965,14 +1202,14 @@ Bella Ratmelia
 </section>
 <section class="slide level2">
 <h2>A light habit: dated folders + a research log</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href="" aria-label="1"></a>2026-10-23_hawker-telegram/</span>
-<span id="cb9-2"><a href="" aria-label="2"></a>├── fieldnotes.csv</span>
-<span id="cb9-3"><a href="" aria-label="3"></a>├── codebook.csv</span>
-<span id="cb9-4"><a href="" aria-label="4"></a>├── messages.csv</span>
-<span id="cb9-5"><a href="" aria-label="5"></a>├── research-log.md</span>
-<span id="cb9-6"><a href="" aria-label="6"></a>├── hand-codes.csv</span>
-<span id="cb9-7"><a href="" aria-label="7"></a>├── coded-messages.csv</span>
-<span id="cb9-8"><a href="" aria-label="8"></a>└── check_coded.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb9-1"><a href=""></a>2026-10-23_hawker-telegram/</span>
+<span id="cb9-2"><a href=""></a>├── fieldnotes.csv</span>
+<span id="cb9-3"><a href=""></a>├── codebook.csv</span>
+<span id="cb9-4"><a href=""></a>├── messages.csv</span>
+<span id="cb9-5"><a href=""></a>├── research-log.md</span>
+<span id="cb9-6"><a href=""></a>├── hand-codes.csv</span>
+<span id="cb9-7"><a href=""></a>├── coded-messages.csv</span>
+<span id="cb9-8"><a href=""></a>└── check_coded.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Tell the agent: <strong>“After each step, draft a dated entry in research-log.md.”</strong></p>
 <div class="keypoint">
 <p><strong>Add a reflexive note:</strong> What did the tool make more visible? What did it flatten, obscure, or encourage you to treat as data?</p>
@@ -1993,19 +1230,6 @@ Bella Ratmelia
 </div><div class="column" style="width:50%;">
 <p><img data-src="images/reused/skill-anatomy.png" style="width:80.0%"></p>
 </div></div>
-<aside class="notes">
-<p>[~1 min] This slide comes after students have used and revised a Skill, so the storage detail now answers a real question. Confirm current product-specific paths before delivery.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller">
 <h2>Verification and research integrity</h2>
@@ -2044,19 +1268,6 @@ Bella Ratmelia
 <li>Use sources you can inspect and trust</li>
 <li>Apply the same caution you would to a browser extension or executable</li>
 </ul>
-<aside class="notes">
-<p>[~1 min] If time is short, cover this warning verbally rather than allowing it to create a second ending.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Take-home</h2>
@@ -2071,20 +1282,6 @@ Bella Ratmelia
 <div class="small muted">
 <p>Sample field notes and chat messages in this session are fictional and were written for teaching purposes.</p>
 </div>
-<aside class="notes">
-<p>Read the opening ground rule again, then pause.</p>
-<p>Recap in one breath: “An agent can act. Connectors let it reach sources. Skills preserve judgement-rich instructions. Scripts handle the fixed checks. You remain responsible for defending the result.”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2 smaller scrollable">
 <h2>Selected studies on AI-assisted qualitative coding</h2>
@@ -2096,19 +1293,6 @@ Bella Ratmelia
 <p>Pangakis, N., Wolken, S., &amp; Fasching, N. (2023). Automated annotation with generative AI requires validation. <em>arXiv:2306.00176</em>. <a href="https://arxiv.org/abs/2306.00176" class="uri">https://arxiv.org/abs/2306.00176</a></p>
 <p>Xiao, Z., Yuan, X., Liao, Q. V., Abdelghani, R., &amp; Oudeyer, P.-Y. (2023). Supporting qualitative analysis with large language models: Combining codebook with GPT-3 for deductive coding. <em>IUI ’23 Companion</em>. <a href="https://arxiv.org/abs/2304.10548" class="uri">https://arxiv.org/abs/2304.10548</a></p>
 </div>
-<aside class="notes">
-<p>Backup slide, after Take-home. Don’t present it; it’s there for anyone flipping through the slides later. Same list, with notes, in materials/reading-list.md.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 </section>
 <section class="slide level2">
 <h2>Never paste API keys into chat</h2>
@@ -2117,24 +1301,11 @@ Bella Ratmelia
 <li>A key pasted into chat, code or a shared folder can be copied, misused and billed to you</li>
 <li>Keep it outside the script, such as in an environment variable or an excluded <code>.env</code> file</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="" aria-label="1"></a><span class="im">import</span> os</span>
-<span id="cb10-2"><a href="" aria-label="2"></a>api_key <span class="op">=</span> os.environ[<span class="st">"ANTHROPIC_API_KEY"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href=""></a><span class="im">import</span> os</span>
+<span id="cb10-2"><a href=""></a>api_key <span class="op">=</span> os.environ[<span class="st">"ANTHROPIC_API_KEY"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="caution">
 <p>If the folder may be shared or committed to Git, exclude <code>.env</code>. If a key has been exposed, revoke it and create a replacement.</p>
 </div>
-<aside class="notes">
-<p>Backup slide, after Take-home. Not presented: there’s no API demo today. It’s here for anyone who goes on to use an API (the Claude API, Scopus, a publisher API) after the session.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
 
 </section></section>
     </div>
